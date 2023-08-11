@@ -3,7 +3,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Root theme
 define('WRC_THEME_URI', get_stylesheet_directory_uri());
+
+// Path to templates
+define('WRC_TEMPLATES_DIR', '/template-parts/');
 
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('jquery', WRC_THEME_URI . '/dist/js/jquery-3.5.1.min.js');

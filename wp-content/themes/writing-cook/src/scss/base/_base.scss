@@ -1,0 +1,10 @@
+h1, .h1 {
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 100px;
+
+  @media (max-width: 1920px) {
+    font-size: calc( (100vw - 320px)/(1920 - 320) * (72 - 36) + 36px);
+    line-height: calc( (100vw - 320px)/(1920 - 320) * (100 - 50) + 50px);
+  }
+}

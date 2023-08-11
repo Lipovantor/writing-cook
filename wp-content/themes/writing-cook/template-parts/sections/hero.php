@@ -4,18 +4,17 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<section class="hero">
-  <div class="hero__darken">
-    <h1 class="hero__title">Рецепты плюс</h1>
-  </div>
-  <?php if (is_page(14) || is_page(19)) { ?>
-    <div class="recipe-search">
+<section class="intro">
+  <div class="container">
+    <div class="intro__inner">
+      <h1 class="hero__title">Рецепты блюд на любой вкус</h1>
+
       <form class="search-form" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
         <input type="search" class="search-field" placeholder="Поиск рецептов" name="search_query" />
         <button type="submit" class="search-submit"></button>
       </form>
     </div>
-  <?php } ?>
+  </div>
 </section>
 
 <section class="search-results"></section>

@@ -33,10 +33,8 @@ add_action('wp_enqueue_scripts', function () {
 
 get_header();
 
-the_content();
+// the_content();
+echo get_template_part(WRC_TEMPLATES_DIR . 'sections/hero');
 
-?>
 
-
-<?php
 get_footer();
