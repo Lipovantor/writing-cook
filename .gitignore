@@ -1,0 +1,17 @@
+.idea
+/*
+
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/writing-cook
+
+!.gitignore
+!README.md
+/wp-content/themes/writing-cook/package-lock.json
+/wp-content/themes/writing-cook/node_modules
+
+.DS_Store
+gulpfile.js
+/wp-content/themes/writing-cook/gulpfile.js
