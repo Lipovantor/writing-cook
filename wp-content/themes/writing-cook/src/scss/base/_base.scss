@@ -1,10 +1,90 @@
-h1, .h1 {
+body {
+  font-family: $text_font;
+}
+
+h1,
+h2,
+h3, 
+h4,
+h5, 
+h6 {
+  font-family: $title_font;
+}
+
+h1 {
   font-weight: 600;
   font-size: 72px;
   line-height: 100px;
 
-  @media (max-width: 1920px) {
-    font-size: calc( (100vw - 320px)/(1920 - 320) * (72 - 36) + 36px);
-    line-height: calc( (100vw - 320px)/(1920 - 320) * (100 - 50) + 50px);
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (72 - 28) + 28px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (98 - 32) + 32px);
+  }
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 82px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (60 - 26) + 26px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (82 - 30) + 30px);
+  }
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 68px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (50 - 24) + 24px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (68 - 28) + 28px);
+  }
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 57px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (42 - 22) + 22px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (57 - 26) + 26px);
+  }
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 50px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (36 - 20) + 20px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (50 - 24) + 24px);
+  }
+}
+
+h6 {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (30 - 18) + 18px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (40 - 22) + 22px);
+  }
+}
+
+p {
+  font-family: $text_font;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (22 - 18) + 18px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (28 - 22) + 22px);
   }
 }

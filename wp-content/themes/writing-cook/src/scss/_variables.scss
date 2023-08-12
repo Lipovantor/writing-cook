@@ -1,30 +1,19 @@
-/**
- * Primary Colors
- */
+
+// Breakpoints
+$breakpoints: (
+  mobile: 374px,
+  tab: 767px,
+  tab-mid: 1199px,
+  tab-max: 1279px,
+  desktop: 1919px,
+);
 
 
-/**
- * Secondary Colors
- */
+// Fonts
+$title_font: 'NotoSerif', serif;
+$text_font: 'Inter', sans-serif;
 
 
-
-/**
- * Button Colors
- */
+// Colors
 
 
-/**
- * Font Sizes
- */
-
-
-
-/**
- * Font Sizes Mobile
- */
-
-
-/**
- * Component spacing variables
- */

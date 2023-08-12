@@ -7,11 +7,12 @@ if (!defined('ABSPATH')) {
 <section class="intro">
   <div class="container">
     <div class="intro__inner">
+
       <h1 class="hero__title">Рецепты блюд на любой вкус</h1>
 
       <form class="search-form" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
         <input type="search" class="search-field" placeholder="Поиск рецептов" name="search_query" />
-        <button type="submit" class="search-submit"></button>
+        <input type="submit" class="search-submit"></input>
       </form>
     </div>
   </div>
