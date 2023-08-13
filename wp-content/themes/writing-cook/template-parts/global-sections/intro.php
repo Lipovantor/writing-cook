@@ -4,36 +4,41 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<section class="intro">
+<section class="intro" 
+         style="<?php if (!empty(get_sub_field('bg_image'))) { echo 'background-image: url(' . get_sub_field('bg_image') . ')'; } ?>">
   <div class="container">
     <div class="intro__inner">
 
-      <h1 class="hero__title">Рецепты блюд на любой вкус</h1>
+      <?php if (!empty(get_sub_field('title'))) { ?>
+          <h1 class="intro__title">
+            <?php echo get_sub_field('title'); ?>
+          </h1>
+        <?php } ?>
 
       <form class="search-form" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
         <input type="search" class="search-field" placeholder="Поиск рецептов" name="search_query" />
         <input type="submit" class="search-submit"></input>
       </form>
+
     </div>
   </div>
 </section>
 
-<section class="search-results"></section>
+<section class="searching-results"></section>
 
 <script>
-// Обработчик отправки AJAX запроса на поиск рецептов
 jQuery(document).ready(function($) {
   $('.search-form').submit(function(event) {
-    event.preventDefault(); // Предотвращаем отправку формы
+    event.preventDefault();
     
-    var formData = $(this).serialize(); // Получаем данные формы
+    let formData = $(this).serialize();
     
     $.ajax({
       type: 'POST',
       url: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
       data: formData + '&action=recipe_search',
       success: function(response) {
-        $('.search-results').html(response); // Выводим результаты поиска в контейнере
+        $('.searching-results').html(response);
       }
     });
   });

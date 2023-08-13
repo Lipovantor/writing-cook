@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
  */
 ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html <?php language_attributes(); ?>>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +22,8 @@ if (!defined('ABSPATH')) {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <title>Home</title>
 </head>
-<body>
+<body <?php body_class(); ?>>
 
 <header class="header">
     <?php 

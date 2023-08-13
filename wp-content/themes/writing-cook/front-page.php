@@ -13,28 +13,29 @@ Template Name: Front Page
  * @since V0.1
  *
  */
-function remove_default_jquery() {
-    if (!is_admin()) {
-        wp_deregister_script('jquery');
-    }
-}
-add_action('wp_enqueue_scripts', 'remove_default_jquery');
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('slick-js', WRC_THEME_URI . '/assets/slick/slick.min.js', 'jquery');
-
+    wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', 'jquery');
+    
     wp_enqueue_script('front-page', WRC_THEME_URI . '/dist/js/pages/front-page.min.js', 'jquery');
     
-    wp_enqueue_style('slick-css', WRC_THEME_URI . '/assets/slick/slick.css');
-    wp_enqueue_style('slick-theme-css', WRC_THEME_URI . '/assets/slick/slick-theme.css');
+    wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
 
     wp_enqueue_style('front-page', WRC_THEME_URI . '/dist/css/front-page.min.css');
 },200);
 
 get_header();
 
-// the_content();
-echo get_template_part(WRC_TEMPLATES_DIR . 'sections/hero');
+if (have_rows('page_layout')):
+    while (have_rows('page_layout')):
+        the_row();
+        get_template_part('template-parts/page_layout');
+    endwhile;
+endif;
+?>
 
+
+
+<?php
 
 get_footer();

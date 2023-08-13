@@ -1,5 +1,6 @@
 body {
   font-family: $text_font;
+  color: $second_color;
 }
 
 h1,
@@ -9,6 +10,7 @@ h4,
 h5, 
 h6 {
   font-family: $title_font;
+  color: $main_color;
 }
 
 h1 {
@@ -77,11 +79,13 @@ h6 {
   }
 }
 
-p {
+p,
+.body-text {
   font-family: $text_font;
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
+  color: $second_color;
 
   @include media(desktop) {
     font-size: calc( (100vw - 375px)/(1920 - 375) * (22 - 18) + 18px);
