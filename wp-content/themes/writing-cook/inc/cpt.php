@@ -95,3 +95,23 @@ function create_recipe_taxonomies() {
 }
 
 add_action('init', 'create_recipe_taxonomies');
+
+// Theme Settings
+if (!function_exists('investors_acf_op_init')) {
+  function investors_acf_op_init()
+  {
+      // Check function exists.
+      if (function_exists('acf_add_options_page')) {
+
+          // Register options page.
+          acf_add_options_page(array(
+              'page_title' => __('Настройки сайта'),
+              'menu_title' => __('Настройки сайта'),
+              'menu_slug' => 'theme-general-settings',
+              'capability' => 'edit_posts',
+              'redirect' => false
+          ));
+      }
+  }
+}
+add_action('init', 'investors_acf_op_init');

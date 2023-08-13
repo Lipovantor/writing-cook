@@ -7,20 +7,18 @@ if (!defined('ABSPATH')) {
 <section class="intro" 
          style="<?php if (!empty(get_sub_field('bg_image'))) { echo 'background-image: url(' . get_sub_field('bg_image') . ')'; } ?>">
   <div class="container">
-    <div class="intro__inner">
 
-      <?php if (!empty(get_sub_field('title'))) { ?>
-          <h1 class="intro__title">
-            <?php echo get_sub_field('title'); ?>
-          </h1>
-        <?php } ?>
+    <?php if (!empty(get_sub_field('title'))) { ?>
+      <h1 class="intro__title">
+        <?php echo get_sub_field('title'); ?>
+      </h1>
+    <?php } ?>
 
-      <form class="search-form" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
-        <input type="search" class="search-field" placeholder="Поиск рецептов" name="search_query" />
-        <input type="submit" class="search-submit"></input>
-      </form>
+    <form class="search-form search-form-recipes" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
+      <input type="search" class="search-form-recipes__field" placeholder="Поиск рецептов" name="search_query" />
+      <input type="submit" class="search-form-recipes__submit" value="Найти">
+    </form>
 
-    </div>
   </div>
 </section>
 
@@ -28,7 +26,7 @@ if (!defined('ABSPATH')) {
 
 <script>
 jQuery(document).ready(function($) {
-  $('.search-form').submit(function(event) {
+  $('.search-form-recipes').submit(function(event) {
     event.preventDefault();
     
     let formData = $(this).serialize();

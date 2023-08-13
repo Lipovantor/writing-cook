@@ -1,12 +1,182 @@
 .intro {
   height: 50vh;
   max-height: 500px;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
 
-  &__inner {
+  &__title {
+    color: $white-main-color;
+    text-align: center;
+  }
+}
+
+.search-form {
+
+  &-recipes {
+    height: 54px;
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+
+    @include media(tab) {
+      width: 100%;
+      height: 36px;
+    }
+
+    &::before {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 14px;
+      left: 17px;
+      background-image: url("../img/icons/loupe.svg");
+      background-size: cover;
+
+      @include media(tab) {
+        width: 13px;
+        height: 13px;
+        top: 12px;
+        left: 9px;
+      }
+    }
+
+    &__field {
+      height: 54px;
+      width: 99%;
+      padding: 15px 130px 15px 52px;
+      border: none;
+      border-radius: 50px;
+      background-color: $white_main_color;
+      outline: 1px solid transparent;
+      @include bodyText;
+
+      @include media(tab) {
+        height: 36px;
+        padding: 7px 100px 7px 28px;
+      }
+      
+      &:focus {
+        outline: none;
+        box-shadow: -10px 8px 12px 0 rgba(221, 211, 185, .12);
+      }
+    }
+
+    &__submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      padding: 0 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      background-color: $main_color;
+      border: none;
+      cursor: pointer;
+      @include bodyText;
+      color: $white_main_color;
+
+      @include media(tab) {
+        padding: 0 22px;
+      }
+    }
+  }
+}
+
+.searching-results {
+  overflow-x: hidden;
+  padding-top: 40px;
+  padding-bottom: 120px;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  &__header {
+    margin-bottom: 26px;
+  }
+
+  &__find {
+    margin-bottom: 0;
+  }
+}
+
+.recipe-card {
+  width: calc(25% - 13.25px);
+  border: 1px solid $grey_main_color;
+  border-radius: 5px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .04);
+  overflow: hidden;
+  text-decoration: none;
+
+  &:hover {
+    transition: all .2s;
+    box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, 0.06)
+  }
+
+  &__plug,
+  &__image {
+    height: 250px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  &__content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__header {
 
   }
 
-  &__title {
+  &__inner {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $grey_main_color;
 
+    &_title {
+      height: 50px;
+    }
+
+    &_excerpt {
+      height: 33px;
+    }
+  }
+
+  &__title,
+  &__excerpt {
+    margin: 0;
+    font-family: $text_font;
+    font-weight: 400;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__title {
+    color: $main_color;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__excerpt {
+    color: $second_color;
+    font-size: 14px;
+    line-height: 14px;
   }
 }
