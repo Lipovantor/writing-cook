@@ -61,7 +61,7 @@ function recipe_search_ajax_handler() {
                 <?php } ?>
               </div>
             <?php } ?>
-            <div class="recipe-card__content">
+            <div class="recipe-card__content recipe-card__content_main">
               <div class="recipe-card__header">
                 <div class="recipe-card__inner recipe-card__inner_title">
                   <h3 class="recipe-card__title">
@@ -90,6 +90,29 @@ function recipe_search_ajax_handler() {
                 $(window).on('load resize', truncateText);
               </script>
             </div>
+            
+            <!-- <div class="recipe-card__content recipe-card__content_second">
+              <div class="recipe-card__ingredients">
+                <p>Состав:</p>
+                <ul>
+                  <li>Горох</li>
+                  <li>Вода</li>
+                  <li>Сухари</li>
+                  <li>Петрушка</li>
+                  <li>Морковь</li>
+                </ul>
+              </div>
+            </div> -->
+
+            <button class="recipe-card__button"></button>
+            <script>
+              $(document).ready(function() {
+                $('.recipe-card__button').on('click', function(e) {
+                  e.preventDefault();
+                  console.log('test');
+                });
+              });
+            </script>
           </a>
           <?php
         }
