@@ -1,6 +1,16 @@
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
 body {
+  margin: 0;
+  padding: 0;
   font-family: $text_font;
   color: $second_color;
+
+  background-color: red;
 }
 
 h1,
@@ -11,6 +21,7 @@ h5,
 h6 {
   font-family: $title_font;
   color: $main_color;
+  margin: 0;
 }
 
 h1 {

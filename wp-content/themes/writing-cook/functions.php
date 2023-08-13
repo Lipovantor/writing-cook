@@ -64,3 +64,5 @@ add_theme_support('menus');
  * Title-tag
  */
 add_theme_support( 'title-tag' );
+
+
