@@ -100,8 +100,8 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 23px 15px;
+    gap: 31px 15px;
+    margin-bottom: 71px;
   }
 
   &__header {
@@ -114,7 +114,7 @@
 }
 
 .recipe-card {
-  width: calc(25% - 14px);
+  width: calc(25% - 13px);
   border-radius: 5px;
   border-radius: 4px 4px 0 0;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .04);
@@ -123,23 +123,56 @@
   position: relative;
   height: 390px;
 
+  &:hover {
+    .recipe-card__box {
+      border-left: 1px solid $grey_second_color;
+      border-right: 1px solid $grey_second_color;
+    }
+  }
+
+  &_active {
+    .recipe-card__box {
+      background-color: $white-main-color;
+      z-index: 5;
+      box-shadow: -2px 28px 13px 1px rgba(0, 0, 0, .1);
+    }
+
+    .recipe-card__inner_title,
+    .recipe-card__inner_excerpt {
+      max-height: fit-content;
+    }
+
+    .recipe-card__title,
+    .recipe-card__excerpt {
+      display: flex;
+    }
+
+    .recipe-card__button {
+      box-shadow: 0 12px 12px 0 rgba(0, 0, 0, .5);
+    }
+  }
+
   &__box {
     position: absolute;
     left: 0;
     width: calc(100% - 1px);
-    background-color: $white-main-color;
+    background-color: $white_second_color;
     z-index: 1;
     border-left: 1px solid $grey_main_color;
     border-right: 1px solid $grey_main_color;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, .04);
   }
 
   &__plug,
   &__image {
     height: 250px;
     overflow: hidden;
-    object-fit: cover;
     border-radius: 4px 4px 0 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &__content {
@@ -153,14 +186,18 @@
 
   &__button {
     width: calc(100% + 2px);
-    height: 24px;
+    height: 32px;
     border: none;
     border-radius: 0 0 5px 5px;
-    background-color: $second_color;
+    background-color: $main_alt_color;
     position: absolute;
     left: -1px;
-    bottom: -22px;
+    bottom: -31px;
     cursor: pointer;
+
+    &:hover {
+      background-color: $main_color;
+    }
 
     &_active {
       img {
@@ -179,11 +216,13 @@
     border-bottom: 1px solid $grey_main_color;
 
     &_title {
-      height: 50px;
+      min-height: 50px;
+      max-height: 50px;
     }
 
     &_excerpt {
-      height: 33px;
+      min-height: 33px;
+      max-height: 33px;
     }
   }
 
@@ -213,7 +252,8 @@
   }
 
   &__ingredients {
-    max-height: 205px;
+    // max-height: 205px;
+    max-height: 320px;
     padding: 10px 0;
     overflow-y: auto;
     border-bottom: 1px solid $grey_main_color;

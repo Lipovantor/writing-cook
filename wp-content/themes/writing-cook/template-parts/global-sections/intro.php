@@ -44,16 +44,18 @@ jQuery(document).ready(function($) {
 </script>
 
 <?php
+$paged = ( get_query_var('page') ) ? get_query_var('page') : 1; // Получаем номер текущей страницы.
+
 $args = array(
     'post_type' => 'recipes',
     'post_status' => 'publish',
-    'posts_per_page' => -1,
-  );
+    'posts_per_page' => 8, // Ограничиваем количество постов на странице до 4.
+    'paged' => $paged,
+);
   
   $query = new WP_Query($args);
   
-  if ($query->have_posts()) { 
-    $count = $query->found_posts; ?> 
+  if ($query->have_posts()) { ?> 
 
     <section>
       <div class="container">
@@ -61,15 +63,18 @@ $args = array(
           <?php
           while ($query->have_posts()) {
             $query->the_post();
-            $thumbnail = get_the_post_thumbnail(get_the_ID(), 'large');
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
             $title = get_the_title();
             $excerpt = get_the_excerpt();
             ?>
             <a class="recipe-card" href="<?php echo get_permalink() ?>">
               
-              <?php if ($thumbnail) { ?>
+              <?php if ($thumbnail_url) { ?>
                 <div class="recipe-card__image">
-                  <?php echo $thumbnail ?>
+                  <img src="<?php echo $thumbnail_url ?>" 
+                    alt="" 
+                    width="360"
+                    height="250"/>
                 </div>
               <?php } else { ?>
                 <div class="recipe-card__plug">
@@ -114,8 +119,8 @@ $args = array(
                   </script>
                 </div>
                 
-                <button class="recipe-card__button">
-                  <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="">
+                <button class="recipe-card__button" aria-label="Развернуть-свернуть карточку рецепта">
+                  <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="" width="13" height="9">
                 </button>
                 <div class="recipe-card__content recipe-card__content_second">
                   <div class="recipe-card__ingredients">
@@ -152,6 +157,14 @@ $args = array(
             </a>
             <?php
           }
+
+          // Add Pagination
+          echo paginate_links( [
+            // 'base'    => user_trailingslashit( wp_normalize_path( get_permalink() .'/%#%/' ) ),
+            'current' => max( 1, $paged ),
+            'total'   => $query->max_num_pages,
+          ] );
+
           wp_reset_postdata();
           ?>
         </div>
@@ -159,7 +172,9 @@ $args = array(
     </section>
   <?php } else {
     echo '<div class="container">Рецепты не найдены</div>';
-  } ?>
+  } 
+?>
+
 
 <script>
   $('.recipe-card__button').on('click', function(e) {
@@ -169,6 +184,7 @@ $args = array(
         cardContent = card.find('.recipe-card__content_second');
     cardContent.slideToggle();
     button.toggleClass('recipe-card__button_active')
+    card.toggleClass('recipe-card_active')
   });
 </script>
 

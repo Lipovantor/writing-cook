@@ -66,3 +66,8 @@ add_theme_support('menus');
 add_theme_support( 'title-tag' );
 
 
+function wrc_add_pagination_parameter($params) {
+  $params[] = 'paged';
+  return $params;
+}
+add_filter('query_vars', 'wrc_add_pagination_parameter');
