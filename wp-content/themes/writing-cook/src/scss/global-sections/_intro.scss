@@ -111,6 +111,25 @@
   &__find {
     margin-bottom: 0;
   }
+
+  &__pagination {
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .page-numbers {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 30px;
+      color: $second_color;
+
+      &.current {
+        color: $bread_color;
+      }
+    }
+  }
 }
 
 .recipe-card {
