@@ -134,29 +134,31 @@ add_action('wp_ajax_nopriv_recipe_search', 'recipe_search_ajax_handler');
 
 
 // Фильтр
-// Функция для обработки AJAX-запроса на фильтрацию рецептов
-function filter_recipes() {
-  $selected_categories = explode(',', sanitize_text_field($_POST['categories']));
-  $page = max(1, intval($_POST['page'])); // Получаем номер страницы
+function load_recipes_by_category() {
+  $category_filter_values = isset($_POST['category_filter_values']) ? $_POST['category_filter_values'] : array();
+  $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
   $args = array(
-      'post_type' => 'recipes',
-      'post_status' => 'publish',
-      'posts_per_page' => 8,
-      'paged' => $page,
-      'tax_query' => array(
+      'post_type' => 'recipes', // Замените на свой тип записи
+      'posts_per_page' => 6, // Количество рецептов на странице
+      'paged' => $paged,
+  );
+
+  if (!empty($category_filter_values)) {
+      $args['tax_query'] = array(
           array(
               'taxonomy' => 'recipe_category',
               'field' => 'term_id',
-              'terms' => $selected_categories,
-              'operator' => 'IN',
+              'terms' => $category_filter_values,
           ),
-      ),
-  );
+      );
+  }
 
   $query = new WP_Query($args);
 
-  if ($query->have_posts()) {
+  if ($query->have_posts()) {?> 
+
+          <?php
       while ($query->have_posts()) {
           $query->the_post();
           $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
@@ -253,22 +255,25 @@ function filter_recipes() {
           </a>
         <?php
       }
-
-      echo '<div class="searching-results__pagination">';
-      echo paginate_links(array(
-          'current' => $page,
-          'total' => $query->max_num_pages,
-          'prev_next' => false,
-      ));
-      echo '</div>';
-
-      wp_reset_postdata();
   } else {
-      echo '<div class="container">Рецепты не найдены</div>';
+      echo 'Нет рецептов для отображения.';
   }
 
-  die();
+    // Вывод пагинации
+    $pagination = paginate_links(array(
+      'total' => $query->max_num_pages,
+      'current' => $paged,
+      'format' => '?paged=%#%',
+    ));
+  
+    if ($pagination) {
+      echo '<div class="pagination">' . $pagination . '</div>';
+    }
+
+  wp_reset_postdata();
+  wp_die(); 
 }
 
-add_action('wp_ajax_filter_recipes', 'filter_recipes'); // Для зарегистрированных пользователей
-add_action('wp_ajax_nopriv_filter_recipes', 'filter_recipes'); // Для незарегистрированных пользователей
+add_action('wp_ajax_load_recipes_by_category', 'load_recipes_by_category');
+add_action('wp_ajax_nopriv_load_recipes_by_category', 'load_recipes_by_category');
+
