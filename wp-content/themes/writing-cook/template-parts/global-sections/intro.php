@@ -45,6 +45,31 @@ jQuery(document).ready(function($) {
 </script>
 <!-- JS Search END -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Filter recipes -->
 <div class="category-filter">
     <?php
@@ -65,6 +90,9 @@ jQuery(document).ready(function($) {
       <div class="container">
         <div class="searching-results__list">
   </div>
+  <?php
+
+    ?>
   </div>
   </section>
 
@@ -78,7 +106,7 @@ jQuery(document).ready(function($) {
         loadRecipes();
     });
 
-    function loadRecipes() {
+    function loadRecipes(page) {
         var categoryValues = [];
         $('.category-checkbox:checked').each(function() {
             categoryValues.push($(this).val());
@@ -90,13 +118,20 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'load_recipes_by_category',
                 category_filter_values: categoryValues,
-                paged: paged,
+                paged: page,
             },
             success: function(response) {
                 $('.searching-results__list').html(response);
             }
         });
+
+        $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault(); // Предотвращение перехода по ссылке
+        var page = $(this).attr('href').split('paged=')[1]; // Получение номера страницы из ссылки
+        loadRecipes(page);
+    });
     }
+
 
     // Инициализация при загрузке страницы
     loadRecipes();
@@ -108,7 +143,7 @@ jQuery(document).ready(function($) {
 
 
 <script>
-  $('.recipe-card__button').on('click', function(e) {
+$('.searching-results__list').on('click', '.recipe-card__button', function(e) {
     e.preventDefault();
     let button = $(this),
         card = button.closest('.recipe-card'),
@@ -116,5 +151,5 @@ jQuery(document).ready(function($) {
     cardContent.slideToggle();
     button.toggleClass('recipe-card__button_active')
     card.toggleClass('recipe-card_active')
-  });
+});
 </script>
