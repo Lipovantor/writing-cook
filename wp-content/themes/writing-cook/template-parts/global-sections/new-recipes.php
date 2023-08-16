@@ -2,7 +2,6 @@
 if (!defined('ABSPATH')) {
     exit;
 }
-wp_enqueue_script('new-recipes', WRC_THEME_URI . '/dist/js/sections/new-recipes.min.js', 'jquery');
 ?>
 
 <section class="new-recipes">
