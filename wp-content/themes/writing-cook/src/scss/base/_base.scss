@@ -119,9 +119,13 @@ p,
 }
 
 .container {
-  width: 100%;
+  // width: 100%;
   max-width: 1480px;
   padding-left: 20px;
   padding-right: 20px;
   margin: 0 auto;
+}
+
+section {
+  transition: height .4s;
 }

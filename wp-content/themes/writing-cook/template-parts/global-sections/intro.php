@@ -37,16 +37,16 @@ wp_localize_script('intro', 'ajax_object', array('ajax_url' => admin_url('admin-
         'order' => 'ASC',
       ));
 
-      $counter = 0; // Инициализируем счетчик
+      $counter = 0;
 
       foreach ($categories as $category) {
-          $counter++; // Увеличиваем счетчик
-          $input_id = 'category-checkbox-' . $counter; // Формируем уникальный id для input
-          ?>
-          <label for="<?php echo esc_attr($input_id); ?>" class="category-filter__label">
-            <input type="checkbox" id="<?php echo esc_attr($input_id); ?>" class="category-checkbox" value="<?php echo esc_attr($category->term_id); ?>">
-            <?php echo esc_html($category->name); ?>
-          </label>
+        $counter++;
+        $input_id = 'category-checkbox-' . $counter;
+        ?>
+        <label for="<?php echo esc_attr($input_id); ?>" class="category-filter__label">
+          <input type="checkbox" id="<?php echo esc_attr($input_id); ?>" class="category-checkbox" value="<?php echo esc_attr($category->term_id); ?>">
+          <?php echo esc_html($category->name); ?>
+        </label>
       <?php } ?>
     </div>
     <div class="filtration__list results-list"></div>
