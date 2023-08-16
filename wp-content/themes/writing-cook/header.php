@@ -39,7 +39,18 @@ if (!defined('ABSPATH')) {
     // wp_nav_menu( $args );
     ?>
     <div class="container">
-
+      <div class="header__row">
+        <div class="header__col">
+          <a href="<?php echo get_home_url(); ?>" class="header__logo">
+            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/logo-light.svg'; ?>" alt="" width="100" height="40">
+          </a>
+        </div>
+        <div class="header__col">
+          <button class="header__burger">
+            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/burger.svg'; ?>" alt="" width="40" height="40">
+          </button>
+        </div>
+      </div>
     </div>
 </header>
 

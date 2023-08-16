@@ -5,10 +5,17 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   font-family: $text_font;
   color: $second_color;
+
+  &.admin-bar {
+    .header {
+      top: 32px;
+    }
+  }
 }
 
 h1,
@@ -119,7 +126,6 @@ p,
 }
 
 .container {
-  // width: 100%;
   max-width: 1480px;
   padding-left: 20px;
   padding-right: 20px;
