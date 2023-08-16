@@ -2,6 +2,9 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
+wp_enqueue_script('intro', WRC_THEME_URI . '/dist/js/sections/intro.min.js', 'jquery');
+wp_localize_script('intro', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 ?>
 
 <section class="intro" 
@@ -22,134 +25,37 @@ if (!defined('ABSPATH')) {
   </div>
 </section>
 
-<section class="searching-results"></section>
+<section class="searching" id="recipes-searching"></section>
 
-<!-- JS Search -->
-<script>
-jQuery(document).ready(function($) {
-  $('.search-form-recipes').submit(function(event) {
-    event.preventDefault();
-    
-    let formData = $(this).serialize();
-    
-    $.ajax({
-      type: 'POST',
-      url: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
-      data: formData + '&action=recipe_search',
-      success: function(response) {
-        $('.searching-results').html(response);
-      }
-    });
-  });
-});
-</script>
-<!-- JS Search END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Filter recipes -->
-<div class="category-filter">
-    <?php
-    $categories = get_terms(array(
+<section class="filtration" id="recipes-filtration">
+  <div class="container">
+    <div class="category-filter">
+      <?php
+      $categories = get_terms(array(
         'taxonomy' => 'recipe_category',
         'orderby' => 'name',
         'order' => 'ASC',
-    ));
+      ));
 
-    foreach ($categories as $category) {
-        echo '<label><input type="checkbox" class="category-checkbox" value="' . esc_attr($category->term_id) . '"> ' . esc_html($category->name) . '</label>';
-    }
-    ?>
-    <input type="hidden" id="category-filter-values" name="category_filter_values" value="">
-</div>
+      $counter = 0; // Инициализируем счетчик
 
-<section>
-      <div class="container">
-        <div class="searching-results__list">
+      foreach ($categories as $category) {
+          $counter++; // Увеличиваем счетчик
+          $input_id = 'category-checkbox-' . $counter; // Формируем уникальный id для input
+          ?>
+          <label for="<?php echo esc_attr($input_id); ?>" class="category-filter__label">
+            <input type="checkbox" id="<?php echo esc_attr($input_id); ?>" class="category-checkbox" value="<?php echo esc_attr($category->term_id); ?>">
+            <?php echo esc_html($category->name); ?>
+          </label>
+      <?php } ?>
+    </div>
+    <div class="filtration__list results-list"></div>
   </div>
-  <?php
-
-    ?>
-  </div>
-  </section>
-
-<!-- AJAX скрипт -->
-<script>
-jQuery(document).ready(function($) {
-    var paged = 1;
-
-    $('.category-checkbox').change(function() {
-        paged = 1; // Сброс страницы при изменении фильтра
-        loadRecipes();
-    });
-
-    function loadRecipes(page) {
-        var categoryValues = [];
-        $('.category-checkbox:checked').each(function() {
-            categoryValues.push($(this).val());
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>', // WordPress AJAX URL
-            data: {
-                action: 'load_recipes_by_category',
-                category_filter_values: categoryValues,
-                paged: page,
-            },
-            success: function(response) {
-                $('.searching-results__list').html(response);
-            }
-        });
-
-        $(document).on('click', '.pagination a', function(e) {
-        e.preventDefault(); // Предотвращение перехода по ссылке
-        var page = $(this).attr('href').split('paged=')[1]; // Получение номера страницы из ссылки
-        loadRecipes(page);
-    });
-    }
-
-
-    // Инициализация при загрузке страницы
-    loadRecipes();
-});
-</script>
-<!-- Filter recipes END -->
+</section>
 
 
 
 
-<script>
-$('.searching-results__list').on('click', '.recipe-card__button', function(e) {
-    e.preventDefault();
-    let button = $(this),
-        card = button.closest('.recipe-card'),
-        cardContent = card.find('.recipe-card__content_second');
-    cardContent.slideToggle();
-    button.toggleClass('recipe-card__button_active')
-    card.toggleClass('recipe-card_active')
-});
-</script>
+
+
+
