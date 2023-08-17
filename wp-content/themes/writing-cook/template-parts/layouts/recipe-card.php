@@ -6,6 +6,9 @@ if (!defined('ABSPATH')) {
 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
 $title = get_the_title();
 $excerpt = get_the_excerpt();
+
+$post_id = get_the_ID();
+$fields = get_fields($post_id);
 ?>
 <a class="recipe-card" href="<?php echo get_permalink() ?>">
   
@@ -64,6 +67,9 @@ $excerpt = get_the_excerpt();
     </button>
     <div class="recipe-card__content recipe-card__content_second">
       <div class="recipe-card__ingredients">
+        <?php if($fields['timing']) { ?>
+          <div class="recipe-card__timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
+        <?php } ?>
         <p class="recipe-card__ingredients-title">Ингредиенты и инвентарь</p>
         <p class="recipe-card__ingredients-title">на 4 порции</p>
         <ul class="recipe-card__ingredients-list">

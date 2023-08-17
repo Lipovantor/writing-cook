@@ -135,3 +135,18 @@ p,
 section {
   transition: height .4s;
 }
+
+
+// Это стили для Google-translate
+.skiptranslate {
+  iframe {
+    display: none !important;
+  }
+}
+
+// Отключаем подсветку при наведении на переведенные слова
+.gwt_highlight {
+  background-color: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}

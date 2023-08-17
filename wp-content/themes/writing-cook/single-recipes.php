@@ -3,39 +3,83 @@
 Template Name: Single Recipe
 */
 
-// add_action('wp_enqueue_scripts', function () {
-//     wp_enqueue_script('single-recipes', TT_DIST_JS_URI . 'single-recipes.min.js', 'jquery', null, 1);
-//     wp_enqueue_script('slick-js', TEST_ASSETS_URI . 'slick/slick.min.js', 'jquery', null, 1);
-    
-//     wp_enqueue_style('single-recipes', TT_DIST_CSS_URI . 'single-recipes.min.css');
-//     wp_enqueue_style('slick-css', TEST_ASSETS_URI . 'slick/slick.css');
-//     wp_enqueue_style('slick-theme-css', TEST_ASSETS_URI . 'slick/slick-theme.css');
-// },200);
+add_action('wp_enqueue_scripts', function () {
+  wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', 'jquery');
+  wp_enqueue_script('single-recipes', WRC_THEME_URI . '/dist/js/pages/single-recipes.min.js', 'jquery');
+  
+  wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
+  wp_enqueue_style('single-recipes', WRC_THEME_URI . '/dist/css/single-recipes.min.css');
+},200);
 
-// get_header();
+get_header();
 
-// echo get_template_part(TEST_TEMPLATES_DIR . 'sections/recipe-hero');
-
+$post_id = get_the_ID();
+$fields = get_fields($post_id);
 ?>
 
-<?php
+<main class="recipe">
+  <section class="intro">
+    <div class="intro__container container">
+      <h1 class="intro__title">
+        <?php echo the_title(); ?>
+      </h1>
+      <div class="body-text intro__text">
+        <?php echo strip_tags(get_the_excerpt()); ?>
+      </div>
+    </div>
+  </section>
 
-// the_title();
+  <div class="container recipe__container">
+    <article class="content">
+      <section class="gallary">
+        <?php
+        $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
 
-// if (have_posts()) {
-//     while (have_posts()) {
+        if ($thumbnail_url) { ?>
+          <img src="<?php echo $thumbnail_url ?>" 
+            alt="" 
+            width="770"
+            height="500"/>
+        <?php } else { ?>
+          <?php 
+          $image = get_field('card_plug', 'option');
+          if( !empty( $image ) ) { ?>
+              <img src="<?php echo esc_url($image['url']); ?>" 
+                    alt="<?php echo esc_attr($image['alt']); ?>" 
+                    width="770"
+                    height="500"/>
+          <?php } ?>
+        <?php } ?>
+      </section>
+      <section class="details">
+        <?php if(!empty($fields['timing'])) { ?>
+          <div class="details__timing">
+            <img width="27" height="27" src="<?php echo WRC_THEME_URI . '/dist/img/icons/cooking-time.svg'; ?>" alt="" class="details__timing-icon">
+            <div class="extra-text details__timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
+          </div>
+        <?php } ?>
+        <div class="ingridients">
+          <div class="extra-text ingridients__title">Ингредиенты и инвентарь</div>
+          <div class="extra-text">на 4 порции:</div>
+          <ul class="ingridients__list">
+            <li class="body-text ingridients__item">Соль</li>
+            <li class="body-text ingridients__item">Соль</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+    <aside class="sidebar">
+      <div class="sidebar__ingredients">
+        <header class="sidebar__header">
+          <div class="sidebar__title extra-text">Ингридиенты</div>
+          <div class="sidebar__subtitle extra-text">на 4 порции</div>
+        </header>
+        <div class="sidebar__list">
 
-//         the_post();
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
 
-//         the_title();
-
-//         if (has_post_thumbnail()) {
-//             the_post_thumbnail();
-//         }
-
-//         the_content();
-//     }
-// }
-
-get_footer();
-?>
+<?php get_footer();

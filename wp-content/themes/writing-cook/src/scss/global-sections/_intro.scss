@@ -214,8 +214,8 @@
     border-radius: 50%;
     animation: spin 1s linear infinite;
     position: absolute;
-    top: 50%; /* Размещаем псевдоэлемент по вертикали в центре */
-    left: 50%; /* Размещаем псевдоэлемент по горизонтали в центре */
-    transform: translate(-50%, -50%); /* Центрируем псевдоэлемент точно по центру */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

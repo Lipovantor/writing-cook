@@ -5,6 +5,11 @@
   z-index: 999999;
   padding: 12px;
 
+  &__container {
+    position: relative;
+    padding-right: 37px;
+  }
+
   &__row {
     display: flex;
     align-items: center;
@@ -20,4 +25,16 @@
     border: none;
     cursor: pointer;
   }
+}
+
+.main-menu {
+  display: none;
+  padding: 40px 20px;
+  position: absolute;
+  top: 100%;
+  right: 37px;
+  border-radius: 5px;
+  border: 1px solid #FBFBFB;
+  background: var(--white-main-color, #FFF);
+  box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, 0.04);
 }

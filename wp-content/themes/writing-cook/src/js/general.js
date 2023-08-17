@@ -17,7 +17,9 @@ jQuery(function ($) {
     init: function () {
 
       this.install = this.install(this)
+      this.header_open_close_main_menu = this.header_open_close_main_menu(this)
       this.open_close_card_recipe = this.open_close_card_recipe(this)
+
     },
 
     /**
@@ -37,6 +39,15 @@ jQuery(function ($) {
         }
       };
 
+    },
+
+    /**
+     * Open-close main-menu in header
+     */
+    header_open_close_main_menu: function() {
+      $('#burger-menu').on('click', function() {
+        $('.main-menu').slideToggle();
+      });
     },
 
     /**

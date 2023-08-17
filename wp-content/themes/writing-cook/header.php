@@ -26,32 +26,42 @@ if (!defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 
 <header class="header">
-    <?php 
-    // $args = array(
-    //     'menu' => 'main-menu',
-    //     'theme_location' => 'header',
-    //     'depth'	=> 0,
-    //     'container' => 'nav',
-    //     'container_class'   => 'main-menu',
-    //     'fallback_cb' => false
-    // );
-        
-    // wp_nav_menu( $args );
-    ?>
-    <div class="container">
+    <div class="container header__container">
       <div class="header__row">
         <div class="header__col">
-          <a href="<?php echo get_home_url(); ?>" class="header__logo">
+          <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную">
             <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/logo-light.svg'; ?>" alt="" width="100" height="40">
           </a>
         </div>
         <div class="header__col">
-          <button class="header__burger">
+          <button class="header__burger" aria-label="Открыть меню" id="burger-menu">
             <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/burger.svg'; ?>" alt="" width="40" height="40">
           </button>
         </div>
       </div>
-    </div>
+
+      <nav class="main-menu">
+        <?php 
+        $args = array(
+            'menu' => 'main-menu',
+            'theme_location' => 'header',
+            'depth' => 0,
+            'fallback_cb' => false,
+        );
+
+        $menu_items = wp_get_nav_menu_items($args['menu']);
+
+        if ($menu_items) {
+          foreach ($menu_items as $menu_item) {
+              echo '<a href="' . esc_url($menu_item->url) . '" class="menu-item">' . esc_html($menu_item->title) . '</a>';
+          }
+        }
+        ?>
+        <div>
+          <?php echo do_shortcode('[prisna-google-website-translator]'); ?>
+        </div>
+      </nav>
+
 </header>
 
 <main class="main">

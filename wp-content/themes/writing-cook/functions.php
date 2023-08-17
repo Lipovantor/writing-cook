@@ -56,6 +56,11 @@ require get_template_directory() . '/inc/cpt.php';
 require get_template_directory() . '/inc/hooks.php';
 
 /**
+ * Web optimization
+ */
+require get_template_directory() . '/inc/web-optimization.php';
+
+/**
  * Menus
  */
 add_theme_support('menus');
@@ -64,10 +69,3 @@ add_theme_support('menus');
  * Title-tag
  */
 add_theme_support( 'title-tag' );
-
-
-function wrc_add_pagination_parameter($params) {
-  $params[] = 'paged';
-  return $params;
-}
-add_filter('query_vars', 'wrc_add_pagination_parameter');
