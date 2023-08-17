@@ -30,7 +30,21 @@ jQuery(function ($) {
      * Slider for Galary
      */
     gallary_slider: function() {
-      
+      $('.gallary__slider_for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: '.gallary__slider_nav'
+      });
+      $('.gallary__slider_nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.gallary__slider_for',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
+      });
     },
   }
 
