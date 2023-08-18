@@ -54,17 +54,26 @@
   }
 
   .content {
-    width: 100%;
+    min-width: 60%;
   }
 
-  .gallary {
+  .gallery {
+    display: flex;
 
-    &_for {
+    &__slider {
+      .slick-list {
+        .slick-track {
 
+        }
+      }
     }
 
-    &_nav {
-      
+    .slider-for {
+      width: 75%;
+    }
+
+    .slider-nav {
+      width: 25%;
     }
   }
 

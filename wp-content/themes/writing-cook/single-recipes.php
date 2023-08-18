@@ -15,6 +15,12 @@ get_header();
 
 $post_id = get_the_ID();
 $fields = get_fields($post_id);
+
+$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+$plug_image = get_field('card_plug', 'option');
+
+$gallery = $fields['gallery'];
+$size_image_gallery = 'medium';
 ?>
 
 <main class="recipe">
@@ -31,66 +37,58 @@ $fields = get_fields($post_id);
 
   <div class="container recipe__container">
     <article class="content">
-      <section class="gallary">
-        <div class="gallary__slider gallary__slider_for">
-          <?php
-          $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
-
-          if ($thumbnail_url) { ?>
-            <img src="<?php echo $thumbnail_url ?>" 
-              alt="" 
-              width="770"
-              height="500"/>
-          <?php } else { ?>
-            <?php 
-            $image = get_field('card_plug', 'option');
-            if( !empty( $image ) ) { ?>
-                <img src="<?php echo esc_url($image['url']); ?>" 
-                      alt="<?php echo esc_attr($image['alt']); ?>" 
-                      width="770"
-                      height="500"/>
+      <section class="gallery">
+        <?php if ($thumbnail_url && empty($gallery)) { ?>
+          <div class="gallery__thumb">
+            <img src="<?php echo $thumbnail_url ?>"
+                 class="gallery__thumb-img"
+                 alt="<?php echo the_title(); ?>" 
+                 width="770"
+                 height="500"/>
+          </div>
+        <?php } elseif(!$thumbnail_url && empty($gallery)) { ?>
+          <div class="gallery__plug">
+            <img src="<?php echo esc_url($plug_image['url']); ?>" 
+                 alt="<?php echo esc_attr($plug_image['alt']); ?>" 
+                 width="770"
+                 height="500"/>
+          </div>
+        <?php } elseif(!empty($gallery)) { ?>
+          <div class="gallery__slider slider-for">
+            <?php if ($thumbnail_url) { ?>
+              <div class="slider-for__slide">
+                <img src="<?php echo $thumbnail_url ?>" 
+                     alt="<?php echo the_title(); ?>" 
+                     width="770"
+                     height="500"/>
+              </div>
             <?php } ?>
-          <?php } ?>
-
-          <?php 
-          $images = $fields['gallery'];
-          $size = 'medium'; // (thumbnail, medium, large, full or custom size)
-          if( $images ): ?>
-            <?php foreach( $images as $image_id ): ?>
-              <?php echo wp_get_attachment_image( $image_id, $size ); ?>
+            <?php foreach( $gallery as $image_id ): ?>
+              <div class="slider-for__slide">
+                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery, false, array( 'class' => 'custom-image-class', 'alt' => get_the_title() ) ); ?>
+              </div>
             <?php endforeach; ?>
-          <?php endif; ?>
-        </div>
+          </div>
+        <?php } ?>
 
-        <div class="gallary__slider gallary__slider_nav">
-          <?php
-          $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
-
-          if ($thumbnail_url) { ?>
-            <img src="<?php echo $thumbnail_url ?>" 
-              alt="" 
-              width="204"
-              height="152"/>
-          <?php } else { ?>
-            <?php 
-            $image = get_field('card_plug', 'option');
-            if( !empty( $image ) ) { ?>
-                <img src="<?php echo esc_url($image['url']); ?>" 
-                      alt="<?php echo esc_attr($image['alt']); ?>" 
-                      width="204"
-                      height="152"/>
+        <?php if(!empty($gallery)) { ?>
+          <div class="gallary__slider slider-nav">
+            <?php if ($thumbnail_url) { ?>
+              <div class="slider-nav__slide">
+                <img src="<?php echo $thumbnail_url ?>" 
+                     alt="" 
+                     width="204"
+                     height="152"/>
+              </div>
             <?php } ?>
-          <?php } ?>
-
-          <?php 
-          $images = $fields['gallery'];
-          $size = 'thumbnail'; // (thumbnail, medium, large, full or custom size)
-          if( $images ): ?>
-            <?php foreach( $images as $image_id ): ?>
-              <?php echo wp_get_attachment_image( $image_id, $size ); ?>
+            <?php foreach( $gallery as $image_id ): ?>
+              <div class="slider-nav__slide">
+                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery, false, array( 'class' => 'custom-image-class', 'alt' => get_the_title() ) ); ?>
+              </div>
             <?php endforeach; ?>
-          <?php endif; ?>
-        </div>
+          </div>
+        <?php } ?>
+
       </section>
       <section class="details">
         <?php if(!empty($fields['timing'])) { ?>
