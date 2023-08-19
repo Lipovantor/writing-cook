@@ -97,24 +97,65 @@ $size_image_gallery = 'medium';
             <div class="extra-text details__timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
           </div>
         <?php } ?>
-        <div class="ingridients">
-          <div class="extra-text ingridients__title">Ингредиенты и инвентарь</div>
-          <div class="extra-text">на 4 порции:</div>
-          <ul class="ingridients__list">
-            <li class="body-text ingridients__item">Соль</li>
-            <li class="body-text ingridients__item">Соль</li>
-          </ul>
+        <div class="ingredients">
+          <div class="extra-text ingredients__title">Ингредиенты и инвентарь</div>
+          <div class="extra-text">на <?php echo $fields['portion'] ?> порции:</div>
+
+          <?php if( have_rows('ingredients_list', $post_id) ) { ?>
+            <ul class="ingredients__list">
+              <?php while( have_rows('ingredients_list', $post_id) ) {
+                the_row(); ?>
+                <li class="body-text ingredients__item">
+                  <?php 
+                  $ingredient_name = get_sub_field('ingredient_name');
+                  $ingredient_count = get_sub_field('ingredient_count');
+                  $ingredient_unit = get_sub_field('ingredient_unit');
+                  ?>
+                  <div><?php echo $ingredient_name; ?></div>
+                  <div><?php echo $ingredient_count; ?></div>
+                  <div><?php echo $ingredient_unit; ?></div>
+                </li>
+              <?php } ?>
+                <?php if( have_rows('inventory_list', $post_id) ) { 
+                  while( have_rows('inventory_list', $post_id) ) { 
+                  the_row();?>
+                  <li class="body-text ingredients__item">
+                    <?php 
+                    $inventory_name = get_sub_field('inventory_name');
+                    echo $inventory_name 
+                    ?>
+                  </li>
+                <?php
+                }
+              } 
+              ?>
+            </ul> 
+          <?php } ?>
+
+
         </div>
       </section>
     </article>
     <aside class="sidebar">
       <div class="sidebar__ingredients">
         <header class="sidebar__header">
-          <div class="sidebar__title extra-text">Ингридиенты</div>
-          <div class="sidebar__subtitle extra-text">на 4 порции</div>
+          <div class="sidebar__title extra-text">Ингредиенты</div>
+          <div class="sidebar__subtitle extra-text">на <?php echo $fields['portion'] ?> порции</div>
         </header>
         <div class="sidebar__list">
-
+          <?php if( have_rows('ingredients_list', $post_id) ) { ?>
+              <ul class="ingredients__list">
+              <?php while( have_rows('ingredients_list', $post_id) ) {
+                the_row(); ?>
+                <li class="body-text ingredients__item">
+                  <?php 
+                  $ingredient_name = get_sub_field('ingredient_name');
+                  ?>
+                  <div><?php echo $ingredient_name; ?></div>
+                </li>
+              <?php 
+              } 
+            } ?>
         </div>
       </div>
     </aside>

@@ -96,7 +96,7 @@
     }
   }
 
-  .ingridients {
+  .ingredients {
     padding-top: 22px;
 
     &__title {
@@ -111,6 +111,7 @@
     &__item {
       margin-top: 0;
       margin-bottom: 16px;
+      display: flex;
 
       &:last-child {
         margin-bottom: 0;

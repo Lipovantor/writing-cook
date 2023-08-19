@@ -68,7 +68,7 @@ function load_recipes_by_category() {
     'post_type' => 'recipes',
     'posts_per_page' => 8,
     'paged' => $paged,
-    'orderby' => 'rand',
+    // 'orderby' => 'rand',
   );
 
   if (!empty($category_filter_values)) {
