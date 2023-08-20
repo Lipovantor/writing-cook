@@ -20,7 +20,8 @@ $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
 $plug_image = get_field('card_plug', 'option');
 
 $gallery = $fields['gallery'];
-$size_image_gallery = 'medium';
+$size_image_gallery_big = 'large';
+$size_image_gallery_small = 'medium';
 ?>
 
 <main class="recipe">
@@ -58,14 +59,15 @@ $size_image_gallery = 'medium';
             <?php if ($thumbnail_url) { ?>
               <div class="slider-for__slide">
                 <img src="<?php echo $thumbnail_url ?>" 
-                     alt="<?php echo the_title(); ?>" 
+                     alt="<?php echo the_title(); ?>"
+                     class="slider-for__slide-image"
                      width="770"
                      height="500"/>
               </div>
             <?php } ?>
             <?php foreach( $gallery as $image_id ): ?>
               <div class="slider-for__slide">
-                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery, false, array( 'class' => 'custom-image-class', 'alt' => get_the_title() ) ); ?>
+                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery_big, false, array( 'class' => 'slider-for__slide-image', 'alt' => get_the_title() ) ); ?>
               </div>
             <?php endforeach; ?>
           </div>
@@ -83,10 +85,20 @@ $size_image_gallery = 'medium';
             <?php } ?>
             <?php foreach( $gallery as $image_id ): ?>
               <div class="slider-nav__slide">
-                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery, false, array( 'class' => 'custom-image-class', 'alt' => get_the_title() ) ); ?>
+                <?php echo wp_get_attachment_image( $image_id, $size_image_gallery_small, false, array( 'class' => 'slider-nav__slide-image', 'alt' => get_the_title() ) ); ?>
               </div>
             <?php endforeach; ?>
           </div>
+          <button class="slider-nav__button slider-nav__button_prev">
+            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down-dark.svg'; ?>" 
+                 alt="" 
+                 width="13" height="9">
+          </button>
+          <button class="slider-nav__button slider-nav__button_next">
+            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down-dark.svg'; ?>" 
+                 alt="" width="13" 
+                 height="9">
+          </button>
         <?php } ?>
 
       </section>

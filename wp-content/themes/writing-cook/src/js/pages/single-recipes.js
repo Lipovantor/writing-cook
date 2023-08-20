@@ -18,7 +18,7 @@ jQuery(function ($) {
 
       this.install = this.install(this)
       this.gallary_slider = this.gallary_slider(this)
-
+      
     },
 
     /**
@@ -30,29 +30,41 @@ jQuery(function ($) {
      * Slider for Galary
      */
     gallary_slider: function() {
-      $('.gallery .slider-for').slick({
-        // centerMode: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // vertical: true,
-        // verticalSwiping: true,
-        arrows: false,
-        fade: true,
-        infinite: false,
-        asNavFor: '.gallery .slider-nav'
-      });
-      $('.gallery .slider-nav').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        vertical: true,
-        verticalSwiping: true,
-        asNavFor: '.gallery .slider-for',
-        prevArrow: false,
-        nextArrow: false,
-        dots: false,
-        infinite: false,
-        centerMode: true,
-        focusOnSelect: true
+      var sliderFor = $('.gallery .slider-for');
+      var sliderNav = $('.gallery .slider-nav');
+    
+      function initializeSliders() {
+        sliderFor.slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          infinite: false,
+          asNavFor: sliderNav
+        });
+    
+        sliderNav.slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          vertical: true,
+          verticalSwiping: true,
+          asNavFor: sliderFor,
+          prevArrow: $('.slider-nav__button_prev'),
+          nextArrow: $('.slider-nav__button_next'),
+          dots: false,
+          infinite: false,
+          focusOnSelect: true
+        });
+      }
+
+      // Initialize the sliders on page load
+      initializeSliders();
+    
+      // Reinitialize sliders on window resize
+      $(window).on('resize', function() {
+        sliderFor.slick('unslick');
+        sliderNav.slick('unslick');
+        initializeSliders();
       });
     },
 
