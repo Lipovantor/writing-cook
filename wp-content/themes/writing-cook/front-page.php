@@ -25,16 +25,18 @@ add_action('wp_enqueue_scripts', function () {
 },200);
 
 get_header();
-
-if (have_rows('page_layout')):
-    while (have_rows('page_layout')):
-        the_row();
-        get_template_part('template-parts/page_layout');
-    endwhile;
-endif;
 ?>
 
-
+<main class="home">
+  <?php
+  if (have_rows('page_layout')):
+      while (have_rows('page_layout')):
+          the_row();
+          get_template_part('template-parts/page_layout');
+      endwhile;
+  endif;
+  ?>
+</main>
 
 <?php
 

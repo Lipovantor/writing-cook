@@ -31,8 +31,8 @@ function create_recipe_cpt() {
         'rewrite' => array('slug' => 'recipes'),
         'capability_type' => 'post',
         'hierarchical' => false,
-        'menu_position' => 3,
-        'menu_icon' => 'dashicons-carrot',
+        'menu_position' => 4,
+        'menu_icon' => 'dashicons-food',
         'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'),
         'show_in_rest' => true,
     );
@@ -95,6 +95,136 @@ function create_recipe_taxonomies() {
 }
 
 add_action('init', 'create_recipe_taxonomies');
+
+// Ingredients CPT
+function create_ingredient_cpt() {
+  $labels = array(
+      'name' => 'Ингредиенты',
+      'singular_name' => 'Ингредиент',
+      'menu_name' => 'Ингредиенты',
+      'add_new' => 'Добавить новый',
+      'add_new_item' => 'Добавить новый ингредиент',
+      'edit' => 'Редактировать',
+      'edit_item' => 'Редактировать ингредиент',
+      'new_item' => 'Новый ингредиент',
+      'view' => 'Просмотреть',
+      'view_item' => 'Просмотреть ингредиент',
+      'search_items' => 'Искать ингредиенты',
+      'not_found' => 'Ингредиенты не найдены',
+      'not_found_in_trash' => 'Ингредиенты в корзине не найдены',
+      'parent' => 'Родительский ингредиент',
+  );
+
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'has_archive' => true,
+      'publicly_queryable' => true,
+      'query_var' => true,
+      'rewrite' => array('slug' => 'ingredients'),
+      'capability_type' => 'post',
+      'hierarchical' => false,
+      'menu_position' => 4,
+      'menu_icon' => 'dashicons-carrot',
+      'supports' => array('title', 'thumbnail'),
+      'show_in_rest' => true,
+  );
+
+  register_post_type('ingredients', $args);
+}
+
+add_action('init', 'create_ingredient_cpt');
+
+function create_ingredient_taxonomies() {
+  $category_labels = array(
+      'name' => 'Категории ингредиентов',
+      'singular_name' => 'Категория ингредиентов',
+      'search_items' => 'Искать категории ингредиентов',
+      'all_items' => 'Все категории ингредиентов',
+      'edit_item' => 'Редактировать категорию ингредиентов',
+      'update_item' => 'Обновить категорию ингредиентов',
+      'add_new_item' => 'Добавить новую категорию ингредиентов',
+      'new_item_name' => 'Новое имя категории ингредиентов',
+      'menu_name' => 'Категории ингредиентов',
+  );
+
+  $category_args = array(
+      'labels' => $category_labels,
+      'hierarchical' => true,
+      'public' => true,
+      'show_in_rest' => true,
+      'show_admin_column' => true,
+      'rewrite' => array('slug' => 'ingredient-category'),
+  );
+
+  register_taxonomy('ingredient_category', 'ingredients', $category_args);
+
+  $tag_labels = array(
+      'name' => 'Метки ингредиентов',
+      'singular_name' => 'Метка ингредиентов',
+      'search_items' => 'Искать метки ингредиентов',
+      'all_items' => 'Все метки ингредиентов',
+      'edit_item' => 'Редактировать метку ингредиентов',
+      'update_item' => 'Обновить метку ингредиентов',
+      'add_new_item' => 'Добавить новую метку ингредиентов',
+      'new_item_name' => 'Новое имя метки ингредиентов',
+      'menu_name' => 'Метки ингредиентов',
+  );
+
+  $tag_args = array(
+      'labels' => $tag_labels,
+      'hierarchical' => false,
+      'public' => true,
+      'show_in_rest' => true,
+      'show_admin_column' => true,
+      'rewrite' => array('slug' => 'ingredient-tag'),
+  );
+
+  register_taxonomy('ingredient_tag', 'ingredients', $tag_args);
+}
+
+add_action('init', 'create_ingredient_taxonomies');
+
+
+// Units CPT
+function create_units_cpt() {
+  $labels = array(
+      'name' => 'Единицы измерения',
+      'singular_name' => 'Единица измерения',
+      'menu_name' => 'Ед. измерения',
+      'add_new' => 'Добавить новую',
+      'add_new_item' => 'Добавить новую единицу измерения',
+      'edit' => 'Редактировать',
+      'edit_item' => 'Редактировать единицу измерения',
+      'new_item' => 'Новая единица измерения',
+      'view' => 'Просмотреть',
+      'view_item' => 'Просмотреть единицу измерения',
+      'search_items' => 'Искать единицы измерения',
+      'not_found' => 'Единицы измерения не найдены',
+      'not_found_in_trash' => 'Единицы измерения в корзине не найдены',
+      'parent' => 'Родительская единица измерения',
+  );
+
+  $args = array(
+      'labels' => $labels,
+      'public' => true,
+      'has_archive' => true,
+      'publicly_queryable' => true,
+      'query_var' => true,
+      'rewrite' => array('slug' => 'unit'),
+      'capability_type' => 'post',
+      'hierarchical' => false,
+      'menu_position' => 5,
+      'menu_icon' => 'dashicons-filter',
+      'supports' => array('title'),
+      'show_in_rest' => true,
+  );
+
+  register_post_type('unit', $args);
+}
+
+add_action('init', 'create_units_cpt');
+
 
 // Theme Settings
 if (!function_exists('investors_acf_op_init')) {

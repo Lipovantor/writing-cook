@@ -16,7 +16,7 @@
   }
 
   .intro {
-    min-height: 300px;
+    min-height: 200px;
     padding: 104px 0 40px;
     background: linear-gradient(270deg, #0C3161 0%, #0A1E37 100%);
   
@@ -73,12 +73,22 @@
     display: flex;
     justify-content: space-between;
     gap: 22px;
-    height: 500px;
     overflow: hidden;
     position: relative;
 
+    @include media(tab) {
+      gap: 12px;
+      flex-direction: column;
+    }
+
     .slider-for {
       width: calc(80% - 11px);
+      height: 500px;
+
+      @include media(tab) {
+        width: 100%;
+        height: 400px;
+      }
 
       .slick-list {
         height: 100%;
@@ -88,25 +98,23 @@
       }
 
       &__slide {
-        border-radius: 5px;
-        overflow: hidden;
 
         &-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          border-radius: 5px;
         }
       }
     }
 
     .slider-nav {
       width: calc(20% - 11px);
+      height: 500px;
 
-      .slick-list {
-        
-        .slick-track {
-          
-        }
+      @include media(tab) {
+        width: 100%;
+        height: auto;
       }
 
       &__button {
@@ -119,6 +127,10 @@
         padding: 0;
         border: 1px solid $main_color;
 
+        @include media(tab) {
+          width: 120px;
+        }
+
         &.slick-disabled {
           display: none !important;
         }
@@ -126,6 +138,13 @@
         &_prev {
           top: 0;
           border-radius: 5px 5px 0 0;
+
+          @include media(tab) {
+            transform: rotate(-90deg);
+            top: auto;
+            bottom: 48px;
+            left: -48px;
+          }
 
           img {
             transform: rotate(180deg);
@@ -135,12 +154,24 @@
         &_next {
           bottom: 0;
           border-radius: 0 0 5px 5px;
+
+          @include media(tab) {
+            transform: rotate(-90deg);
+            bottom: 48px;
+            right: -48px;
+          }
         }
       }
 
       &__slide {
         height: 150px;
         padding-bottom: 22px;
+
+        @include media(tab) {
+          height: 120px;
+          padding-bottom: 0;
+          padding-right: 12px;
+        }
 
         &:last-child {
           padding-bottom: 0;
@@ -153,6 +184,58 @@
           border-radius: 5px;
         }
       }
+    }
+
+    &__thumb,
+    &__plug {
+      width: 100%;
+      height: 620px;
+
+      @include media(tab-mid) {
+        height: 500px;
+      }
+
+      @include media(tab) {
+        height: 420px;
+      }
+
+      @include media(mobile) {
+        height: 300px;
+      }
+
+      &-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+
+        
+      }
+    }
+  }
+
+  .video-button {
+    width: 100%;
+    height: 50px;
+    padding-left: 28px;
+    margin-top: 22px;
+    border-radius: 5px;
+    background-color: $main_color;
+    display: flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      .video-button__text {
+        transition: all .3s;
+        margin-left: 18px;
+      }
+    }
+
+    &__text {
+      margin-left: 14px;
+      color: $bread_color;
     }
   }
 
@@ -195,6 +278,20 @@
       &:last-child {
         margin-bottom: 0;
       }
+
+      &-name {
+        color: $second_color;
+      }
+
+      &-count,
+      &-unit {
+        color: $main_color;
+        font-weight: 500;
+      }
+
+      &-unit {
+        
+      }
     }
   }
 
@@ -222,6 +319,27 @@
       padding: 22px;
       border-radius: 5px;
       background-color: $main_color;
+
+      &-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      &-item {
+        color: $white_second_color;
+      }
+
+      &-name {
+
+      }
+
+      &-count {
+
+      }
+
+      &-unit {
+
+      }
     }
 
     &__title {

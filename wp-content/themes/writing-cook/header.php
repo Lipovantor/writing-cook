@@ -64,4 +64,3 @@ if (!defined('ABSPATH')) {
 
 </header>
 
-<main class="main">

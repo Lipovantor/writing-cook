@@ -12,8 +12,6 @@ if (!defined('ABSPATH')) {
  */
 ?>
 
-</main>
-
 <footer class="footer">
 
 </footer>
