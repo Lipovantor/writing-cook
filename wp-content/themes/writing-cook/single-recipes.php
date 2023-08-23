@@ -22,9 +22,15 @@ $fields = get_fields($post_id);
 $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
 $plug_image = get_field('card_plug', 'option');
 
+// Gallery
 $gallery = $fields['gallery'];
 $size_image_gallery_big = 'large';
 $size_image_gallery_small = 'medium';
+
+// Author
+$author_id = get_post_field('post_author', get_the_ID());
+$author_name = get_the_author_meta('display_name', $author_id);
+$author_description = get_the_author_meta('description', $author_id);
 ?>
 
 <?php echo get_template_part('template-parts/layouts/modal-video'); ?>
@@ -129,8 +135,10 @@ $size_image_gallery_small = 'medium';
         <?php } ?>
         <div class="ingredients">
           <div class="extra-text ingredients__title">Ингредиенты и инвентарь</div>
-          <div class="extra-text">на <span class="ingredients__portions"><?php echo $fields['portion'] ?></span> порции:</div>
-
+          <div class="extra-text">на 
+            <span class="ingredients__portions"><?php echo $fields['portion'] ?></span>&nbsp;
+            <span class="portion-label">порции</span>:
+          </div>
           <?php if( have_rows('ingredients_list', $post_id) ) { ?>
             <ul class="ingredients__list">
               <?php while( have_rows('ingredients_list', $post_id) ) {
@@ -169,22 +177,194 @@ $size_image_gallery_small = 'medium';
               ?>
             </ul> 
           <?php } ?>
-
         </div>
+        <?php if($fields['add_info'] == true && !empty($fields['info_text'])) { ?>       
+          <div class="info-board info-board_<?php echo $fields['info_type'] ?>">
+            <header class="info-board__header">
+              <?php if($fields['info_type'] == 'info') { ?>
+                <img 
+                width="56" height="56" 
+                src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
+                alt="Info" 
+                class="details__timing-icon">
+              <?php } elseif($fields['info_type'] == 'warning') { ?>
+                <img 
+                width="56" height="56" 
+                src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
+                alt="Warning" 
+                class="details__timing-icon">
+              <?php } elseif($fields['info_type'] == 'idea') { ?>
+                <img 
+                width="56" height="56" 
+                src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
+                alt="Idea" 
+                class="details__timing-icon">
+              <?php } ?>       
+              <p class="extra-text"><?= !empty($fields['info_title']) ? $fields['info_title'] : ''; ?></p>
+            </header>
+            <div class="info-board__text"><?= !empty($fields['info_text']) ? $fields['info_text'] : ''; ?></div>
+            <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
+              <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="" width="13" height="9">
+            </button>
+          </div>
+        <?php } ?>
       </section>
+
+      <?php if($fields['add_steps_recipe'] == true) { ?>
+        <?php if(!empty($fields['steps_recipe_title']) || have_rows('steps_recipe_list', $post_id)) { ?>
+          <section class="steps-recipe">
+            <?php if(!empty($fields['steps_recipe_title'])) { ?>
+              <h2 class="steps-recipe__title">
+                <?php echo $fields['steps_recipe_title'] ?>
+              </h2>
+            <?php } ?>
+            <?php
+            $count = 1; 
+            if( have_rows('steps_recipe_list', $post_id) ) { ?>
+              <div class="steps-recipe__list">
+                <?php 
+                while( have_rows('steps_recipe_list', $post_id) ) { 
+                  the_row(); ?>
+                  <div class="step">
+                    <div class="step__count extra-text">
+                      Шаг&nbsp;<?php echo $count; ?>
+                    </div>
+                    <div class="step__content">
+                      <?php if(!empty(get_sub_field('text'))) { ?>
+                        <div class="step__text">
+                          <?php echo get_sub_field('text'); ?>
+                        </div>
+                      <?php } ?>
+                      <?php if(!empty(get_sub_field('image'))) { ?>
+                        <div class="step__image">
+                          <img src="<?php echo get_sub_field('image') ?>" 
+                              alt="<?php echo the_title(); ?> - Шаг<?php echo $count; ?>" 
+                              width="334"
+                              height="227"/>
+                        </div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                <? 
+                $count++;
+                } ?>
+              </div>
+            <?php } ?>
+
+            <?php if($fields['steps_add_info'] == true && !empty($fields['steps_info_text'])) { ?>       
+              <div class="info-board info-board_<?php echo $fields['steps_info_type'] ?>">
+                <header class="info-board__header">
+                  <?php if($fields['steps_info_type'] == 'info') { ?>
+                    <img 
+                    width="56" height="56" 
+                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
+                    alt="Info" 
+                    class="details__timing-icon">
+                  <?php } elseif($fields['steps_info_type'] == 'warning') { ?>
+                    <img 
+                    width="56" height="56" 
+                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
+                    alt="Warning" 
+                    class="details__timing-icon">
+                  <?php } elseif($fields['steps_info_type'] == 'idea') { ?>
+                    <img 
+                    width="56" height="56" 
+                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
+                    alt="Idea" 
+                    class="details__timing-icon">
+                  <?php } ?>       
+                  <p class="extra-text"><?= !empty($fields['steps_info_title']) ? $fields['steps_info_title'] : ''; ?></p>
+                </header>
+                <div class="info-board__text"><?= !empty($fields['steps_info_text']) ? $fields['steps_info_text'] : ''; ?></div>
+                <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
+                  <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="Вниз" width="13" height="9">
+                </button>
+              </div>
+            <?php } ?>
+          </section>
+        <?php } ?>
+      <?php } ?>
+
+      <?php if(!empty($fields['simple_recipe'])) { ?>
+        <section class="simple-recipe">
+          <?php if(!empty($fields['simple_recipe_title'])) { ?>
+            <h2 class="simple-recipe__title">
+              <?php echo $fields['simple_recipe_title'] ?>
+            </h2>
+          <?php } ?>
+          <div class="simple-recipe__content">
+            <?php echo $fields['simple_recipe'] ?>
+          </div>
+          <?php if($fields['simple_add_info'] == true && !empty($fields['simple_info_text'])) { ?>       
+            <div class="info-board info-board_<?php echo $fields['simple_info_type'] ?>">
+              <header class="info-board__header">
+                <?php if($fields['simple_info_type'] == 'info') { ?>
+                  <img 
+                  width="56" height="56" 
+                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
+                  alt="Info" 
+                  class="details__timing-icon">
+                <?php } elseif($fields['simple_info_type'] == 'warning') { ?>
+                  <img 
+                  width="56" height="56" 
+                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
+                  alt="Warning" 
+                  class="details__timing-icon">
+                <?php } elseif($fields['simple_info_type'] == 'idea') { ?>
+                  <img 
+                  width="56" height="56" 
+                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
+                  alt="Idea" 
+                  class="details__timing-icon">
+                <?php } ?>       
+                <p class="extra-text"><?= !empty($fields['simple_info_title']) ? $fields['simple_info_title'] : ''; ?></p>
+              </header>
+              <div class="info-board__text"><?= !empty($fields['simple_info_text']) ? $fields['simple_info_text'] : ''; ?></div>
+              <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
+                <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="Вниз" width="13" height="9">
+              </button>
+            </div>
+          <?php } ?>
+        </section>
+      <?php } ?>
+
+      <section class="comments">
+        <?php
+          // Вывод комментариев
+          if (comments_open() || get_comments_number()) {
+            comments_template();
+          }
+
+//           Создайте файл comments.php:
+// Ваша тема должна содержать файл comments.php, который будет определять, как будут выглядеть комментарии. Если этот файл отсутствует в вашей теме, WordPress будет использовать свой стандартный шаблон комментариев.
+
+// Кастомизируйте файл comments.php (по желанию):
+// Если вы хотите кастомизировать внешний вид комментариев, то создайте файл comments.php в вашей теме и измените его согласно вашим потребностям. Вы можете использовать функции WordPress, такие как wp_list_comments(), чтобы настроить вывод комментариев и их структуру.
+        ?>
+      </section>
+
     </article>
 
     <aside class="sidebar">
       <div class="sidebar__ingredients">
         <header class="sidebar__header">
           <div class="sidebar__title extra-text">Ингредиенты</div>
-          <div class="sidebar__subtitle extra-text">на 
+          <div class="sidebar__subtitle extra-text">на &nbsp; 
             <div class="portion-controls">
-              <button class="minus-portion-button">-</button>
-              <input class="portion-input" type="number">
-              <button class="plus-portion-button">+</button>
+              <button class="portion-controls__button portion-controls__button_minus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" viewBox="0 0 10 2" fill="none">
+                  <path d="M0 1H10" stroke="#403D56"/>
+                </svg>
+              </button>
+              <input class="portion-controls__input" type="number" min="1" max="99" readonly>
+              <button class="portion-controls__button portion-controls__button_plus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M0 5H10" stroke="#403D56"/>
+                  <path d="M5 10V0" stroke="#403D56"/>
+                </svg>
+              </button>
             </div>
-             порции</div>
+            &nbsp;<span class="portion-label"></span></div>
         </header>
         <?php if( have_rows('ingredients_list', $post_id) ) { ?>
           <ul class="sidebar__ingredients-list">
@@ -202,7 +382,7 @@ $size_image_gallery_small = 'medium';
 
                 $unit = get_sub_field('unit');
                 ?>
-                <div class="sidebar__ingredients-name">
+                <div class="sidebar__ingredients-name text-18-mid">
                   <?php if(get_sub_field('add_user_ingredient') == false) {
                     echo esc_html($ingredient->post_title); 
                   } else {
@@ -210,48 +390,26 @@ $size_image_gallery_small = 'medium';
                   }
                   ?>
                 </div>
-                <div class="sidebar__ingredients-count">&nbsp;<?php echo $ingredient_count; ?></div>
-                <div class="sidebar__ingredients-unit">&nbsp;<?php echo esc_html($unit->post_title); ?></div>
+                <div class="sidebar__ingredients-right">
+                  <div class="sidebar__ingredients-count text-18-mid" data-ingredient="<?php echo $ingredient_count_for_one_portion; ?>">&nbsp;<?php echo $ingredient_count; ?></div>
+                  <div class="sidebar__ingredients-unit text-18-mid">&nbsp;<?php echo esc_html($unit->post_title); ?></div>
+                </div>
               </li>
             <?php } ?>
           </ul> 
         <?php } ?>
       </div>
+      <div class="meta">
+        <div class="meta__author">
+          <div class="meta__author-avatar"></div>
+          <div class="meta__author-name">
+            <?php echo esc_html($author_name); ?>
+          </div>
+        </div>
+
+      </div>
     </aside>
   </div>
 </main>
-
-<script>
-  $(document).ready(function() {
-
-    let portion = parseFloat($('.ingredients__portions').text())
-    $('.portion-input').val(portion)
-    let newPortion = portion;
-
-    $('.minus-portion-button').on('click', function() {
-      newPortion = newPortion - 1
-      $('.portion-input').val(newPortion)
-      renderIngredients()
-      console.log(newPortion);
-    })
-
-    $('.plus-portion-button').on('click', function() {
-      newPortion = newPortion + 1
-      $('.portion-input').val(newPortion)
-      renderIngredients()
-      console.log(newPortion);
-    })
-
-    function renderIngredients() {
-      $('.sidebar__ingredients-item').each(function() {
-        const count = $(this).find('.sidebar__ingredients-count');
-        const countValue = parseInt(count.text().trim());
-        const countForOnePortion = countValue / portion;
-        count.text(countForOnePortion * newPortion)
-      })
-    }
-
-  });
-</script>
 
 <?php get_footer();

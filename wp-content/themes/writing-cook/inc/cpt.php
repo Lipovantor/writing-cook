@@ -33,7 +33,7 @@ function create_recipe_cpt() {
         'hierarchical' => false,
         'menu_position' => 4,
         'menu_icon' => 'dashicons-food',
-        'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'),
+        'supports' => array('title', 'author', 'thumbnail', 'excerpt', 'comments', 'revisions'),
         'show_in_rest' => true,
     );
 
@@ -70,31 +70,32 @@ function create_recipe_taxonomies() {
 
     register_taxonomy('recipe_category', 'recipes', $category_args);
 
-    $tag_labels = array(
-        'name' => 'Метки рецептов',
-        'singular_name' => 'Метка рецептов',
-        'search_items' => 'Искать метки рецептов',
-        'all_items' => 'Все метки рецептов',
-        'edit_item' => 'Редактировать метку рецептов',
-        'update_item' => 'Обновить метку рецептов',
-        'add_new_item' => 'Добавить новую метку рецептов',
-        'new_item_name' => 'Новое имя метки рецептов',
-        'menu_name' => 'Метки рецептов',
-    );
+    // $tag_labels = array(
+    //     'name' => 'Метки рецептов',
+    //     'singular_name' => 'Метка рецептов',
+    //     'search_items' => 'Искать метки рецептов',
+    //     'all_items' => 'Все метки рецептов',
+    //     'edit_item' => 'Редактировать метку рецептов',
+    //     'update_item' => 'Обновить метку рецептов',
+    //     'add_new_item' => 'Добавить новую метку рецептов',
+    //     'new_item_name' => 'Новое имя метки рецептов',
+    //     'menu_name' => 'Метки рецептов',
+    // );
 
-    $tag_args = array(
-        'labels' => $tag_labels,
-        'hierarchical' => false,
-        'public' => true,
-        'show_in_rest' => true,
-        'show_admin_column' => true,
-        'rewrite' => array('slug' => 'recipe-tag'),
-    );
+    // $tag_args = array(
+    //     'labels' => $tag_labels,
+    //     'hierarchical' => false,
+    //     'public' => true,
+    //     'show_in_rest' => true,
+    //     'show_admin_column' => true,
+    //     'rewrite' => array('slug' => 'recipe-tag'),
+    // );
 
-    register_taxonomy('recipe_tag', 'recipes', $tag_args);
+    // register_taxonomy('recipe_tag', 'recipes', $tag_args);
 }
 
 add_action('init', 'create_recipe_taxonomies');
+
 
 // Ingredients CPT
 function create_ingredient_cpt() {

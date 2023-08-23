@@ -125,6 +125,19 @@ p,
   }
 }
 
+.text-18-mid {
+  font-family: $text_font;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: $second_color;
+
+  @include media(desktop) {
+    font-size: calc( (100vw - 375px)/(1920 - 375) * (18 - 16) + 16px);
+    line-height: calc( (100vw - 375px)/(1920 - 375) * (22 - 20) + 20px);
+  }
+}
+
 .container {
   max-width: 1460px;
   padding-left: 20px;
