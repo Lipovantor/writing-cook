@@ -57,10 +57,6 @@ if (!defined('ABSPATH')) {
           }
         }
         ?>
-        <div>
-          <?php echo do_shortcode('[prisna-google-website-translator]'); ?>
-        </div>
       </nav>
 
 </header>
-

@@ -19,10 +19,10 @@ function recipe_search_ajax_handler() {
   $search_query = sanitize_text_field($_POST['search_query']);
 
   $args = array(
-      'post_type' => 'recipes',
-      'post_status' => 'publish',
-      's' => $search_query,
-      'posts_per_page' => -1,
+    'post_type' => 'recipes',
+    'post_status' => 'publish',
+    's' => $search_query,
+    'posts_per_page' => -1,
   );
   
   $query = new WP_Query($args);

@@ -71,15 +71,3 @@ add_theme_support('menus');
 add_theme_support( 'title-tag' );
 
 
-// Функция не дает возможность опубликовать пост или рецепт без названия
-function check_post_title( $post_id ) {
-  // Получаем название поста
-  $post_title = get_post_field( 'post_title', $post_id );
-
-  // Проверяем, что название не пусто
-  if ( empty( $post_title ) ) {
-      // Название поста не указано, отменяем сохранение и выводим сообщение
-      wp_die( 'Пожалуйста, укажите название поста!' );
-  }
-}
-add_action( 'save_post', 'check_post_title' );
