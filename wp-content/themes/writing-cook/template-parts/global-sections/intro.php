@@ -22,9 +22,6 @@ wp_localize_script('intro', 'ajax_object', array('ajax_url' => admin_url('admin-
       <input type="submit" class="search-form-recipes__submit" value="Найти">
     </form>
 
-    <?php echo do_shortcode('[ivory-search id="272" title="AJAX Search Form"]'); ?>
-
-
   </div>
 </section>
 

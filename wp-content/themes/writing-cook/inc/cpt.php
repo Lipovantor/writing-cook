@@ -75,23 +75,21 @@ add_action('init', 'create_recipe_taxonomies');
 
 // Modify the permalink structure for 'recipes' post type.
 function change_recipe_permalink_structure($post_link, $post) {
-  global $wp_rewrite;
   if ($post->post_type === 'recipes' && is_object($post)) {
-      return home_url('/' . $post->post_name);
+      return home_url('/recipes/' . $post->post_name);
   }
   return $post_link;
 }
 add_filter('post_type_link', 'change_recipe_permalink_structure', 10, 2);
 
-// Define custom rewrite rules for 'recipes' post type.
-function rewrite_rules($rules) {
-  global $wp_rewrite;
+function custom_rewrite_rules($rules) {
   $new_rules = array(
-      '([^/]+)/?$' => 'index.php?recipes=' . $wp_rewrite->preg_index(1)
+      '([^/]+)/?$' => 'index.php?name=$matches[1]',
+      'recipes/([^/]+)/?$' => 'index.php?recipes=$matches[1]',
   );
   return $new_rules + $rules;
 }
-add_filter('rewrite_rules_array', 'rewrite_rules');
+add_filter('rewrite_rules_array', 'custom_rewrite_rules');
 
 
 
