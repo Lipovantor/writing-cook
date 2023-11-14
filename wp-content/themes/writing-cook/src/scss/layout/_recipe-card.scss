@@ -145,7 +145,6 @@
   }
 
   &__ingredients {
-    // max-height: 205px;
     max-height: 320px;
     padding: 10px 0;
     overflow-y: auto;
@@ -165,12 +164,17 @@
       border: 1px solid $white_third_color;
     }
 
+    &-timing-time,
     &-title {
       margin: 10px 0;
       font-size: 14px;
       font-weight: 500;
       line-height: 14px;
       color: $main_color; 
+    }
+
+    &-timing-time {
+      font-weight: 600;
     }
 
     &-list {
@@ -193,5 +197,26 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    &-name {
+      color: $main_color;
+      font-family: $text_font;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+    }
   }
 }

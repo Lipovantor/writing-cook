@@ -68,32 +68,59 @@ $fields = get_fields($post_id);
     <div class="recipe-card__content recipe-card__content_second">
       <div class="recipe-card__ingredients">
         <?php if($fields['timing']) { ?>
-          <div class="recipe-card__timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
+          <div class="recipe-card__ingredients-timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
         <?php } ?>
         <p class="recipe-card__ingredients-title">Ингредиенты и инвентарь</p>
         <p class="recipe-card__ingredients-title">на 4 порции</p>
-        <ul class="recipe-card__ingredients-list">
-          <li class="recipe-card__ingredients-item">Горох</li>
-          <li class="recipe-card__ingredients-item">Вода</li>
-          <li class="recipe-card__ingredients-item">Сухари</li>
-          <li class="recipe-card__ingredients-item">Петрушка</li>
-          <li class="recipe-card__ingredients-item">Морковь</li>
-          <li class="recipe-card__ingredients-item">Горох</li>
-          <li class="recipe-card__ingredients-item">Вода</li>
-          <li class="recipe-card__ingredients-item">Сухари</li>
-          <li class="recipe-card__ingredients-item">Петрушка</li>
-          <li class="recipe-card__ingredients-item">Морковь</li>
-        </ul>
+        <?php if( have_rows('ingredients_list', $post_id) ) { ?>
+          <ul class="recipe-card__ingredients-list">
+            <?php while( have_rows('ingredients_list', $post_id) ) {
+              the_row(); ?>
+              <li class="recipe-card__ingredients-item">
+                <?php 
+                $user_ingredient = get_sub_field('user_ingredient');
+                $ingredient = get_sub_field('ingredient');
+                $ingredient_count = get_sub_field('ingredient_count');
+                $unit = get_sub_field('unit');
+                ?>
+                <div class="ingredients__item-name">
+                  <?php if(get_sub_field('add_user_ingredient') == false) {
+                    echo esc_html($ingredient->post_title); 
+                  } else {
+                    echo $user_ingredient;
+                  }
+                  ?>
+                </div>
+              </li>
+            <?php } ?>
+              <?php if( have_rows('inventory_list', $post_id) ) { 
+                while( have_rows('inventory_list', $post_id) ) { 
+                the_row();?>
+                <li class="recipe-card__ingredients-item">
+                  <?php 
+                  $inventory_name = get_sub_field('inventory_name');
+                  echo $inventory_name 
+                  ?>
+                </li>
+              <?php
+              }
+            } 
+            ?>
+          </ul> 
+        <?php } ?>
       </div>
       <div class="recipe-card__meta">
         <div class="recipe-card__author">
-          <?php echo get_the_author(); ?>
-        </div>
-        <div class="recipe-card__bookmark">
-          3
-        </div>
-        <div class="recipe-card__like">
-          +
+          <?php 
+          $author_id = get_the_author_meta('ID');
+          $author_avatar = get_avatar($author_id, 40);
+          ?>
+          <div class="recipe-card__author-avatar">
+            <?php echo $author_avatar; ?>
+          </div>
+          <div class="recipe-card__author-name">
+            <?php echo get_the_author(); ?>
+          </div>
         </div>
       </div>
     </div>

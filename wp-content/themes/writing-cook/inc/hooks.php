@@ -68,6 +68,7 @@ function load_recipes_by_category() {
     'post_type' => 'recipes',
     'posts_per_page' => 8,
     'paged' => $paged,
+    'post_status'    => 'publish',
     // 'orderby' => 'rand',
   );
 

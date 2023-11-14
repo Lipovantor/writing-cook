@@ -31,6 +31,7 @@ $size_image_gallery_small = 'medium';
 $author_id = get_post_field('post_author', get_the_ID());
 $author_name = get_the_author_meta('display_name', $author_id);
 $author_description = get_the_author_meta('description', $author_id);
+$author_avatar = get_avatar($author_id, 40);
 ?>
 
 <?php echo get_template_part('template-parts/layouts/modal-video'); ?>
@@ -400,13 +401,14 @@ $author_description = get_the_author_meta('description', $author_id);
         <?php } ?>
       </div>
       <div class="meta">
-        <div class="meta__author">
-          <div class="meta__author-avatar"></div>
+        <a class="meta__author" href="<?php echo esc_url(get_author_posts_url($author_id)); ?>">
+          <div class="meta__author-avatar">
+            <?php echo $author_avatar; ?>
+          </div>
           <div class="meta__author-name">
             <?php echo esc_html($author_name); ?>
           </div>
-        </div>
-
+        </a>      
       </div>
     </aside>
   </div>
