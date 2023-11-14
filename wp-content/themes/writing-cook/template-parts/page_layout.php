@@ -10,4 +10,7 @@ switch (get_row_layout()) {
   case 'new-recipes':
     get_template_part('template-parts/global-sections/new-recipes');
     break;
+  case 'promo':
+    get_template_part('template-parts/global-sections/promo');
+    break;
 }

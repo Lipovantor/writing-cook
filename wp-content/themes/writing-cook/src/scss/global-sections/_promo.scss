@@ -1,0 +1,49 @@
+.promo {
+  margin-top: 120px;
+  padding: 60px 0;
+  background: var(--gradient-footer, linear-gradient(180deg, #0E2B50 0%, #0D1928 100%));
+
+  @include media(tab) {
+    margin-top: 40px;
+  }
+
+  &__container {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    @include media(tab) {
+      flex-direction: column;
+    }
+  }
+
+  &__col {
+    width: calc(50% - 5px);
+
+    @include media(tab) {
+      width: 100%;
+    }
+  }
+
+  &__title {
+    color: $white_main_color;
+  }
+
+  &__text {
+    max-width: 600px;
+
+    p {
+      color: $white_main_color;
+    }
+  }
+
+  &__button {
+    color: $white_main_color;
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
