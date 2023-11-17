@@ -285,13 +285,10 @@
       }
 
       &-count,
-      &-unit {
+      &-unit,
+      &-taste {
         color: $main_color;
         font-weight: 500;
-      }
-
-      &-unit {
-        
       }
     }
   }
@@ -415,6 +412,7 @@
       &__content {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 40px;
         height: 100%;
       }
@@ -437,6 +435,7 @@
           height: 100%;
           object-fit: cover;
           border-radius: 5px;
+          max-height: 332px;
         }
       }
     }
@@ -583,12 +582,13 @@
 
       &-name,
       &-count,
-      &-unit {
+      &-unit,
+      &-taste {
         color: $white_second_color;
       }
 
       &-name {
-        width: 70%;
+        width: 60%;
       }
 
       &-right {
@@ -596,10 +596,14 @@
       }
 
       &-count {
-
+        
       }
 
       &-unit {
+
+      }
+
+      &-taste {
 
       }
     }

@@ -194,15 +194,23 @@ jQuery(function ($) {
           var portion = parseInt(portionInput.val());
           var portionEnding = getPortionEnding(portion);
           $('.portion-label').text(portionEnding);
-          
+
           ingredientsCountElements.each(function() {
             var ingredientCountForOnePortion = parseFloat($(this).data('ingredient'));
             var newIngredientCount = ingredientCountForOnePortion * portion;
-            if (newIngredientCount !== Math.floor(newIngredientCount)) {
-              newIngredientCount = newIngredientCount.toFixed(2);
+        
+            // Округляем до целого, если число близко к целому
+            if (Math.abs(newIngredientCount - Math.round(newIngredientCount)) < 0.0001) {
+                newIngredientCount = Math.round(newIngredientCount);
+            } else {
+                newIngredientCount = newIngredientCount.toFixed(1);
             }
+        
             $(this).text(' ' + newIngredientCount);
-          });
+        });
+        
+
+        
         }
     
         // Инициализация

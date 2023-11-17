@@ -159,8 +159,12 @@ $author_avatar = get_avatar($author_id, 40);
                     }
                     ?>
                   </div>
-                  <div class="ingredients__item-count">&nbsp;<?php echo $ingredient_count; ?></div>
-                  <div class="ingredients__item-unit">&nbsp;<?php echo esc_html($unit->post_title); ?></div>
+                  <?php if(get_sub_field('taste')) { ?>
+                    <div class="ingredients__item-taste">&nbsp;по вкусу</div>
+                  <?php } else { ?>
+                    <div class="ingredients__item-count">&nbsp;<?php echo $ingredient_count; ?></div>
+                    <div class="ingredients__item-unit">&nbsp;<?php echo esc_html($unit->post_title); ?></div>
+                  <?php } ?>
                 </li>
               <?php } ?>
                 <?php if( have_rows('inventory_list', $post_id) ) { 
@@ -392,8 +396,12 @@ $author_avatar = get_avatar($author_id, 40);
                   ?>
                 </div>
                 <div class="sidebar__ingredients-right">
-                  <div class="sidebar__ingredients-count text-18-mid" data-ingredient="<?php echo $ingredient_count_for_one_portion; ?>">&nbsp;<?php echo $ingredient_count; ?></div>
-                  <div class="sidebar__ingredients-unit text-18-mid">&nbsp;<?php echo esc_html($unit->post_title); ?></div>
+                  <?php if(get_sub_field('taste')) { ?>
+                    <div class="sidebar__ingredients-taste text-18-mid">&nbsp;по вкусу</div>
+                  <?php } else { ?>
+                    <div class="sidebar__ingredients-count text-18-mid" data-ingredient="<?php echo $ingredient_count_for_one_portion; ?>">&nbsp;<?php echo $ingredient_count; ?></div>
+                    <div class="sidebar__ingredients-unit text-18-mid">&nbsp;<?php echo esc_html($unit->post_title); ?></div> 
+                  <?php } ?>
                 </div>
               </li>
             <?php } ?>

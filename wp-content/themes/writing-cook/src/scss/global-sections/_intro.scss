@@ -94,6 +94,18 @@
 
 .searching {
 
+  &__not-found {
+    padding: 30px 0 15px;
+    color: $main_color;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 72px;
+  }
+
+  &__not-found-please {
+    padding-bottom: 20px;
+  }
+
   &__list {
     padding-bottom: 120px;
   }

@@ -71,7 +71,6 @@ $fields = get_fields($post_id);
           <div class="recipe-card__ingredients-timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
         <?php } ?>
         <p class="recipe-card__ingredients-title">Ингредиенты и инвентарь</p>
-        <p class="recipe-card__ingredients-title">на 4 порции</p>
         <?php if( have_rows('ingredients_list', $post_id) ) { ?>
           <ul class="recipe-card__ingredients-list">
             <?php while( have_rows('ingredients_list', $post_id) ) {

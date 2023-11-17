@@ -47,9 +47,12 @@ function recipe_search_ajax_handler() {
       </div>
     </div>
 
-  <?php } else {
-    echo '<div class="container">Рецепты не найдены</div>';
-  }
+  <?php } else { ?>
+    <div class="container">
+      <div class="searching__not-found">Увы, такие рецепты не найдены</div>
+      <p class="searching__not-found-please">Попробуйте другой запрос</p>
+    </div>
+  <? }
   
   die();
 }
