@@ -25,16 +25,16 @@
     border: none;
     cursor: pointer;
   }
-}
 
-.main-menu {
-  display: none;
-  padding: 40px 20px;
-  position: absolute;
-  top: 100%;
-  right: 37px;
-  border-radius: 5px;
-  border: 1px solid #FBFBFB;
-  background: var(--white-main-color, #FFF);
-  box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, 0.04);
+  .main-menu {
+    display: none;
+    padding: 40px 20px;
+    position: absolute;
+    top: 100%;
+    right: 37px;
+    border-radius: 5px;
+    border: 1px solid #FBFBFB;
+    background: var(--white-main-color, #FFF);
+    box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, 0.04);
+  }
 }
