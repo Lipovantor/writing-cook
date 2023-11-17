@@ -25,18 +25,14 @@ if (!defined('ABSPATH')) {
 </head>
 <body <?php body_class(); ?>>
 
-<header class="header">
+<header class="header" id="header">
     <div class="container header__container">
       <div class="header__row">
         <div class="header__col">
-          <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную">
-            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/logo-light.svg'; ?>" alt="" width="100" height="40">
-          </a>
+          <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную"></a>
         </div>
         <div class="header__col">
-          <button class="header__burger" aria-label="Открыть меню" id="burger-menu">
-            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/burger.svg'; ?>" alt="" width="40" height="40">
-          </button>
+          <button class="header__burger" aria-label="Открыть меню" id="burger-menu"></button>
         </div>
       </div>
 

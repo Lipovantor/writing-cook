@@ -19,7 +19,8 @@ jQuery(function ($) {
       this.install = this.install(this)
       this.header_open_close_main_menu = this.header_open_close_main_menu(this)
       this.open_close_card_recipe = this.open_close_card_recipe(this)
-
+      this.header_light = this.header_light(this)
+      
     },
 
     /**
@@ -68,6 +69,19 @@ jQuery(function ($) {
         card.toggleClass('recipe-card_active');
       });
 
+    },
+
+    header_light: function() {
+      $(document).ready(function() {
+        $(window).scroll(function() {
+            var header = $('#header');
+            if ($(this).scrollTop() >= 100) {
+                header.addClass('header_light');
+            } else {
+                header.removeClass('header_light');
+            }
+        });
+      });
     },
 
   }
