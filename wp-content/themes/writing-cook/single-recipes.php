@@ -335,17 +335,21 @@ $author_avatar = get_avatar($author_id, 40);
 
       <section class="comments">
         <?php
-          // Вывод комментариев
           if (comments_open() || get_comments_number()) {
             comments_template();
           }
-
-//           Создайте файл comments.php:
-// Ваша тема должна содержать файл comments.php, который будет определять, как будут выглядеть комментарии. Если этот файл отсутствует в вашей теме, WordPress будет использовать свой стандартный шаблон комментариев.
-
-// Кастомизируйте файл comments.php (по желанию):
-// Если вы хотите кастомизировать внешний вид комментариев, то создайте файл comments.php в вашей теме и измените его согласно вашим потребностям. Вы можете использовать функции WordPress, такие как wp_list_comments(), чтобы настроить вывод комментариев и их структуру.
         ?>
+        <script>
+          $(document).ready(function() {
+            $('#comments').text('Комментарии');
+            $('.comments .must-log-in').text('Для отправки комментария вам необходимо авторизоваться.');
+            $('#reply-title').hide();
+            $('.comments .logged-in-as').hide();
+            $('.comment-meta').each(function() {
+              $(this).closest('.comment').find('.comment-author').append($(this));
+            });
+          })
+        </script>
       </section>
 
     </article>

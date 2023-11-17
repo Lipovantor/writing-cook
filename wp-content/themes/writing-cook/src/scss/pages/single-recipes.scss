@@ -459,6 +459,34 @@
     }
   }
 
+  .comments {
+    .commentlist {
+      list-style: none;
+      padding-left: 0;
+
+      .comment-author {
+        display: flex;
+        
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+
+        .says {
+          display: none;
+        }
+      }
+    }
+
+    .must-log-in {
+      a {
+        display: none;
+      }
+    }
+  }
+
   .sidebar {
     width: calc(29% - 20px);
     min-width: 300px;
