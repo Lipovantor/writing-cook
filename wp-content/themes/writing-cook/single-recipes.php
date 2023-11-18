@@ -344,11 +344,39 @@ $author_avatar = get_avatar($author_id, 40);
             $('#comments').text('Комментарии');
             $('.comments .must-log-in').text('Для отправки комментария вам необходимо авторизоваться.');
             $('#reply-title').hide();
-            $('.comments .logged-in-as').hide();
             $('.comment-meta').each(function() {
               $(this).closest('.comment').find('.comment-author').append($(this));
-            });
+            });         
           })
+
+          $(document).ready(function () {
+            var textarea = $('#comment');
+            var placeholderText = 'Напишите Ваш комментарий';
+
+            textarea.val(placeholderText);
+
+            textarea.on('focus', function () {
+              if (textarea.val() === placeholderText) {
+                textarea.val('');
+              }
+            });
+
+            textarea.on('blur', function () {
+              if (textarea.val() === '') {
+                textarea.val(placeholderText);
+              }
+            });
+          });
+
+          $(document).ready(function () {
+            var submitButton = $('#submit');
+            var newButtonText = 'Отправить';
+
+            submitButton.text(newButtonText);
+            submitButton.val(newButtonText);
+          });
+
+
         </script>
       </section>
 
