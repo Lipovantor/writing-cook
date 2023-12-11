@@ -38,6 +38,10 @@
 
   &__col {
 
+    &_right {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__burger {
@@ -60,5 +64,105 @@
     border: 1px solid $white_main_color;
     background: $white_main_color;
     box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+  }
+}
+
+// WP-RECALL
+// for logged-in user
+.logged-in {
+  #recallbar {
+    margin: 0;
+    background-color: transparent;
+
+    font-size: 14px;
+    height: auto;
+    line-height: 1;
+    position: static;
+    width: auto;
+    z-index: 1;
+    
+    .rcb {
+      &_left {
+        .rcb_icon {
+          &:first-child {
+            display: none;
+          }
+        }
+      }
+
+      &_right {
+        &_menu {
+          
+          i {
+            display: none;
+          }
+
+          a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            
+            img {
+              width: 100%;
+              height: 100%;
+              max-width: 100%;
+              object-fit: cover;
+              border-radius: 50px;
+              border: 1px solid $main_color;
+            }
+          }
+        }
+      }
+    }
+
+
+  
+    
+  }
+}
+
+#recallbar {
+  margin: 0;
+  background-color: transparent;
+
+  font-size: 14px;
+  height: auto;
+  line-height: 1;
+  position: static;
+  width: auto;
+  z-index: 1;
+  
+  .rcb {
+    &_left {
+      .rcb_icon {
+        &:first-child {
+          display: none;
+        }
+      }
+    }
+
+    &_right {
+      &_menu {
+        
+        i {
+          display: none;
+        }
+
+        a {
+          display: block;
+          width: 40px;
+          height: 40px;
+          
+          img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 50px;
+            border: 1px solid $main_color;
+          }
+        }
+      }
+    }
   }
 }

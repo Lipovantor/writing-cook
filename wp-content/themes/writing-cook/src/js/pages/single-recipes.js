@@ -23,7 +23,7 @@ jQuery(function ($) {
       this.calculator_ingredients = this.calculator_ingredients(this)
       this.open_close_info = this.open_close_info(this)
       this.step_open_close = this.step_open_close(this)
-      
+      this.call_sidebar = this.call_sidebar(this)
       
     },
 
@@ -122,7 +122,6 @@ jQuery(function ($) {
       $('.info-board').each(function() {
         var $infoText = $(this).find('.info-board__text');
         var textHeight = $infoText.height();
-        console.log(textHeight);
     
         if (textHeight < 56) {
           $(this).find('.info-board__button').hide();
@@ -145,16 +144,14 @@ jQuery(function ($) {
     },
 
     calculator_ingredients: function() {
-        // Получаем элементы
-        var minusButton = $('.portion-controls__button_minus');
-        var plusButton = $('.portion-controls__button_plus');
-        var portionInput = $('.portion-controls__input');
-        var ingredientsCountElements = $('.sidebar__ingredients-count');
+        let minusButton = $('.portion-controls__button_minus'),
+            plusButton = $('.portion-controls__button_plus'),
+            portionInput = $('.portion-controls__input'),
+            ingredientsCountElements = $('.sidebar__ingredients-count');
 
-        // Обновление окончания слова "порции" в зависимости от числа
         function getPortionEnding(number) {
-          var lastTwoDigits = number % 100;
-          var lastDigit = number % 10;
+          let lastTwoDigits = number % 100,
+              lastDigit = number % 10;
         
           if ((lastTwoDigits >= 11 && lastTwoDigits <= 14) || lastDigit === 0 || (lastDigit >= 5 && lastDigit <= 9)) {
             return 'порций';
@@ -171,10 +168,8 @@ jQuery(function ($) {
           $('.portion-label').text(portionEnding);
         }
         
-        // Вызов функции при изменении значения порций
         portionInput.on('change', updatePortionLabel);
     
-        // Изменение количества порций
         minusButton.click(function() {
           var currentPortion = parseInt(portionInput.val());
           if (currentPortion > 1) {
@@ -217,7 +212,69 @@ jQuery(function ($) {
         portionInput.val($('.ingredients__portions').text()); // Установка начального значения инпута
         updateIngredientsCount();
     },
+
+    call_sidebar: function() {
+      let $sidebar = $('.sidebar'),
+          $openSidebarBtn = $('.call-sidebar');
     
+      $openSidebarBtn.on('click', function(e) {
+        e.stopPropagation();
+        if (window.innerWidth <= 1200) {
+          $sidebar.slideToggle();
+          $openSidebarBtn.hide();
+        }
+      });
+    
+      $(document).on('click', function(event) {
+        if (
+          window.innerWidth <= 1200 &&
+          !$(event.target).closest('.sidebar').length &&
+          !$(event.target).is('.call-sidebar') &&
+          !$(event.target).closest('.header').length
+        ) {
+          $sidebar.slideUp();
+          $openSidebarBtn.show();
+        }
+      });
+    
+      $('.sidebar__close').on('click', function(event) {
+        if (window.innerWidth <= 1200) {
+          $sidebar.slideUp();
+          $openSidebarBtn.show();
+        }
+      });
+    
+      let touchStartX = 0,
+          minSwipeDistance = 50;
+    
+      $sidebar.on('touchstart', function(event) {
+        touchStartX = event.originalEvent.touches[0].pageX;
+      });
+    
+      $sidebar.on('touchend', function(event) {
+        if (window.innerWidth <= 1200) {
+          let touchEndX = event.originalEvent.changedTouches[0].pageX,
+              swipeDistance = touchEndX - touchStartX;
+    
+          if (swipeDistance > minSwipeDistance) {
+            $sidebar.slideUp();
+            $openSidebarBtn.show();
+          }
+        }
+      });
+
+      $(window).on('resize', function() {
+        if (window.innerWidth > 1200) {
+          $sidebar.show();
+          $openSidebarBtn.hide();
+        }
+        if (window.innerWidth < 1200) {
+          $sidebar.hide();
+          $openSidebarBtn.show();
+        } 
+      });
+    },
+  
   }
 
   /**

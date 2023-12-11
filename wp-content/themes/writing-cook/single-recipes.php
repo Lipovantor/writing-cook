@@ -333,6 +333,44 @@ $author_avatar = get_avatar($author_id, 40);
         </section>
       <?php } ?>
 
+      <?php if(!empty(get_field('related_recipes'))) { ?>
+        <section class="related-recipes">
+          <h2>Связанные рецепты</h2>
+          <?php if(!empty(get_field('text_above_related_recipes'))) { ?>
+            <p class="related-recipes__text">
+              <?php echo get_field('text_above_related_recipes'); ?>
+            </p>
+          <?php } ?>
+          <?php
+          $related_recipes = get_field('related_recipes');
+
+          if ($related_recipes) {
+            foreach ($related_recipes as $post) {
+              setup_postdata($post);
+              ?>
+              <a href="<?php echo esc_url(get_permalink()); ?>" 
+                title="<?php the_title(); ?>"
+                class="related-recipes-link">
+                <?php if (has_post_thumbnail()) : ?>
+                  <div class="related-recipes-link__thumbnail">
+                    <?php the_post_thumbnail('thumbnail'); ?>
+                  </div>
+                <?php endif; ?>
+                <div class="related-recipes-link__content">
+                  <h2 class="related-recipes-link__title">
+                    <?php the_title(); ?>
+                  </h2>
+                  <div class="related-recipes-link__excerpt">
+                    <?php the_excerpt(); ?>
+                  </div>
+                </div>
+              </a>
+            <?php } 
+              wp_reset_postdata(); 
+            } ?>
+        </section>
+      <?php } ?>
+
       <section class="comments">
         <?php
           if (comments_open() || get_comments_number()) {
@@ -376,13 +414,21 @@ $author_avatar = get_avatar($author_id, 40);
             submitButton.val(newButtonText);
           });
 
-
         </script>
       </section>
 
     </article>
 
+    <button class="call-sidebar">
+      <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/call_sidebar.svg'; ?>" 
+           alt="Открыть калькулятор" 
+           width="13" height="9">
+    </button>
+
     <aside class="sidebar">
+      <button class="sidebar__close">
+        <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/close-white.svg'; ?>" alt="Закрыть" width="10" height="10">
+      </button>
       <div class="sidebar__ingredients">
         <header class="sidebar__header">
           <div class="sidebar__title extra-text">Ингредиенты</div>
@@ -415,7 +461,8 @@ $author_avatar = get_avatar($author_id, 40);
                 
                 $ingredient_count = get_sub_field('ingredient_count');
 
-                $ingredient_count_for_one_portion = $ingredient_count / $portion;
+                // $ingredient_count_for_one_portion = $ingredient_count / $portion;
+                $ingredient_count_for_one_portion = is_numeric($ingredient_count) ? $ingredient_count / $portion : $ingredient_count;
 
                 $unit = get_sub_field('unit');
                 ?>

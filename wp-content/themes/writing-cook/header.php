@@ -22,16 +22,22 @@ if (!defined('ABSPATH')) {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+      html {
+        margin: 0 !important;
+      }
+    </style>
 </head>
 <body <?php body_class(); ?>>
 
 <header class="header" id="header">
     <div class="container header__container">
       <div class="header__row">
-        <div class="header__col">
+        <div class="header__col header__col_left">
           <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную"></a>
         </div>
-        <div class="header__col">
+        <div class="header__col header__col_right">
           <button class="header__burger" aria-label="Открыть меню" id="burger-menu"></button>
         </div>
       </div>
