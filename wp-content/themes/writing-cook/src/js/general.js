@@ -87,6 +87,7 @@ jQuery(function ($) {
 
     wp_recall_to_header: function() {
       $("#recallbar").insertBefore("#header .header__container .header__row .header__col_right .header__burger");
+      $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a");
     },
 
   }

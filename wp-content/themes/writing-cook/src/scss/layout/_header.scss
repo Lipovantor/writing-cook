@@ -3,7 +3,6 @@
   position: fixed;
   top: 0;
   z-index: 9998;
-  padding: 12px;
 
   &__logo {
     display: block;
@@ -27,7 +26,7 @@
 
   &__container {
     position: relative;
-    padding-right: 37px;
+    padding: 12px 20px;
   }
 
   &__row {
@@ -56,14 +55,26 @@
 
   .main-menu {
     display: none;
+    min-width: 260px;
     padding: 40px 20px;
     position: absolute;
-    top: 100%;
-    right: 37px;
+    top: 90%;
+    right: 20px;
     border-radius: 5px;
     border: 1px solid $white_main_color;
     background: $white_main_color;
     box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+
+    .menu-item {
+      display: block;
+      margin-bottom: 20px;
+      color: $main_color;
+      font-family: $text_font;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      text-decoration: none;
+    }
   }
 }
 
@@ -91,7 +102,20 @@
       }
 
       &_right {
+        margin: 0 40px 0 0;
+
+
         &_menu {
+          border-left: none;
+          box-sizing: border-box;
+          height: auto;
+          margin: 0;
+          position: relative;
+          width: fit-content;
+
+          &:hover {
+            border-left: none;
+          }
           
           i {
             display: none;
@@ -119,50 +143,127 @@
   
     
   }
-}
 
-#recallbar {
-  margin: 0;
-  background-color: transparent;
+  .pr_sub_menu {
 
-  font-size: 14px;
-  height: auto;
-  line-height: 1;
-  position: static;
-  width: auto;
-  z-index: 1;
-  
-  .rcb {
-    &_left {
-      .rcb_icon {
-        &:first-child {
-          display: none;
-        }
+    .rcb_line {
+      padding: 0;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
       }
-    }
 
-    &_right {
-      &_menu {
-        
+      a {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+
         i {
           display: none;
         }
 
-        a {
-          display: block;
-          width: 40px;
-          height: 40px;
-          
-          img {
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            object-fit: cover;
-            border-radius: 50px;
-            border: 1px solid $main_color;
-          }
+        span {
+          margin: 0;
+          color: $main_color;
+          font-family: $text_font;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16px;
         }
       }
     }
   }
 }
+
+// #recallbar {
+//   margin: 0;
+//   background-color: transparent;
+
+//   font-size: 14px;
+//   height: auto;
+//   line-height: 1;
+//   position: static;
+//   width: auto;
+//   z-index: 1;
+  
+//   .rcb {
+//     &_left {
+//       .rcb_icon {
+//         &:first-child {
+//           display: none;
+//         }
+//       }
+//     }
+
+//     &_right {
+//       margin: 0 40px 0 0;
+
+
+//       &_menu {
+//         border-left: none;
+//         box-sizing: border-box;
+//         height: auto;
+//         margin: 0;
+//         position: relative;
+//         width: fit-content;
+
+//         &:hover {
+//           border-left: none;
+//         }
+        
+//         i {
+//           display: none;
+//         }
+
+//         a {
+//           display: block;
+//           width: 40px;
+//           height: 40px;
+          
+//           img {
+//             width: 100%;
+//             height: 100%;
+//             max-width: 100%;
+//             object-fit: cover;
+//             border-radius: 50px;
+//             border: 1px solid $main_color;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .pr_sub_menu {
+
+//   .rcb_line {
+//     padding: 0;
+//     margin-bottom: 20px;
+
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+
+//     a {
+//       width: 100%;
+//       display: flex;
+//       align-items: center;
+//       text-decoration: none;
+
+//       i {
+//         display: none;
+//       }
+
+//       span {
+//         margin: 0;
+//         color: $main_color;
+//         font-family: $text_font;
+//         font-size: 14px;
+//         font-weight: 500;
+//         line-height: 16px;
+//       }
+//     }
+//   }
+// }
