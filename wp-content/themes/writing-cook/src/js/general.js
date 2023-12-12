@@ -21,6 +21,7 @@ jQuery(function ($) {
       this.open_close_card_recipe = this.open_close_card_recipe(this)
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
+      this.wp_recall_profile = this.wp_recall_profile(this)
       
     },
 
@@ -48,9 +49,18 @@ jQuery(function ($) {
      */
     header_open_close_main_menu: function() {
       $('#burger-menu').on('click', function() {
-        $('.main-menu').slideToggle();
+        $('.main-menu').slideToggle().toggleClass('active');
       });
-    },
+    
+      $(document).on('click', function(e) {
+        let $mainMenu = $('.main-menu');
+        if (!$(e.target).closest('.header').length) {
+          if ($mainMenu.hasClass('active')) {
+            $mainMenu.slideToggle().removeClass('active');
+          }
+        }
+      });
+    },    
 
     /**
      * Open-close description card recipe
@@ -72,23 +82,48 @@ jQuery(function ($) {
 
     },
 
+    /**
+     * Change header styles to light
+     */
     header_light: function() {
       $(document).ready(function() {
-        $(window).scroll(function() {
-            var header = $('#header');
+        var header = $('#header');
+        if( !$('body').hasClass('private-office-page') ) {
+          $(window).scroll(function() {
             if ($(this).scrollTop() >= 100) {
                 header.addClass('header_light');
             } else {
                 header.removeClass('header_light');
             }
-        });
+          });
+        } else if( $('body').hasClass('private-office-page') ) {
+          header.addClass('header_light');
+        }
       });
     },
 
+    /**
+     * Change position wp-recall items to header
+     */
     wp_recall_to_header: function() {
       $("#recallbar").insertBefore("#header .header__container .header__row .header__col_right .header__burger");
       $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a");
     },
+
+    /**
+     * Styles and functional for profile wp-recall private office
+     */
+    wp_recall_profile: function() {
+      if ($('#rcl-office').length > 0) {
+        $('#rcl-office').wrap('<main class="private"><div class="private__container container"></div></main>');
+        $('body').addClass('private-office-page');
+
+        $('.cab_lt_title').insertAfter('.lk-avatar');
+        $('.cab_lt_line').insertAfter('.lk-sidebar')
+      }
+    },
+    
+    
 
   }
 

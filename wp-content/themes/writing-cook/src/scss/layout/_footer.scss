@@ -1,6 +1,7 @@
 .footer {
+  position: relative;
   border-radius: 100px 100px 0px 0px;
-  background: var(--gradient-footer, linear-gradient(180deg, #0E2B50 0%, #0D1928 100%));
+  background: linear-gradient(180deg, #0E2B50 0%, #0D1928 100%);
 
   &__container {
     padding: 0 60px;

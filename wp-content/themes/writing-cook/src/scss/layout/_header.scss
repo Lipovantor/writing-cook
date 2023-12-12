@@ -22,6 +22,28 @@
     .header__burger {
       background-image: url('../img/icons/burger-dark.svg');
     }
+
+    #recallbar {
+      .rcb {
+        &_left {
+          .rcb_icon {
+
+            .rcli  {
+              color: $main_color;
+            }
+    
+            .rcl-login,
+            .rcl-register {
+              color: $main_color;
+    
+              span {
+                color: $main_color;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   &__container {
@@ -74,6 +96,10 @@
       font-weight: 500;
       line-height: 16px;
       text-decoration: none;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -177,93 +203,113 @@
   }
 }
 
-// #recallbar {
-//   margin: 0;
-//   background-color: transparent;
+#recallbar {
+  margin: 0;
+  background-color: transparent;
 
-//   font-size: 14px;
-//   height: auto;
-//   line-height: 1;
-//   position: static;
-//   width: auto;
-//   z-index: 1;
+  font-size: 14px;
+  height: auto;
+  line-height: 1;
+  position: static;
+  width: auto;
+  z-index: 1;
   
-//   .rcb {
-//     &_left {
-//       .rcb_icon {
-//         &:first-child {
-//           display: none;
-//         }
-//       }
-//     }
+  .rcb {
+    &_left {
+      .rcb_icon {
+        &:first-child {
+          display: none;
+        }
 
-//     &_right {
-//       margin: 0 40px 0 0;
+        .rcli  {
+          color: $white_main_color;
+        }
 
+        .rcl-login,
+        .rcl-register {
+          color: $white_main_color;
 
-//       &_menu {
-//         border-left: none;
-//         box-sizing: border-box;
-//         height: auto;
-//         margin: 0;
-//         position: relative;
-//         width: fit-content;
+          span {
+            color: $white_main_color;
+            font-family: $text_font;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+          }
 
-//         &:hover {
-//           border-left: none;
-//         }
+          .rcb_hiden {
+            display: none !important;
+          }
+        }
+      }
+    }
+
+    &_right {
+      margin: 0 40px 0 0;
+
+      &_menu {
+        border-left: none;
+        box-sizing: border-box;
+        height: auto;
+        margin: 0;
+        position: relative;
+        width: fit-content;
+
+        &:hover {
+          border-left: none;
+        }
         
-//         i {
-//           display: none;
-//         }
+        i {
+          display: none;
+        }
 
-//         a {
-//           display: block;
-//           width: 40px;
-//           height: 40px;
+        a {
+          display: block;
+          width: 40px;
+          height: 40px;
           
-//           img {
-//             width: 100%;
-//             height: 100%;
-//             max-width: 100%;
-//             object-fit: cover;
-//             border-radius: 50px;
-//             border: 1px solid $main_color;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+          img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 50px;
+            border: 1px solid $main_color;
+          }
+        }
+      }
+    }
+  }
+}
 
-// .pr_sub_menu {
+.pr_sub_menu {
 
-//   .rcb_line {
-//     padding: 0;
-//     margin-bottom: 20px;
+  .rcb_line {
+    padding: 0;
+    margin-bottom: 20px;
 
-//     &:last-child {
-//       margin-bottom: 0;
-//     }
+    &:last-child {
+      margin-bottom: 0;
+    }
 
-//     a {
-//       width: 100%;
-//       display: flex;
-//       align-items: center;
-//       text-decoration: none;
+    a {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
 
-//       i {
-//         display: none;
-//       }
+      i {
+        display: none;
+      }
 
-//       span {
-//         margin: 0;
-//         color: $main_color;
-//         font-family: $text_font;
-//         font-size: 14px;
-//         font-weight: 500;
-//         line-height: 16px;
-//       }
-//     }
-//   }
-// }
+      span {
+        margin: 0;
+        color: $main_color;
+        font-family: $text_font;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+      }
+    }
+  }
+}
