@@ -24,6 +24,7 @@ $plug_image = get_field('card_plug', 'option');
 
 // Gallery
 $gallery = $fields['gallery'];
+
 $size_image_gallery_big = 'large';
 $size_image_gallery_small = 'medium';
 

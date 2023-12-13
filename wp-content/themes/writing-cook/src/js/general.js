@@ -119,12 +119,18 @@ jQuery(function ($) {
         $('body').addClass('private-office-page');
 
         $('.cab_lt_title').insertAfter('.lk-avatar');
-        $('.cab_lt_line').insertAfter('.lk-sidebar')
+        $('.cab_lt_line').insertAfter('.lk-sidebar');
       }
+
+      $(document).ready(function() {
+        if ($('.rcl-notice__type-success').length > 0) {
+          setTimeout(function() {
+            $('.rcl-notice__type-success').hide();
+          }, 1500);
+        }
+      });
     },
     
-    
-
   }
 
   /**
