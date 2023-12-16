@@ -13,4 +13,7 @@ switch (get_row_layout()) {
   case 'promo':
     get_template_part('template-parts/global-sections/promo');
     break;
+  case 'intro_blog':
+    get_template_part('template-parts/global-sections/intro-blog');
+    break;
 }

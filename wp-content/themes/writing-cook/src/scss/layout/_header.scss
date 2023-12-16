@@ -44,6 +44,15 @@
         }
       }
     }
+    
+    .header__col {
+
+      &_right {
+        .bookmark {
+          background-image: url('../img/icons/bookmark-dark.svg');
+        }
+      }
+    }
   }
 
   &__container {
@@ -62,6 +71,33 @@
     &_right {
       display: flex;
       align-items: center;
+
+      .bookmark {
+        position: relative;
+        cursor: pointer;
+        width: 22px;
+        height: 40px;
+        background-image: url('../img/icons/bookmark.svg');
+
+        .simplefavorites-user-count {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          position: absolute;
+          bottom: 0;
+          right: -7px;
+          border: 1px solid $main-color;
+          background-color: $main-color;
+          color: $white-main-color;
+          font-family: $text_font;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: normal;
+        }
+      }
     }
   }
 
@@ -86,6 +122,7 @@
     border: 1px solid $white_main_color;
     background: $white_main_color;
     box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+    z-index: 3;
 
     .menu-item {
       display: block;
@@ -102,10 +139,66 @@
       }
     }
   }
+
+  .book-favorites {
+    display: none;
+    position: absolute;
+    top: 90%;
+    right: 190px;
+    min-width: 260px;
+    max-width: 300px;
+    padding: 40px 20px;
+    border-radius: 5px;
+    border: 1px solid $white_main_color;
+    background: $white_main_color;
+    box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+
+    .favorites-list  {
+      padding: 0 2px 0 0;
+      margin: 0;
+      max-height: 350px;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      &::-webkit-scrollbar-track {
+        background: $white_third_color;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: $main_color;
+        border-radius: 20px;
+        border: 1px solid $white_third_color;
+      }
+
+      li {
+        margin: 0 0 20px 0;
+        padding: 0;
+
+        &:first-child {
+          border: none;
+        }
+
+        p {
+          margin: 0;
+
+          a {
+            color: $main_color;
+            font-family: $text_font;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 16px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
 
 // WP-RECALL
-// for logged-in user
 .logged-in {
   #recallbar {
     margin: 0;
@@ -175,6 +268,10 @@
     .rcb_line {
       padding: 0;
       margin-bottom: 20px;
+
+      &:first-child {
+        display: none;
+      }
 
       &:last-child {
         margin-bottom: 0;

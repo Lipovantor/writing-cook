@@ -557,6 +557,12 @@
     }
   }
 
+  .likes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .comments {
     .commentlist {
       list-style: none;
@@ -742,6 +748,7 @@
       top: auto;
       bottom: 0;
       right: 0;
+      z-index: 2;
     }
 
     &__close {

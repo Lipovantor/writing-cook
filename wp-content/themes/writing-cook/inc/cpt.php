@@ -43,7 +43,7 @@ function create_recipe_cpt() {
 
 add_action('init', 'create_recipe_cpt');
 
-add_theme_support('post-thumbnails', array('recipes'));
+add_theme_support('post-thumbnails', array('recipes', 'post'));
 
 function create_recipe_taxonomies() {
   $category_labels = array(

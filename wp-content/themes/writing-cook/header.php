@@ -38,6 +38,11 @@ if (!defined('ABSPATH')) {
           <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную"></a>
         </div>
         <div class="header__col header__col_right">
+          <?php if (is_user_logged_in()) { ?>
+            <div class="bookmark">
+              <?php echo do_shortcode('[user_favorite_count]'); ?>
+            </div>
+          <?php } ?>
           <button class="header__burger" aria-label="Открыть меню" id="burger-menu"></button>
         </div>
       </div>
@@ -60,5 +65,23 @@ if (!defined('ABSPATH')) {
         }
         ?>
       </nav>
+
+      <div class="book-favorites">
+        <?php 
+        /**
+          * Echo HTML List of User Favorites
+          * @param $user_id int, defaults to current user
+          * @param $site_id int, defaults to current blog/site
+          * @param $include_links bool, whether to wrap the post title with the permalink
+          * @param $filters array of post types/taxonomies
+          * @param $include_button boolean, whether to include the favorite button for each item
+          * @param $include_thumbnails boolean, whether to include the thumbnail for each item
+          * @param $thumbnail_size string, the thumbnail size to display
+          * @param $include_excerpt boolean, whether to include the excerpt for each item
+          * @return html
+          */
+          the_user_favorites_list($user_id = null, $site_id = null, $include_links = true, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false); 
+        ?>
+      </div>
 
 </header>

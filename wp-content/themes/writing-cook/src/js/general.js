@@ -22,6 +22,7 @@ jQuery(function ($) {
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
       this.wp_recall_profile = this.wp_recall_profile(this)
+      this.open_close_favorites_list = this.open_close_favorites_list(this)
       
     },
 
@@ -107,7 +108,7 @@ jQuery(function ($) {
      */
     wp_recall_to_header: function() {
       $("#recallbar").insertBefore("#header .header__container .header__row .header__col_right .header__burger");
-      $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a");
+      $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a:last-child");
     },
 
     /**
@@ -130,6 +131,25 @@ jQuery(function ($) {
         }
       });
     },
+
+    /**
+     * Open/close favorites-list in header
+     */
+    open_close_favorites_list: function() {
+      if ($('.bookmark').length > 0) {
+        $('.bookmark').on('click', function(e) {
+            e.stopPropagation();
+            $('.book-favorites').slideToggle();
+        });
+
+        $(document).on('click', function(e) {
+          if (!$(e.target).closest('.book-favorites').length) {
+            $('.book-favorites').slideUp();
+          }
+        });
+      }
+    }
+  
     
   }
 

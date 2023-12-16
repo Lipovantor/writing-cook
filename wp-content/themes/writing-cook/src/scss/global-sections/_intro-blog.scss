@@ -1,0 +1,239 @@
+.blog-page {
+  .intro-blog {
+    height: 50vh;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  
+    &__title {
+      color: $white-main-color;
+      text-align: center;
+    }
+  
+    &__text {
+      color: $white_second_color;
+      text-align: center;
+    }
+  }
+  
+  .search-form {
+  
+    &-posts {
+      height: 54px;
+      width: 80%;
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 0 auto;
+  
+      @include media(tab) {
+        width: 100%;
+        height: 36px;
+      }
+  
+      &::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 14px;
+        left: 17px;
+        background-image: url("../img/icons/loupe.svg");
+        background-size: cover;
+  
+        @include media(tab) {
+          width: 13px;
+          height: 13px;
+          top: 12px;
+          left: 9px;
+        }
+      }
+  
+      &__field {
+        height: 54px;
+        width: 99%;
+        padding: 15px 130px 15px 52px;
+        border: none;
+        border-radius: 50px;
+        background-color: $white_main_color;
+        outline: 1px solid transparent;
+        @include bodyText;
+  
+        @include media(tab) {
+          height: 36px;
+          padding: 7px 100px 7px 28px;
+        }
+        
+        &:focus {
+          outline: none;
+          box-shadow: -10px 8px 12px 0 rgba(221, 211, 185, .12);
+        }
+      }
+  
+      &__submit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        padding: 0 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        background-color: $main_color;
+        border: none;
+        cursor: pointer;
+        @include bodyText;
+        color: $white_main_color;
+  
+        @include media(tab) {
+          padding: 0 22px;
+        }
+      }
+    }
+  }
+  
+  .searching {
+  
+    &__not-found {
+      padding: 30px 0 15px;
+      color: $main_color;
+      font-size: 50px;
+      font-weight: 500;
+      line-height: 72px;
+    }
+  
+    &__not-found-please {
+      padding-bottom: 20px;
+    }
+  
+    &__list {
+      padding-bottom: 120px;
+    }
+  
+    &__header {
+      padding-top: 40px;
+      margin-bottom: 26px;
+    }
+  
+    &__find {
+      margin-bottom: 0;
+    }
+  }
+  
+  .filtration {
+    padding-top: 20px;
+  }
+  
+  .category-filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  
+    &__label {
+      flex-shrink: 0;
+      flex-grow: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 14px;
+      color: $main_color;
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1px solid $main_color;
+      background: transparent;
+      cursor: pointer;
+  
+      &:hover {
+        transition: all .2s;
+        background: $white_third_color;
+        color: $main_color;
+      }
+  
+      &_checked {
+        transition: all .3s;
+        background: $main_color;
+        color: $white_second_color;
+  
+        &:hover {
+          background: $main_color;
+          color: $white_second_color;
+        }
+      }
+  
+      .category-checkbox {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        margin: 0;
+      }
+    }
+  }
+  
+  .results-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  
+    &__pagination {
+      width: 100%;
+      margin: 40px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+  
+      .page-numbers {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 30px;
+        color: $second_color;
+        text-decoration: none;
+  
+        @include media(tab) {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 26px;
+        }
+  
+        &.current {
+          color: $bread_color;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  .loader {
+    width: 100%;
+    height: 100%;
+    background: rgba(6, 22, 41, .20);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+  
+    &::before {
+      content: "";
+      width: 52px;
+      height: 52px;
+      border: 6px solid #3271C1;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

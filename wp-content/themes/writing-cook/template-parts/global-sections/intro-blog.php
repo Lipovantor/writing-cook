@@ -1,40 +1,47 @@
 <?php
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+  exit; // Exit if accessed directly
 }
 
-wp_enqueue_script('intro', WRC_THEME_URI . '/dist/js/sections/intro.min.js', 'jquery');
-wp_localize_script('intro', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+wp_enqueue_script('intro-blog', WRC_THEME_URI . '/dist/js/sections/intro-blog.min.js', 'jquery');
+wp_localize_script('intro-blog', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
 ?>
 
-<section class="intro" 
+<section class="intro-blog" 
          style="<?php if (!empty(get_sub_field('bg_image'))) { echo 'background-image: url(' . get_sub_field('bg_image') . ')'; } ?>">
   <div class="container">
 
     <?php if (!empty(get_sub_field('title'))) { ?>
-      <h1 class="intro__title">
+      <h1 class="intro-blog__title">
         <?php echo get_sub_field('title'); ?>
       </h1>
     <?php } ?>
 
-    <form class="search-form search-form-recipes" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
-      <input type="search" class="search-form-recipes__field" placeholder="Поиск рецептов" name="search_query" />
-      <input type="submit" class="search-form-recipes__submit" value="Найти">
+    <?php if (!empty(get_sub_field('text'))) { ?>
+      <div class="intro-blog__text body-text">
+        <?php echo get_sub_field('text'); ?>
+      </div>
+    <?php } ?>
+
+    <form class="search-form search-form-posts" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" method="post">
+      <input type="search" class="search-form-posts__field" placeholder="Поиск постов" name="search_query_posts" />
+      <input type="submit" class="search-form-posts__submit" value="Найти">
     </form>
 
   </div>
 </section>
 
-<section class="searching" id="recipes-searching"></section>
+<section class="searching" id="posts-searching"></section>
 
-<section class="filtration" id="recipes-filtration">
+<section class="filtration" id="posts-filtration">
   <div class="container">
     <div class="category-filter">
       <?php
       $categories = get_terms(array(
-        'taxonomy' => 'recipe_category',
+        'taxonomy' => 'category',
         'orderby' => 'name',
         'order' => 'ASC',
+        'exclude' => get_option('default_category')
       ));
 
       $counter = 0;
@@ -55,10 +62,4 @@ wp_localize_script('intro', 'ajax_object', array('ajax_url' => admin_url('admin-
     <div class="filtration__list results-list"></div>
   </div>
 </section>
-
-
-
-
-
-
 

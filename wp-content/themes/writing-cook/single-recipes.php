@@ -362,7 +362,8 @@ $author_avatar = get_avatar($author_id, 40);
                     <?php the_title(); ?>
                   </h2>
                   <div class="related-recipes-link__excerpt">
-                    <?php the_excerpt(); ?>
+                    <?php the_excerpt();?>
+                    
                   </div>
                 </div>
               </a>
@@ -371,6 +372,24 @@ $author_avatar = get_avatar($author_id, 40);
             } ?>
         </section>
       <?php } ?>
+
+      <div class="likes">
+        Оценка рецепта
+        <?php global $post; ?>
+        <?php echo rcl_get_html_post_rating($post->ID,'custom-type',$post->post_author);?>   
+      </div>
+
+      <div class="add-bookmark">
+        <?php 
+        /**
+        * Echo the favorite button for a specified post
+        * Post ID not required if inside the loop
+        * @param $post_id int, defaults to current post
+        * @param $site_id int, defaults to current blog/site
+        */ 
+        the_favorites_button($post_id);
+        ?>
+      </div>
 
       <section class="comments">
         <?php
@@ -462,7 +481,6 @@ $author_avatar = get_avatar($author_id, 40);
                 
                 $ingredient_count = get_sub_field('ingredient_count');
 
-                // $ingredient_count_for_one_portion = $ingredient_count / $portion;
                 $ingredient_count_for_one_portion = is_numeric($ingredient_count) ? $ingredient_count / $portion : $ingredient_count;
 
                 $unit = get_sub_field('unit');
@@ -496,7 +514,7 @@ $author_avatar = get_avatar($author_id, 40);
           <div class="meta__author-name">
             <?php echo esc_html($author_name); ?>
           </div>
-        </a>      
+        </a> 
       </div>
     </aside>
   </div>

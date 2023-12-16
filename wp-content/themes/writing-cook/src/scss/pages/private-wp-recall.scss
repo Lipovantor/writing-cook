@@ -1,16 +1,7 @@
 @import "../variables";
-
-.private-office-page {
-  height: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-}
+@import "../mixins";
 
 .private {
-  height: 100%;
 
   &__container {
     height: 100%;
