@@ -38,7 +38,13 @@ if (!defined('ABSPATH')) {
           <a href="<?php echo get_home_url(); ?>" class="header__logo" aria-label="На главную"></a>
         </div>
         <div class="header__col header__col_right">
+          <?php if (!is_user_logged_in()) { ?>
+            <button class="login-signin" id="login-signin"></button>
+          <?php } ?>
           <?php if (is_user_logged_in()) { ?>
+
+            <button class="to-write"></button>
+            
             <div class="bookmark">
               <?php echo do_shortcode('[user_favorite_count]'); ?>
             </div>
@@ -65,23 +71,30 @@ if (!defined('ABSPATH')) {
         }
         ?>
       </nav>
+      
+      <?php if (is_user_logged_in()) { ?>
+        <div class="to-write-menu">
+          <a href="<?php echo rcl_format_url(get_author_posts_url($user_ID),'tect_657976942a228'); ?>" class="" title="Написать рецепт">Написать рецепт</a>
+          <a href="<?php echo rcl_format_url(get_author_posts_url($user_ID),'opublikovat_statyu_657d7f7bef3b1'); ?>" class="" title="Написать статью">Написать статью</a>
+        </div>
 
-      <div class="book-favorites">
-        <?php 
-        /**
-          * Echo HTML List of User Favorites
-          * @param $user_id int, defaults to current user
-          * @param $site_id int, defaults to current blog/site
-          * @param $include_links bool, whether to wrap the post title with the permalink
-          * @param $filters array of post types/taxonomies
-          * @param $include_button boolean, whether to include the favorite button for each item
-          * @param $include_thumbnails boolean, whether to include the thumbnail for each item
-          * @param $thumbnail_size string, the thumbnail size to display
-          * @param $include_excerpt boolean, whether to include the excerpt for each item
-          * @return html
-          */
-          the_user_favorites_list($user_id = null, $site_id = null, $include_links = true, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false); 
-        ?>
-      </div>
+        <div class="book-favorites">
+          <?php 
+          /**
+            * Echo HTML List of User Favorites
+            * @param $user_id int, defaults to current user
+            * @param $site_id int, defaults to current blog/site
+            * @param $include_links bool, whether to wrap the post title with the permalink
+            * @param $filters array of post types/taxonomies
+            * @param $include_button boolean, whether to include the favorite button for each item
+            * @param $include_thumbnails boolean, whether to include the thumbnail for each item
+            * @param $thumbnail_size string, the thumbnail size to display
+            * @param $include_excerpt boolean, whether to include the excerpt for each item
+            * @return html
+            */
+            the_user_favorites_list($user_id = null, $site_id = null, $include_links = true, $filters = null, $include_button = false, $include_thumbnails = false, $thumbnail_size = 'thumbnail', $include_excerpt = false); 
+          ?>
+        </div>
+      <?php } ?>
 
 </header>

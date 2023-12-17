@@ -20,6 +20,7 @@ jQuery(function ($) {
       this.gallery_slider = this.gallery_slider(this)
       this.open_modal_video = this.open_modal_video(this)
       this.close_modal_video = this.close_modal_video(this)
+      this.inventory_open_close = this.inventory_open_close(this)
       this.calculator_ingredients = this.calculator_ingredients(this)
       this.open_close_info = this.open_close_info(this)
       this.step_open_close = this.step_open_close(this)
@@ -113,6 +114,26 @@ jQuery(function ($) {
       $(document).on('keydown', function(event) {
         if (event.key === 'Escape' && $('.modal-video').hasClass('modal-video_show')) {
           $('.modal-video').removeClass('modal-video_show');
+        }
+      });
+    },
+
+    inventory_open_close: function() {
+      $(document).ready(function () {
+        let $ingredientList = $('.ingredients__list'),
+            $inventoryItems = $ingredientList.find('.inventory-item');
+
+        if ($inventoryItems.length > 2) {
+          $inventoryItems.slice(2).hide();
+
+          let $expandButton = $('<button class="expand-btn">Смотреть все</button>');
+          $ingredientList.after($expandButton);
+
+          $expandButton.on('click', function () {
+            $inventoryItems.slice(2).slideToggle('slow');
+            let buttonText = $expandButton.text() === 'Смотреть все' ? 'Спрятать' : 'Смотреть все';
+            $expandButton.text(buttonText);
+          });
         }
       });
     },

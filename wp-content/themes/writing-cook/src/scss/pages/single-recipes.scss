@@ -262,6 +262,17 @@
   .ingredients {
     padding-top: 22px;
 
+    .expand-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 30px;
+      margin-top: 10px;
+      color: $second_color;
+      font-family: $text_font;
+    }
+
     &__title {
       margin-bottom: 10px;
     }
@@ -357,7 +368,7 @@
   }
 
   .steps-recipe {
-    padding-top: 80px;
+    padding-top: 60px;
     padding-bottom: 60px;
 
     &__title {
@@ -929,6 +940,9 @@
     }
 
     .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 10px 22px;
       margin-top: 16px;
       border: 1px solid $main_color;
@@ -965,6 +979,53 @@
             color: $white_second_color;
           }
         }
+
+      }
+
+      .add-bookmark {
+        .simplefavorite-button {
+          background-image: url("../img/icons/add_to.svg");
+          padding: 0;
+          background-color: transparent;
+          border: none;
+          display: block;
+          width: 15px;
+          height: 26px;
+          cursor: pointer;
+
+          &.active {
+            background-image: url("../img/icons/add-to-dark.svg");
+
+            .simplefavorite-button-count {
+              color: $main-color;
+              font-weight: 600;
+
+              @include media(tab-mid) {
+                color: $white-main-color;
+              }
+            }
+
+            @include media(tab-mid) {
+              background-image: url("../img/icons/add_to.svg");
+            }
+          }
+
+          .simplefavorite-button-count {
+            padding-left: 32px;
+            color: $grey_text_color;
+            font-family: $text_font;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 14px;
+          }
+
+          i {
+            display: none;
+          }
+        }
+      }
+
+      .likes {
 
       }
     }

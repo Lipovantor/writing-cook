@@ -7,12 +7,32 @@
     height: 100%;
   }
 
+  .rcl-bttn {
+
+    &.rcl-bttn__type-primary {
+      background-color: $main-color;
+
+      &.rcl-bttn__active {
+        background-color: $second_color;
+      }
+    }
+
+    &.rcl-bttn__disabled {
+      opacity: 1;
+      background-color: $second_color;
+    }
+  }
+
   #rcl-office {
     display: flex;
     gap: 12px;
     height: 100%;
     background-color: $white_main_color;
     padding-top: 64px;
+
+    @include media(tab) {
+      flex-direction: column;
+    }
 
     .rcl-notice {
       position: absolute;
@@ -42,6 +62,7 @@
 
     .cab_lt_sidebar {
       padding: 40px 22px;
+      box-sizing: border-box;
       float: none;
       width: 400px;
       display: flex;
@@ -50,9 +71,19 @@
       height: 100%;
       background: linear-gradient(0deg, #153865 0%, #0F1B2C 100.65%);
 
+      @include media(tab-mid) {
+        width: 300px;
+      }
+
+      @include media(tab) {
+        width: 100%;
+        height: auto;
+      }
+
       .lk-sidebar {
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin-bottom: 30px;
         padding-bottom: 40px;
@@ -202,13 +233,27 @@
     
     #rcl-tabs {
       height: 77vh;
+      width: 100%;
       overflow-x: hidden;
       overflow-y: auto;
+
+      @include media(tab) {
+        height: auto;
+      }
+
       #lk-content {
+        margin: 0;
+        width: 100%;
 
         .acf-form {
+
         }
       }
     }
   }
+}
+
+// Chat pop-up
+#rcl-chat-noread-box {
+  display: none;
 }

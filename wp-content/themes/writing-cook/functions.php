@@ -72,3 +72,7 @@ add_theme_support( 'title-tag' );
 
 
 
+// Disable errors Warning
+error_reporting(E_ALL & ~E_WARNING);
+
+ini_set('display_errors', 0);

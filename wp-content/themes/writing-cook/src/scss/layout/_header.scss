@@ -48,8 +48,17 @@
     .header__col {
 
       &_right {
+
+        .to-write {
+          background-image: url("../img/icons/feather-dark.svg");
+        }
+
         .bookmark {
           background-image: url('../img/icons/bookmark-dark.svg');
+        }
+
+        .login-signin {
+          background-image: url("../img/icons/signin-login-dark.svg");
         }
       }
     }
@@ -72,12 +81,43 @@
       display: flex;
       align-items: center;
 
+      .login-signin {
+        padding: 0;
+        margin-right: 40px;
+        width: 28px;
+        height: 40px;
+        background-color: transparent;
+        background-image: url("../img/icons/signin-login.svg");
+        cursor: pointer;
+        border: none;
+      }
+      
+      .to-write {
+        display: block;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        margin-right: 40px;
+        width: 40px;
+        height: 40px;
+        background-image: url("../img/icons/feather.svg");
+        cursor: pointer;
+
+        @include media(mobile-plus) {
+          display: none;
+        }
+      }
+
       .bookmark {
         position: relative;
         cursor: pointer;
         width: 22px;
         height: 40px;
         background-image: url('../img/icons/bookmark.svg');
+
+        @include media(mobile-plus) {
+          display: none;
+        }
 
         .simplefavorites-user-count {
           display: flex;
@@ -114,6 +154,7 @@
   .main-menu {
     display: none;
     min-width: 260px;
+    max-width: 320px;
     padding: 40px 20px;
     position: absolute;
     top: 90%;
@@ -123,6 +164,10 @@
     background: $white_main_color;
     box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
     z-index: 3;
+
+    @include media(tab) {
+      right: 0;
+    }
 
     .menu-item {
       display: block;
@@ -140,18 +185,56 @@
     }
   }
 
+  .to-write-menu {
+    display: none;
+    min-width: 120px;
+    max-width: 320px;
+    padding: 40px 20px;
+    position: absolute;
+    top: 90%;
+    right: 245px;
+    border-radius: 5px;
+    border: 1px solid $white_main_color;
+    background: $white_main_color;
+    box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+    z-index: 3;
+
+    @include media(tab) {
+      right: 0;
+    }
+
+    a {
+      display: block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: $main-color;
+      font-family: $text_font;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   .book-favorites {
     display: none;
     position: absolute;
     top: 90%;
     right: 190px;
     min-width: 260px;
-    max-width: 300px;
+    max-width: 320px;
     padding: 40px 20px;
     border-radius: 5px;
     border: 1px solid $white_main_color;
     background: $white_main_color;
     box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+
+    @include media(tab) {
+      right: 0;
+    }
 
     .favorites-list  {
       padding: 0 2px 0 0;
@@ -199,11 +282,19 @@
 }
 
 // WP-RECALL
+#rcl-overlay {
+  display: none !important;
+}
+
+#recallbar {
+  display: none;
+}
+
 .logged-in {
   #recallbar {
     margin: 0;
     background-color: transparent;
-
+    display: block;
     font-size: 14px;
     height: auto;
     line-height: 1;
@@ -213,6 +304,8 @@
     
     .rcb {
       &_left {
+        display: none;
+
         .rcb_icon {
           &:first-child {
             display: none;
@@ -221,8 +314,7 @@
       }
 
       &_right {
-        margin: 0 40px 0 0;
-
+        margin: 0 40px;
 
         &_menu {
           border-left: none;
@@ -257,10 +349,6 @@
         }
       }
     }
-
-
-  
-    
   }
 
   .pr_sub_menu {
@@ -300,85 +388,6 @@
   }
 }
 
-#recallbar {
-  margin: 0;
-  background-color: transparent;
-
-  font-size: 14px;
-  height: auto;
-  line-height: 1;
-  position: static;
-  width: auto;
-  z-index: 1;
-  
-  .rcb {
-    &_left {
-      .rcb_icon {
-        &:first-child {
-          display: none;
-        }
-
-        .rcli  {
-          color: $white_main_color;
-        }
-
-        .rcl-login,
-        .rcl-register {
-          color: $white_main_color;
-
-          span {
-            color: $white_main_color;
-            font-family: $text_font;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 16px;
-          }
-
-          .rcb_hiden {
-            display: none !important;
-          }
-        }
-      }
-    }
-
-    &_right {
-      margin: 0 40px 0 0;
-
-      &_menu {
-        border-left: none;
-        box-sizing: border-box;
-        height: auto;
-        margin: 0;
-        position: relative;
-        width: fit-content;
-
-        &:hover {
-          border-left: none;
-        }
-        
-        i {
-          display: none;
-        }
-
-        a {
-          display: block;
-          width: 40px;
-          height: 40px;
-          
-          img {
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            object-fit: cover;
-            border-radius: 50px;
-            border: 1px solid $main_color;
-          }
-        }
-      }
-    }
-  }
-}
-
 .pr_sub_menu {
 
   .rcb_line {
@@ -406,6 +415,121 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 16px;
+      }
+    }
+  }
+}
+
+// WP-Recall login-signin popup
+.panel_lk_recall.floatform.rcl-loginform {
+  right: 98px;
+  left: auto;
+  top: 90%;
+  min-width: 260px;
+  max-width: 320px;
+  padding: 40px 20px 22px 20px;
+  border-radius: 5px;
+  border: 1px solid $white_main_color;
+  background: $white_main_color;
+  box-shadow: -10px 8px 12px 0px rgba(0, 0, 0, .04);
+  z-index: 3;
+  box-sizing: border-box;
+
+  @include media(tab) {
+    right: 0;
+  }
+
+  .form-tab-rcl {
+    box-shadow: none;
+
+    .form_head {
+      margin-bottom: 25px;
+
+      .form_auth,
+      .form_reg {
+        background-color: transparent;
+        color: $grey_text_color;
+        font-family: $text_font;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+        border: none;
+
+        a {
+          border: none;
+        }
+
+        &.form_active {
+          color: $main-color;
+          border-bottom: 2px solid $bread_color;
+        }
+      }
+    }
+
+    form {
+
+      .form-block-rcl {
+        margin: 0 0 20px 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &.default-field {
+
+          &.type-checkbox-input {
+            &.rcl-field-input {
+
+            }
+          }
+
+          i {
+            display: none;
+          }
+
+          input {
+            margin: 0;
+            height: 40px;
+            box-sizing: border-box;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid $grey_main_color;
+          }
+        }
+
+        .wp_google_login {
+          margin-top: 40px;
+          margin-bottom: 40px;
+          padding-top: 40px;
+          border-top: 1px solid $grey_main_color;
+
+          .wp_google_login__button-container {
+            margin: 0;
+
+            .wp_google_login__button {
+              padding: 0;
+              height: 40px;
+              box-sizing: border-box;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 20px;
+              border: 1px solid $grey_main_color;
+            }
+          }
+        }
+
+        .rcl-bttn {
+          height: 40px;
+          border-radius: 20px;
+          border: 1px solid $main-color;
+          background: $main-color;
+          color: $white_second_color;
+          font-family: $text_font;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 16px;
+        }
       }
     }
   }

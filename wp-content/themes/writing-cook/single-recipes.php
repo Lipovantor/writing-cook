@@ -171,7 +171,7 @@ $author_avatar = get_avatar($author_id, 40);
                 <?php if( have_rows('inventory_list', $post_id) ) { 
                   while( have_rows('inventory_list', $post_id) ) { 
                   the_row();?>
-                  <li class="body-text ingredients__item">
+                  <li class="body-text ingredients__item inventory-item">
                     <?php 
                     $inventory_name = get_sub_field('inventory_name');
                     echo $inventory_name 
@@ -184,6 +184,7 @@ $author_avatar = get_avatar($author_id, 40);
             </ul> 
           <?php } ?>
         </div>
+
         <?php if($fields['add_info'] == true && !empty($fields['info_text'])) { ?>       
           <div class="info-board info-board_<?php echo $fields['info_type'] ?>">
             <header class="info-board__header">
@@ -373,24 +374,6 @@ $author_avatar = get_avatar($author_id, 40);
         </section>
       <?php } ?>
 
-      <div class="likes">
-        Оценка рецепта
-        <?php global $post; ?>
-        <?php echo rcl_get_html_post_rating($post->ID,'custom-type',$post->post_author);?>   
-      </div>
-
-      <div class="add-bookmark">
-        <?php 
-        /**
-        * Echo the favorite button for a specified post
-        * Post ID not required if inside the loop
-        * @param $post_id int, defaults to current post
-        * @param $site_id int, defaults to current blog/site
-        */ 
-        the_favorites_button($post_id);
-        ?>
-      </div>
-
       <section class="comments">
         <?php
           if (comments_open() || get_comments_number()) {
@@ -515,6 +498,23 @@ $author_avatar = get_avatar($author_id, 40);
             <?php echo esc_html($author_name); ?>
           </div>
         </a> 
+
+        <div class="add-bookmark meta__add-bookmark">
+          <?php 
+          /**
+          * Echo the favorite button for a specified post
+          * Post ID not required if inside the loop
+          * @param $post_id int, defaults to current post
+          * @param $site_id int, defaults to current blog/site
+          */ 
+          the_favorites_button($post_id);
+          ?>
+        </div>
+
+        <div class="likes">
+          <?php global $post; ?>
+          <?php echo rcl_get_html_post_rating($post->ID,'custom-type',$post->post_author);?>   
+        </div>
       </div>
     </aside>
   </div>

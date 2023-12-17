@@ -18,11 +18,13 @@ jQuery(function ($) {
 
       this.install = this.install(this)
       this.header_open_close_main_menu = this.header_open_close_main_menu(this)
+      this.header_open_close_signin_login = this.header_open_close_signin_login(this)
+      this.open_close_favorites_list = this.open_close_favorites_list(this)
+      this.open_close_to_write_menu = this.open_close_to_write_menu(this)
       this.open_close_card_recipe = this.open_close_card_recipe(this)
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
       this.wp_recall_profile = this.wp_recall_profile(this)
-      this.open_close_favorites_list = this.open_close_favorites_list(this)
       
     },
 
@@ -55,13 +57,73 @@ jQuery(function ($) {
     
       $(document).on('click', function(e) {
         let $mainMenu = $('.main-menu');
-        if (!$(e.target).closest('.header').length) {
+        if (!$(e.target).closest('#burger-menu').length && !$(e.target).closest('.main-menu').length) {
           if ($mainMenu.hasClass('active')) {
             $mainMenu.slideToggle().removeClass('active');
           }
         }
       });
-    },    
+    },   
+    
+    /**
+     * Open-close main-menu in header
+     */
+    header_open_close_signin_login: function() {
+      $('#login-signin').on('click', function() {
+        $('.rcl-loginform').slideToggle().toggleClass('active');
+      });
+
+      $('.rcl-loginform').insertAfter("#header .header__container .header__row");
+    
+      $(document).on('click', function(e) {
+        let $mainMenu = $('.rcl-loginform');
+        if (!$(e.target).closest('#login-signin').length && !$(e.target).closest('.rcl-loginform').length) {
+          if ($mainMenu.hasClass('active')) {
+            $mainMenu.slideToggle().removeClass('active');
+          }
+        }
+      });
+    },
+
+    /**
+     * Open/close favorites-list in header
+     */
+    open_close_favorites_list: function() {
+      if ($('.bookmark').length > 0) {
+        $('.bookmark').on('click', function() {
+          $('.book-favorites').slideToggle().toggleClass('active');
+        });
+      
+        $(document).on('click', function(e) {
+          let $mainMenu = $('.book-favorites');
+          if (!$(e.target).closest('.book-favorites').length && !$(e.target).closest('.bookmark').length) {
+            if ($mainMenu.hasClass('active')) {
+              $mainMenu.slideToggle().removeClass('active');
+            }
+          }
+        });
+      }
+    },
+
+    /**
+     * Open/close favorites-list in header
+     */
+    open_close_to_write_menu: function() {
+      if ($('.to-write').length > 0) {
+        $('.to-write').on('click', function() {
+          $('.to-write-menu').slideToggle().toggleClass('active');
+        });
+      
+        $(document).on('click', function(e) {
+          let $mainMenu = $('.to-write-menu');
+          if (!$(e.target).closest('.to-write-menu').length && !$(e.target).closest('.to-write').length) {
+            if ($mainMenu.hasClass('active')) {
+              $mainMenu.slideToggle().removeClass('active');
+            }
+          }
+        });
+      }
+    },
 
     /**
      * Open-close description card recipe
@@ -131,24 +193,6 @@ jQuery(function ($) {
         }
       });
     },
-
-    /**
-     * Open/close favorites-list in header
-     */
-    open_close_favorites_list: function() {
-      if ($('.bookmark').length > 0) {
-        $('.bookmark').on('click', function(e) {
-            e.stopPropagation();
-            $('.book-favorites').slideToggle();
-        });
-
-        $(document).on('click', function(e) {
-          if (!$(e.target).closest('.book-favorites').length) {
-            $('.book-favorites').slideUp();
-          }
-        });
-      }
-    }
   
     
   }
