@@ -1,0 +1,59 @@
+@import "../variables";
+@import "../mixins";
+
+.error404 {
+  background-image: url('../img/error404.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.error-404 {
+
+  &__container {
+    height: 100%;
+  }
+
+  &__body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include media(tab) {
+      flex-direction: column;
+    } 
+  }
+
+  &__col {
+    width: 49%;
+
+    @include media(tab) {
+      width: 100%;
+    } 
+
+    p {
+      a {
+        color: $main-color;
+      }
+    }
+  }
+
+  &__text {
+    color: $second_color;
+    font-family: $text_font;
+    font-size: 350px;
+    font-weight: 700;
+    line-height: normal;
+
+    @include media(desktop) {
+      font-size: calc( (100vw - 375px)/(1920 - 375) * (350 - 120) + 120px);
+    }
+  }
+}

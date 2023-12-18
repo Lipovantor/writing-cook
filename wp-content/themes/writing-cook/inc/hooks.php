@@ -69,7 +69,7 @@ function load_recipes_by_category() {
 
   $args = array(
     'post_type' => 'recipes',
-    'posts_per_page' => 8,
+    'posts_per_page' => 16,
     'paged' => $paged,
     'post_status'    => 'publish',
   );

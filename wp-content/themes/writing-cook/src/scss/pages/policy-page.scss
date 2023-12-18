@@ -1,0 +1,29 @@
+@import "../variables";
+@import "../mixins";
+
+.policy {
+
+  &__intro {
+    padding: 104px 0 40px;
+    background: linear-gradient(270deg, #0C3161 0%, #0A1E37 100%);
+  }
+
+  &__title {
+    color: $white-main-color;
+  }
+
+  &__content {
+    padding: 40px 0;
+
+    h2 {
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 57px;
+    
+      @include media(desktop) {
+        font-size: calc( (100vw - 375px)/(1920 - 375) * (42 - 22) + 22px);
+        line-height: calc( (100vw - 375px)/(1920 - 375) * (57 - 26) + 26px);
+      }
+    }
+  }
+}

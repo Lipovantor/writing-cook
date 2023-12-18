@@ -150,16 +150,19 @@ jQuery(function ($) {
      */
     header_light: function() {
       $(document).ready(function() {
-        var header = $('#header');
-        if( !$('body').hasClass('private-office-page') ) {
-          $(window).scroll(function() {
-            if ($(this).scrollTop() >= 100) {
-                header.addClass('header_light');
-            } else {
-                header.removeClass('header_light');
-            }
-          });
-        } else if( $('body').hasClass('private-office-page') ) {
+        let header = $('#header');
+    
+        $(window).scroll(function() {
+          if (!($('body').hasClass('error404') || $('body').hasClass('private-office-page')) && $(this).scrollTop() >= 100) {
+            header.addClass('header_light');
+          } else {
+            header.removeClass('header_light');
+          }
+        });
+    
+        if (!($('body').hasClass('error404') || $('body').hasClass('private-office-page'))) {
+          header.removeClass('header_light');
+        } else {
           header.addClass('header_light');
         }
       });

@@ -499,7 +499,7 @@ $author_avatar = get_avatar($author_id, 40);
           </div>
         </a> 
 
-        <div class="add-bookmark meta__add-bookmark">
+        <div class="add-bookmark">
           <?php 
           /**
           * Echo the favorite button for a specified post
