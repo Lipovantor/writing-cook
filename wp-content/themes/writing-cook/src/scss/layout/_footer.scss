@@ -3,8 +3,16 @@
   border-radius: 100px 100px 0px 0px;
   background: linear-gradient(180deg, #0E2B50 0%, #0D1928 100%);
 
+  @include media(tab) {
+    border-radius: 50px 50px 0px 0px;
+  }
+
   &__container {
     padding: 0 60px;
+
+    @include media(tab) {
+      padding: 0 22px;
+    }
   }
 
   &__top {
@@ -19,6 +27,10 @@
     
     &-1 {
       flex-direction: row;
+
+      @include media(tab) {
+        flex-direction: column;
+      }
 
       a {
         text-decoration: none;

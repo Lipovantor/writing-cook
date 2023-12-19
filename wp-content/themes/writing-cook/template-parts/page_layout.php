@@ -19,4 +19,7 @@ switch (get_row_layout()) {
   case 'accordeon':
     get_template_part('template-parts/global-sections/accordeon');
     break;
+  case 'open_form':
+    get_template_part('template-parts/global-sections/open-form');
+    break;
 }

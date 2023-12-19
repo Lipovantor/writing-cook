@@ -1,1 +1,9 @@
 @import "../page-layout.scss";
+
+.accordeon {
+  padding: 40px 0 120px 0;
+
+  @include media(tab) {
+    padding: 20px 0 50px 0;
+  }
+}

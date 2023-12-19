@@ -1,5 +1,9 @@
 .accordeon {
-  padding: 40px 0;
+  padding: 120px 0;
+
+  @include media(tab) {
+    padding: 50px 0;
+  }
 
   &__title {
 
