@@ -24,6 +24,8 @@ jQuery(function ($) {
       this.open_close_card_recipe = this.open_close_card_recipe(this)
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
+      this.share_open = this.share_open(this)
+      this.share_close = this.share_close(this)
       this.accordeon = this.accordeon(this)
       this.wp_recall_profile = this.wp_recall_profile(this)
       
@@ -175,6 +177,31 @@ jQuery(function ($) {
       $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a:last-child");
     },
 
+    /**
+     * Open popup share
+     */
+    share_open: function() {
+      if($('.share-button').length > 0) {
+        $('.share-button').on('click', function() {
+          $('.share-popup').slideToggle();
+        });
+      }
+    },
+
+    /**
+     * Open popup share
+     */
+    share_close: function() {
+      if($('.share-popup__close').length > 0) {
+        $('.share-popup__close').on('click', function() {
+          $('.share-popup').slideToggle();
+        });
+      }
+    },
+
+    /**
+     * Accordeon open-close
+     */
     accordeon: function() {
       $('.accordeon__header').click(function () {
         $(this).next('.accordeon__answer').slideToggle();

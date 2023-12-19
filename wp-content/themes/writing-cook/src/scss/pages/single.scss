@@ -353,6 +353,10 @@
   }
 
   .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
     padding: 10px 22px;
     margin-top: 16px;
     border: 1px solid $main_color;

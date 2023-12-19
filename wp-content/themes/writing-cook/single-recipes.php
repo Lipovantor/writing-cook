@@ -511,6 +511,13 @@ $author_avatar = get_avatar($author_id, 40);
           ?>
         </div>
 
+        <button class="share-button" aria-label="Открыть Поделиться"></button>
+
+        <div class="share-popup">
+          <?php echo do_shortcode('[addtoany]'); ?>
+          <button class="share-popup__close" aria-label="Закрыть Поделиться"></button>
+        </div>
+
         <div class="likes">
           <?php global $post; ?>
           <?php echo rcl_get_html_post_rating($post->ID,'custom-type',$post->post_author);?>   
