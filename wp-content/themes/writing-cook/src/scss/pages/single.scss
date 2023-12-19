@@ -7,27 +7,30 @@
     padding: 104px 0 40px;
     background: linear-gradient(270deg, #0C3161 0%, #0A1E37 100%);
 
-    &__breadcrumbs {
-      .rank-math-breadcrumb {
-        margin-bottom: 22px;
-        p {
-          margin: 0;
-  
-          a,
-          .last,
-          span {
-            text-decoration: none;
-            color: $white-second-color;
-            font-family: $text_font;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 16px;
-          }
+    .post-breadcrumbs {
+      margin-bottom: 22px;
 
-          .last {
-            color: $grey_main_color;
-          }
+      &__home,
+      &__blog,
+      &__separator {
+        text-decoration: none;
+        color: $white-second-color;
+        font-family: $text_font;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+      }
+
+      &__home,
+      &__blog {
+        &:hover {
+          transition: all .2s;
+          color: $bread_color;
         }
+      }
+
+      &__post {
+        color: $grey_main_color;
       }
     }
   

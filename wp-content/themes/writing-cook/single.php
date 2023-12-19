@@ -32,11 +32,14 @@ $author_avatar = get_avatar($author_id, 40);
 
     <section class="post-page-intro">
       <div class="container">
-        <?php if (function_exists('rank_math_the_breadcrumbs')) { ?>
-          <div class="post-page-intro__breadcrumbs">
-            <?php rank_math_the_breadcrumbs(); ?>
-          </div>
-        <?php } ?>
+
+        <div class="post-breadcrumbs">
+          <a class="post-breadcrumbs__home" href="<?php echo home_url(); ?>">Главная</a>
+          <span class="post-breadcrumbs__separator">/</span>
+          <a class="post-breadcrumbs__blog" href="<?php echo get_field('blog_address', 'option') ?>">Блог</a>
+          <span class="post-breadcrumbs__separator">/</span>
+          <span class="post-breadcrumbs__post"><?php the_title(); ?></span>
+        </div>
         
         <h1 class="post-page-intro__title"><?php the_title(); ?></h1>
       </div>

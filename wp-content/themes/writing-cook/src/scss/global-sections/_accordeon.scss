@@ -10,6 +10,7 @@
   }
 
   &__item {
+    padding: 0 32px;
     margin-bottom: 12px;
     border-bottom: 2px solid $white_third_color;
 
@@ -18,7 +19,8 @@
     }
 
     &_active {
-      border-color: $main-color;
+      border-bottom: 4px solid $main-color;
+      background-color: #E6EAFA;
 
       .accordeon__open-close {
         transform: rotate(45deg);
@@ -53,6 +55,13 @@
 
   &__answer {
     width: 85%;
+    display: none;
+
+    p {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
 
     p,
     ul,

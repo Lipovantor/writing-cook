@@ -92,19 +92,6 @@ $fields = get_fields($post_id);
                 </div>
               </li>
             <?php } ?>
-              <?php if( have_rows('inventory_list', $post_id) ) { 
-                while( have_rows('inventory_list', $post_id) ) { 
-                the_row();?>
-                <li class="recipe-card__ingredients-item">
-                  <?php 
-                  $inventory_name = get_sub_field('inventory_name');
-                  echo $inventory_name 
-                  ?>
-                </li>
-              <?php
-              }
-            } 
-            ?>
           </ul> 
         <?php } ?>
       </div>

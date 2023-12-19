@@ -24,6 +24,7 @@ jQuery(function ($) {
       this.open_close_card_recipe = this.open_close_card_recipe(this)
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
+      this.accordeon = this.accordeon(this)
       this.wp_recall_profile = this.wp_recall_profile(this)
       
     },
@@ -152,18 +153,16 @@ jQuery(function ($) {
       $(document).ready(function() {
         let header = $('#header');
     
-        $(window).scroll(function() {
-          if (!($('body').hasClass('error404') || $('body').hasClass('private-office-page')) && $(this).scrollTop() >= 100) {
-            header.addClass('header_light');
-          } else {
-            header.removeClass('header_light');
-          }
-        });
-    
-        if (!($('body').hasClass('error404') || $('body').hasClass('private-office-page'))) {
-          header.removeClass('header_light');
-        } else {
+        if ($('body').hasClass('error404') || $('body').hasClass('private-office-page')) {
           header.addClass('header_light');
+        } else {
+          $(window).scroll(function() {
+            if ($(this).scrollTop() >= 100) {
+              header.addClass('header_light');
+            } else {
+              header.removeClass('header_light');
+            }
+          });
         }
       });
     },
@@ -174,6 +173,13 @@ jQuery(function ($) {
     wp_recall_to_header: function() {
       $("#recallbar").insertBefore("#header .header__container .header__row .header__col_right .header__burger");
       $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a:last-child");
+    },
+
+    accordeon: function() {
+      $('.accordeon__header').click(function () {
+        $(this).next('.accordeon__answer').slideToggle();
+        $(this).closest('.accordeon__item').toggleClass('accordeon__item_active');
+      });
     },
 
     /**

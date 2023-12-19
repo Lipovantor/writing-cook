@@ -19,11 +19,11 @@ if (!defined('ABSPATH')) {
         <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/logo-gold.svg'; ?>" alt="" width="100" height="40">
       </a>
 
-      <nav class="main-menu">
+      <nav class="footer-menu footer-menu-1">
         <?php 
         $args = array(
-            'menu' => 'main-menu',
-            'theme_location' => 'header',
+            'menu' => 'footer-menu-1',
+            'theme_location' => 'footer',
             'depth' => 0,
             'fallback_cb' => false,
         );
@@ -37,8 +37,32 @@ if (!defined('ABSPATH')) {
         }
         ?>
       </nav>
+      
     </div>
     <div class="footer__bottom">
+      <div class="footer__bottom-head">
+        <div class="footer-socials">
+          <a href="mailto:writingcook@gmail.com" title="Gmail" class="footer-socials__gmail"></a>
+        </div>
+        <nav class="footer-menu footer-menu-2">
+            <?php 
+            $args = array(
+                'menu' => 'footer-menu-2',
+                'theme_location' => 'footer',
+                'depth' => 0,
+                'fallback_cb' => false,
+            );
+
+            $menu_items = wp_get_nav_menu_items($args['menu']);
+
+            if ($menu_items) {
+              foreach ($menu_items as $menu_item) {
+                  echo '<a href="' . esc_url($menu_item->url) . '" class="menu-item">' . esc_html($menu_item->title) . '</a>';
+              }
+            }
+            ?>
+        </nav>
+      </div>
       <div class="footer__copyright">
         ©Copyright <?php echo date("Y"); ?>
       </div>

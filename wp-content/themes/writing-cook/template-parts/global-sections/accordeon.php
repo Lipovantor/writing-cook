@@ -34,25 +34,3 @@ if (!defined('ABSPATH')) {
     <?php } ?>
   </div>
 </section>
-
-
-<script>
-  $(document).ready(function () {
-    // Скрываем все ответы при загрузке страницы
-    $('.accordeon__answer').hide();
-
-    // Обработка клика по заголовку аккордеона
-    $('.accordeon__header').click(function () {
-      // Закрываем/открываем только тот ответ, который соответствует заголовку
-      $(this).next('.accordeon__answer').slideToggle();
-
-      // Добавляем/удаляем стиль активности к текущему элементу
-      $(this).closest('.accordeon__item').toggleClass('accordeon__item_active');
-    });
-
-    // Проверяем, есть ли активный элемент при загрузке страницы
-    $('.accordeon__item_active .accordeon__answer').show();
-  });
-</script>
-
-
