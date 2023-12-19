@@ -1,0 +1,15 @@
+@import "../page-layout.scss";
+@import "../variables";
+@import "../mixins";
+
+.faq {
+
+  &-intro {
+    padding: 104px 0 40px;
+    background: linear-gradient(270deg, #0C3161 0%, #0A1E37 100%);
+
+    &__title {
+      color: $white-main-color;
+    }
+  }
+}
