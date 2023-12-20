@@ -19,6 +19,8 @@ jQuery(function ($) {
       this.install = this.install(this)
       this.header_open_close_main_menu = this.header_open_close_main_menu(this)
       this.header_open_close_signin_login = this.header_open_close_signin_login(this)
+      this.button_open_login = this.button_open_login(this)
+      this.button_open_signin = this.button_open_signin(this)
       this.open_close_favorites_list = this.open_close_favorites_list(this)
       this.open_close_to_write_menu = this.open_close_to_write_menu(this)
       this.open_close_card_recipe = this.open_close_card_recipe(this)
@@ -69,7 +71,7 @@ jQuery(function ($) {
     },   
     
     /**
-     * Open-close main-menu in header
+     * Open-close sign-in and log-in in header
      */
     header_open_close_signin_login: function() {
       $('#login-signin').on('click', function() {
@@ -80,10 +82,41 @@ jQuery(function ($) {
     
       $(document).on('click', function(e) {
         let $mainMenu = $('.rcl-loginform');
-        if (!$(e.target).closest('#login-signin').length && !$(e.target).closest('.rcl-loginform').length) {
+        if (!$(e.target).closest('#login-signin').length 
+            && !$(e.target).closest('.rcl-loginform').length
+            && !$(e.target).closest('.open-log-in').length
+            && !$(e.target).closest('.open-sign-in').length) {
           if ($mainMenu.hasClass('active')) {
             $mainMenu.slideToggle().removeClass('active');
           }
+        }
+      });
+    },
+
+    /**
+     * Open log-in on click open-log-in
+     */
+    button_open_login: function() {
+      $('.open-log-in').on('click', function() {
+        if(!$('.rcl-loginform').hasClass('active')) {
+          $('.rcl-loginform').slideToggle().toggleClass('active');
+          $('.link-login-rcl').trigger('click');
+        } else {
+          $('.link-login-rcl').trigger('click');
+        }
+      });
+    },
+
+    /**
+     * Open sign-in on click open-sign-in
+     */
+    button_open_signin: function() {
+      $('.open-sign-in').on('click', function() {
+        if(!$('.rcl-loginform').hasClass('active')) {
+          $('.rcl-loginform').slideToggle().toggleClass('active');
+          $('.link-register-rcl').trigger('click');
+        } else {
+          $('.link-register-rcl').trigger('click');
         }
       });
     },

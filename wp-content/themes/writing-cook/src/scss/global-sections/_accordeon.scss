@@ -18,6 +18,10 @@
     margin-bottom: 12px;
     border-bottom: 2px solid $white_third_color;
 
+    @include media(tab) {
+      padding: 0 4px;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -51,6 +55,11 @@
     font-size: 24px;
     font-weight: 500;
     line-height: 30px;
+
+    @include media(tab) {
+      font-size: 20px;
+      line-height: 26px;
+    }
   }
 
   &__open-close {
