@@ -22,4 +22,7 @@ switch (get_row_layout()) {
   case 'open_form':
     get_template_part('template-parts/global-sections/open-form');
     break;
+  case 'optional_recipes':
+    get_template_part('template-parts/global-sections/optional-recipes');
+    break;
 }

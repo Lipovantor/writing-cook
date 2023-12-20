@@ -4,7 +4,8 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<section class="open-form" style="<?php if(!empty(get_sub_field('bg_image'))) echo 'background-image: url(' . get_sub_field('bg_image') . ');'; ?>">
+<section class="open-form" 
+         style="<?php if(!empty(get_sub_field('bg_image'))) echo 'background-image: url(' . get_sub_field('bg_image') . ');'; ?>">
   <div class="open-form__bg-filter"></div>
   <div class="container open-form__container">
     <div class="open-form__content">

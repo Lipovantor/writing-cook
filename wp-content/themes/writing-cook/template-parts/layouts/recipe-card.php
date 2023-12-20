@@ -9,6 +9,8 @@ $excerpt = get_the_excerpt();
 
 $post_id = get_the_ID();
 $fields = get_fields($post_id);
+
+$gallery = $fields['gallery'];
 ?>
 <a class="recipe-card" href="<?php echo get_permalink() ?>">
   
@@ -19,10 +21,19 @@ $fields = get_fields($post_id);
         width="360"
         height="250"/>
     </div>
-  <?php } else { ?>
+    <?php } elseif(!$thumbnail_url && !empty($gallery[0])) { ?>
+      <div class="recipe-card__image">
+        <?php $image_url = wp_get_attachment_image_url($gallery[0], 'large');
+          if ($image_url) { ?>
+          <img src="<?php echo $image_url; ?>" 
+              alt="" 
+              width="360"
+              height="250"/>
+        <?php } ?>
+      </div>
+    <?php } else { ?>
     <div class="recipe-card__plug">
-    <?php 
-      $image = get_field('card_plug', 'option');
+      <?php $image = get_field('card_plug', 'option');
       if( !empty( $image ) ) { ?>
           <img src="<?php echo esc_url($image['url']); ?>" 
                 alt="<?php echo esc_attr($image['alt']); ?>" 
