@@ -25,6 +25,8 @@ jQuery(function ($) {
       this.open_close_info = this.open_close_info(this)
       this.step_open_close = this.step_open_close(this)
       this.call_sidebar = this.call_sidebar(this)
+      this.comments_custom = this.comments_custom(this)
+      this.similar_recipes_slider = this.similar_recipes_slider(this)
       
     },
 
@@ -90,6 +92,9 @@ jQuery(function ($) {
       });
     },
 
+    /**
+     * Open modal-window with video
+     */
     open_modal_video: function() {
       if($('.video-button').length > 0) {
         $('.video-button').on('click', function() {
@@ -98,6 +103,9 @@ jQuery(function ($) {
       }
     },
 
+    /**
+     * Close modal-window with video
+     */
     close_modal_video: function() {
       if($('.modal-video__close').length > 0) {
         $('.modal-video__close').on('click', function() {
@@ -118,6 +126,9 @@ jQuery(function ($) {
       });
     },
 
+    /**
+     * Open-close inventory list
+     */
     inventory_open_close: function() {
       $(document).ready(function () {
         let $ingredientList = $('.ingredients__list'),
@@ -138,6 +149,9 @@ jQuery(function ($) {
       });
     },
 
+    /**
+     * Open-close info-panel
+     */
     open_close_info: function() {
 
       $('.info-board').each(function() {
@@ -157,6 +171,9 @@ jQuery(function ($) {
       });
     },
 
+    /**
+     * Open-close step-item
+     */
     step_open_close: function() {
       $('.step__count').on('click', function() {
         $(this).closest('.step').find('.step__content').slideToggle(50)
@@ -164,6 +181,9 @@ jQuery(function ($) {
       });
     },
 
+    /**
+     * Calculator Ingredients
+     */
     calculator_ingredients: function() {
         let minusButton = $('.portion-controls__button_minus'),
             plusButton = $('.portion-controls__button_plus'),
@@ -234,6 +254,9 @@ jQuery(function ($) {
         updateIngredientsCount();
     },
 
+    /**
+     * Open sidebar on mobile
+     */
     call_sidebar: function() {
       let $sidebar = $('.sidebar'),
           $openSidebarBtn = $('.call-sidebar');
@@ -295,7 +318,94 @@ jQuery(function ($) {
         } 
       });
     },
-  
+
+    /**
+     * Comments custom
+     */
+    comments_custom: function() {
+      $(document).ready(function() {
+        $('#comments').text('Комментарии');
+        $('.comments .must-log-in').text('Для отправки комментария вам необходимо авторизоваться.');
+        $('#reply-title').hide();
+        $('.comment-meta').each(function() {
+          $(this).closest('.comment').find('.comment-author').append($(this));
+        });         
+      })
+
+      $(document).ready(function () {
+        let textarea = $('#comment'),
+            placeholderText = 'Напишите Ваш комментарий';
+
+        textarea.val(placeholderText);
+
+        textarea.on('focus', function () {
+          if (textarea.val() === placeholderText) {
+            textarea.val('');
+          }
+        });
+
+        textarea.on('blur', function () {
+          if (textarea.val() === '') {
+            textarea.val(placeholderText);
+          }
+        });
+      });
+
+      $(document).ready(function () {
+        let submitButton = $('#submit'),
+            newButtonText = 'Отправить';
+
+        submitButton.text(newButtonText);
+        submitButton.val(newButtonText);
+      });
+    },
+
+    /**
+     * Slider for section Similar Recipes
+     */
+    similar_recipes_slider: function() {
+      let similarRecipesSlider = $('.similar-recipes__slider');
+    
+      if(similarRecipesSlider.length > 0) {
+        function initializeSlider() {
+          similarRecipesSlider.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 2200,
+            pauseOnHover: true,
+            centerMode: true,
+            variableWidth: true,
+            adaptiveHeight: true,
+            arrows: false,
+
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  
+                }
+              },
+            ]
+          });
+        }
+
+        // Initialize the sliders on page load
+        initializeSlider();
+      
+        // Reinitialize sliders on window resize
+        let resizeTimer;
+
+        $(window).on('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            similarRecipesSlider.slick('unslick');
+            initializeSlider();
+          }, 100);
+        });
+      }
+    },
   }
 
   /**

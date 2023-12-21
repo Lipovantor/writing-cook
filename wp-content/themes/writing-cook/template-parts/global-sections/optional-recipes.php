@@ -75,13 +75,15 @@ $recipe2 = get_sub_field('recipe_2');
             }
           } ?>
 
-          <h2 class="optional-recipe__title"><?php the_title(); ?></h2>
+          <div class="optional-recipe__content">
+            <h2 class="optional-recipe__title"><?php the_title(); ?></h2>
 
-          <?php if ($excerpt) { ?>
-            <div class="optional-recipe__excerpt">
-              <?php echo $excerpt; ?>
-            </div>
-          <?php } ?>
+            <?php if ($excerpt) { ?>
+              <div class="optional-recipe__excerpt">
+                <?php echo $excerpt; ?>
+              </div>
+            <?php } ?>
+          </div>
           
         </a>
 
@@ -141,13 +143,17 @@ $recipe2 = get_sub_field('recipe_2');
             }
           } ?>
 
-          <h2 class="optional-recipe__title"><?php the_title(); ?></h2>
+          <div class="optional-recipe__content">
 
-          <?php if ($excerpt) { ?>
-            <div class="optional-recipe__excerpt">
-              <?php echo $excerpt; ?>
-            </div>
-          <?php } ?>
+            <h2 class="optional-recipe__title"><?php the_title(); ?></h2>
+
+            <?php if ($excerpt) { ?>
+              <div class="optional-recipe__excerpt">
+                <?php echo $excerpt; ?>
+              </div>
+            <?php } ?>
+
+          </div>
           
         </a>
 

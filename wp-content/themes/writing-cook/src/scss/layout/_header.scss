@@ -55,6 +55,10 @@
 
         .bookmark {
           background-image: url('../img/icons/bookmark-dark.svg');
+
+          .simplefavorites-user-count {
+            border: 1px solid $main-color;
+          }
         }
 
         .login-signin {
@@ -114,22 +118,32 @@
         width: 22px;
         height: 40px;
         background-image: url('../img/icons/bookmark.svg');
+        transition: all .2s;
 
         @include media(mobile-plus) {
           display: none;
         }
 
+        &:hover {
+          transform: translateY(3px);
+
+          .simplefavorites-user-count {
+            transform: translateY(-3px);
+          }
+        }
+
         .simplefavorites-user-count {
+          transition: all .2s;
           display: flex;
           align-items: center;
           justify-content: center;
-          min-width: 16px;
-          height: 16px;
+          min-width: 17px;
+          height: 17px;
           border-radius: 50%;
           position: absolute;
-          bottom: 0;
+          bottom: -3px;
           right: -7px;
-          border: 1px solid $main-color;
+          border: 1px solid $white-main-color;
           background-color: $main-color;
           color: $white-main-color;
           font-family: $text_font;
@@ -336,6 +350,14 @@
             display: block;
             width: 40px;
             height: 40px;
+            position: relative;
+
+            &:hover {
+              img {
+                border: 1px solid transparent;
+                outline: 2px solid $main-color;
+              }
+            }
             
             img {
               width: 100%;
@@ -343,7 +365,9 @@
               max-width: 100%;
               object-fit: cover;
               border-radius: 50px;
-              border: 1px solid $main_color;
+              border: 1px solid $main-color;
+              outline: 2px solid transparent;
+              transition: all .3s;
             }
           }
         }

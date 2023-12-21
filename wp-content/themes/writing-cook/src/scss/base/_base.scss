@@ -2,6 +2,20 @@ html {
   padding: 0;
   margin: 0 !important;
   height: 100%;
+
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $white_third_color;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: $main_color;
+    border-radius: 20px;
+    border: 1px solid $white_third_color;
+  }
 }
 
 body {

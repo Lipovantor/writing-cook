@@ -380,44 +380,6 @@ $author_avatar = get_avatar($author_id, 40);
             comments_template();
           }
         ?>
-        <script>
-          $(document).ready(function() {
-            $('#comments').text('Комментарии');
-            $('.comments .must-log-in').text('Для отправки комментария вам необходимо авторизоваться.');
-            $('#reply-title').hide();
-            $('.comment-meta').each(function() {
-              $(this).closest('.comment').find('.comment-author').append($(this));
-            });         
-          })
-
-          $(document).ready(function () {
-            var textarea = $('#comment');
-            var placeholderText = 'Напишите Ваш комментарий';
-
-            textarea.val(placeholderText);
-
-            textarea.on('focus', function () {
-              if (textarea.val() === placeholderText) {
-                textarea.val('');
-              }
-            });
-
-            textarea.on('blur', function () {
-              if (textarea.val() === '') {
-                textarea.val(placeholderText);
-              }
-            });
-          });
-
-          $(document).ready(function () {
-            var submitButton = $('#submit');
-            var newButtonText = 'Отправить';
-
-            submitButton.text(newButtonText);
-            submitButton.val(newButtonText);
-          });
-
-        </script>
       </section>
 
     </article>
@@ -525,6 +487,110 @@ $author_avatar = get_avatar($author_id, 40);
       </div>
     </aside>
   </div>
+
+  <?php $current_post_categories = get_the_terms($post_id, 'recipe_category');
+
+    if ($current_post_categories && !is_wp_error($current_post_categories)) {
+      $category_ids = array();
+
+      foreach ($current_post_categories as $category) {
+        $category_ids[] = $category->term_id;
+      }
+
+      $args = array(
+        'post_type' => 'recipes',
+        'posts_per_page' => 10,
+        'post_status' => 'publish',
+        'tax_query' => array(
+          array(
+            'taxonomy' => 'recipe_category',
+            'field' => 'id',
+            'terms' => $category_ids,
+          ),
+        ),
+        'post__not_in' => array($post_id),
+      );
+
+      $posts_query = new WP_Query($args);
+
+      if ($posts_query->have_posts()) { ?>
+        <section class="similar-recipes">
+
+          <div class="container">
+            <h2 class="similar-recipes__title">Похожие рецепты</h2>
+          
+            <div class="similar-recipes__slider">
+              <?php while ($posts_query->have_posts()) :
+                $posts_query->the_post();
+      
+                $recipe_permalink = get_permalink();
+                $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+                $gallery = get_field('gallery');
+                $excerpt = get_the_excerpt();
+                ?>
+      
+                <a href="<?php echo esc_url($recipe_permalink); ?>" class="similar-recipe" title="<?php the_title(); ?>">
+      
+                  <?php if ($thumbnail_url || !empty($gallery)) { ?>
+                    <div class="similar-recipe__image">
+                      <?php
+                      if ($thumbnail_url) {
+                        ?>
+                        <img src="<?php echo $thumbnail_url; ?>" 
+                            alt="<?php echo get_the_title(); ?>" 
+                            width="360"
+                            height="250"/>
+                        <?php
+                      } elseif (!empty($gallery[0])) {
+                        $image_url = wp_get_attachment_image_url($gallery[0], 'large');
+                        if ($image_url) {
+                          ?>
+                          <img src="<?php echo $image_url; ?>" 
+                              alt="<?php echo get_the_title(); ?>" 
+                              width="360"
+                              height="250"/>
+                          <?php
+                        }
+                      }
+                      ?>
+                    </div>
+                  <?php } else {
+                    $plug_image = get_field('card_plug', 'option');
+                    if (!empty($plug_image)) {
+                      ?>
+                      <div class="similar-recipe__image">
+                        <img src="<?php echo esc_url($plug_image['url']); ?>" 
+                            alt="<?php echo esc_attr($plug_image['alt']); ?>" 
+                            width="360"
+                            height="250"/>
+                      </div>
+                      <?php
+                    }
+                  } ?>
+      
+                  <div class="similar-recipe__content">
+                    
+                    <h2 class="similar-recipe__title"><?php the_title(); ?></h2>
+        
+                    <?php if ($excerpt) { ?>
+                      <div class="similar-recipe__excerpt">
+                        <?php echo $excerpt; ?>
+                      </div>
+                    <?php } ?>
+                  </div>
+      
+                </a>
+      
+              <?php endwhile;
+              wp_reset_postdata(); ?>
+            </div>
+          </div>
+
+        </section>
+      <?php }
+    } 
+  ?>
+
 </main>
 
 <?php get_footer();

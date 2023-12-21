@@ -31,6 +31,8 @@ jQuery(function ($) {
       this.share_close = this.share_close(this)
       this.accordeon = this.accordeon(this)
       this.wp_recall_profile = this.wp_recall_profile(this)
+      this.optional_recipes_slider_right_to_left = this.optional_recipes_slider_right_to_left(this)
+      this.optional_recipes_slider_left_to_right = this.optional_recipes_slider_left_to_right(this)
       
     },
 
@@ -173,7 +175,9 @@ jQuery(function ($) {
             card = button.closest('.recipe-card'),
             cardContent = card.find('.recipe-card__content_second');
     
-            card.css('z-index', -card.index()+20);
+        let zIndexValue = card.closest('.searching').length > 0 ? 21 : 20;
+    
+        card.css('z-index', -card.index() + zIndexValue);
     
         cardContent.slideToggle();
         button.toggleClass('recipe-card__button_active');
@@ -276,6 +280,101 @@ jQuery(function ($) {
           }, 1500);
         }
       });
+    },
+
+    /**
+     * Slider for section Optional Recipes
+     */
+    optional_recipes_slider_right_to_left: function() {
+      let optionalRecipesSlider = $('.optional-recipes__slider_standart');
+
+      if(optionalRecipesSlider.length > 0) {
+        function initializeSlider() {
+          optionalRecipesSlider.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            pauseOnHover: true,
+            centerMode: true,
+            variableWidth: true,
+            adaptiveHeight: true,
+            arrows: false,
+  
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  
+                }
+              },
+            ]
+          });
+        }
+  
+        // Initialize the sliders on page load
+        initializeSlider();
+      
+        // Reinitialize sliders on window resize
+        let resizeTimer;
+  
+        $(window).on('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            optionalRecipesSlider.slick('unslick');
+            initializeSlider();
+          }, 100); // Настройте подходящую задержку
+        });
+      }
+    },
+    
+    /**
+     * Slider for section Optional Recipes RTL
+     */
+    optional_recipes_slider_left_to_right: function() {
+      let optionalRecipesSlider = $('.optional-recipes__slider_rtl');
+    
+      if(optionalRecipesSlider.length > 0) {
+        function initializeSlider() {
+          optionalRecipesSlider.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            pauseOnHover: true,
+            centerMode: true,
+            variableWidth: true,
+            adaptiveHeight: true,
+            arrows: false,
+            rtl: true,
+
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  
+                }
+              },
+            ]
+          });
+        }
+
+        // Initialize the sliders on page load
+        initializeSlider();
+      
+        // Reinitialize sliders on window resize
+        let resizeTimer;
+
+        $(window).on('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            optionalRecipesSlider.slick('unslick');
+            initializeSlider();
+          }, 100);
+        });
+      }
     },
   
     
