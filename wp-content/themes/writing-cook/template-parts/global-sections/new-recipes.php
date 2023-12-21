@@ -2,19 +2,22 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+$title = get_sub_field('title');
+$text = get_sub_field('text');
 ?>
 
 <section class="new-recipes">
   <div class="container">
     <div class="new-recipes__header">
-      <?php if (!empty(get_sub_field('title'))) { ?>
+      <?php if (!empty($title)) { ?>
         <h2 class="new-recipes__title">
-          <?php echo get_sub_field('title'); ?>
+          <?php echo $title; ?>
         </h2>
       <?php } ?>
-      <?php if (!empty(get_sub_field('text'))) { ?>
+      <?php if (!empty($text)) { ?>
         <p class="new-recipes__text extra-text">
-          <?php echo get_sub_field('text'); ?>
+          <?php echo $text; ?>
         </p>
       <?php } ?>
     </div>

@@ -2,13 +2,14 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+$subtitle = get_sub_field('subtitle');
 ?>
 
 <section class="accordeon">
   <div class="container">
-    <?php if(!empty(get_sub_field('subtitle'))) { ?>
+    <?php if(!empty( $subtitle )) { ?>
       <h2 class="accordeon__title">
-        <?php echo get_sub_field('subtitle'); ?>
+        <?php echo $subtitle; ?>
       </h2>
     <?php } ?>
     <?php if( have_rows('accordeon') ) { ?>

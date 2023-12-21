@@ -26,6 +26,7 @@ jQuery(function ($) {
       this.open_close_card_recipe = this.open_close_card_recipe(this)
       this.header_light = this.header_light(this)
       this.wp_recall_to_header = this.wp_recall_to_header(this)
+      this.wp_recall_keydown_enter = this.wp_recall_keydown_enter(this)
       this.share_open = this.share_open(this)
       this.share_close = this.share_close(this)
       this.accordeon = this.accordeon(this)
@@ -208,6 +209,20 @@ jQuery(function ($) {
     wp_recall_to_header: function() {
       $("#recallbar").insertBefore("#header .header__container .header__row .header__col_right .header__burger");
       $('#recallbar .pr_sub_menu').insertAfter("#header .header__container .main-menu a:last-child");
+    },
+
+    /**
+     * Keydown Enter for form wp-recall
+     */
+    wp_recall_keydown_enter: function() {
+      $(document).ready(function() {
+        $('.rcl-loginform form').on('keydown', function(event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            $(this).submit();
+          }
+        });
+      });
     },
 
     /**

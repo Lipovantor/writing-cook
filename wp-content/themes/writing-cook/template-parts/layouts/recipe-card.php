@@ -12,6 +12,7 @@ $fields = get_fields($post_id);
 
 $gallery = $fields['gallery'];
 ?>
+
 <a class="recipe-card" href="<?php echo get_permalink() ?>">
   
   <?php if ($thumbnail_url) { ?>
@@ -56,21 +57,6 @@ $gallery = $fields['gallery'];
           </p>
         </div>
       </div>
-      <script>
-        function truncateText() {
-          const card = $('.recipe-card');
-          const text = $('.recipe-card__title');
-          const cardHeight = card.height();
-
-          while (text[0].scrollHeight > cardHeight) {
-            text.text(function (index, text) {
-              return text.replace(/\W*\s(\S)*$/, '...');
-            });
-          }
-        }
-
-        $(window).on('load resize', truncateText);
-      </script>
     </div>
     
     <button class="recipe-card__button" aria-label="Развернуть-свернуть карточку рецепта">

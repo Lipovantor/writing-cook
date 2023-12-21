@@ -2,24 +2,26 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
+$title = get_sub_field('title');
+$text = get_sub_field('text');
 ?>
 
 <section class="promo">
   <div class="container promo__container">
 
     <div class="promo__col">
-      <?php if (!empty(get_sub_field('title'))) { ?>
+      <?php if (!empty($title)) { ?>
         <h2 class="promo__title">
-          <?php echo get_sub_field('title'); ?>
+          <?php echo $title; ?>
         </h2>
       <?php } ?>
-      <?php if (!empty(get_sub_field('text'))) { ?>
+      <?php if (!empty($text)) { ?>
         <div class="promo__text extra-text">
-          <?php echo get_sub_field('text'); ?>
+          <?php echo $text; ?>
         </div>
       <?php } ?>
-      <?php 
-      $link = get_sub_field('button');
+      <?php $link = get_sub_field('button');
       if( $link ) {
           $link_url = $link['url'];
           $link_title = $link['title'];

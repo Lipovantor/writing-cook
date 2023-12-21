@@ -5,21 +5,25 @@ if (!defined('ABSPATH')) {
 
 wp_enqueue_script('intro-blog', WRC_THEME_URI . '/dist/js/sections/intro-blog.min.js', 'jquery');
 wp_localize_script('intro-blog', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+
+$bg_image = get_sub_field('bg_image');
+$title = get_sub_field('title');
+$text = get_sub_field('text');
 ?>
 
 <section class="intro-blog" 
-         style="<?php if (!empty(get_sub_field('bg_image'))) { echo 'background-image: url(' . get_sub_field('bg_image') . ')'; } ?>">
+         style="<?php if ( !empty( $bg_image ) ) { echo 'background-image: url(' . $bg_image . ')'; } ?>">
   <div class="container">
 
-    <?php if (!empty(get_sub_field('title'))) { ?>
+    <?php if ( !empty( $title ) ) { ?>
       <h1 class="intro-blog__title">
-        <?php echo get_sub_field('title'); ?>
+        <?php echo $title; ?>
       </h1>
     <?php } ?>
 
-    <?php if (!empty(get_sub_field('text'))) { ?>
+    <?php if ( !empty( $text ) ) { ?>
       <div class="intro-blog__text body-text">
-        <?php echo get_sub_field('text'); ?>
+        <?php echo $text; ?>
       </div>
     <?php } ?>
 

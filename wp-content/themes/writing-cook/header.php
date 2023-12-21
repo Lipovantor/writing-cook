@@ -98,14 +98,3 @@ if (!defined('ABSPATH')) {
       <?php } ?>
 
 </header>
-
-<script>
-  $(document).ready(function() {
-    $('.rcl-loginform form').on('keydown', function(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        $(this).submit();
-      }
-    });
-  });
-</script>

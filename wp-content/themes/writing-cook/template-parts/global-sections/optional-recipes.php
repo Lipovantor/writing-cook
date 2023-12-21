@@ -2,26 +2,31 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+$title = get_sub_field('title');
+$text = get_sub_field('text');
+
+$recipe = get_sub_field('recipe');
+$recipe2 = get_sub_field('recipe_2');
 ?>
 
 <section class="optional-recipes">
   <div class="container">
     <div class="optional-recipes__header">
-      <?php if (!empty(get_sub_field('title'))) { ?>
+      <?php if (!empty($title)) { ?>
         <h2 class="optional-recipes__title">
-          <?php echo get_sub_field('title'); ?>
+          <?php echo $title; ?>
         </h2>
       <?php } ?>
-      <?php if (!empty(get_sub_field('text'))) { ?>
+      <?php if (!empty($text)) { ?>
         <p class="optional-recipes__text extra-text">
-          <?php echo get_sub_field('text'); ?>
+          <?php echo $text; ?>
         </p>
       <?php } ?>
     </div>
   </div>
   <div class="optional-recipes__slider optional-recipes__slider_standart">
-    <?php $recipe = get_sub_field('recipe');
-
+    <?php
     if ($recipe) {
       foreach ($recipe as $post) {
         setup_postdata($post);
@@ -87,8 +92,7 @@ if (!defined('ABSPATH')) {
     ?>
   </div>
   <div class="optional-recipes__slider optional-recipes__slider_rtl" dir="rtl">
-    <?php $recipe2 = get_sub_field('recipe_2');
-
+    <?php
     if ($recipe2) {
       foreach ($recipe2 as $post) {
         setup_postdata($post);
