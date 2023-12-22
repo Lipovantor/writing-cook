@@ -67,7 +67,7 @@ $gallery = $fields['gallery'];
         <?php if($fields['timing']) { ?>
           <div class="recipe-card__ingredients-timing-time">Время приготовления: <?php echo $fields['timing']; ?></div>
         <?php } ?>
-        <p class="recipe-card__ingredients-title">Ингредиенты и инвентарь</p>
+        <p class="recipe-card__ingredients-title">Ингредиенты:</p>
         <?php if( have_rows('ingredients_list', $post_id) ) { ?>
           <ul class="recipe-card__ingredients-list">
             <?php while( have_rows('ingredients_list', $post_id) ) {

@@ -217,14 +217,14 @@ $author_avatar = get_avatar($author_id, 40);
         <?php } ?>
       </section>
 
-      <?php if($fields['add_steps_recipe'] == true) { ?>
-        <?php if(!empty($fields['steps_recipe_title']) || have_rows('steps_recipe_list', $post_id)) { ?>
+      <?php if($fields['choice_type_recipe'] == 'steps') { ?>
+        <?php if(have_rows('steps_recipe_list', $post_id)) { ?>
           <section class="steps-recipe">
-            <?php if(!empty($fields['steps_recipe_title'])) { ?>
-              <h2 class="steps-recipe__title">
-                <?php echo $fields['steps_recipe_title'] ?>
-              </h2>
-            <?php } ?>
+
+            <h2 class="steps-recipe__title">
+              Пошаговый рецепт
+            </h2>
+
             <?php
             $count = 1; 
             if( have_rows('steps_recipe_list', $post_id) ) { ?>
@@ -257,82 +257,52 @@ $author_avatar = get_avatar($author_id, 40);
                 } ?>
               </div>
             <?php } ?>
-
-            <?php if($fields['steps_add_info'] == true && !empty($fields['steps_info_text'])) { ?>       
-              <div class="info-board info-board_<?php echo $fields['steps_info_type'] ?>">
-                <header class="info-board__header">
-                  <?php if($fields['steps_info_type'] == 'info') { ?>
-                    <img 
-                    width="56" height="56" 
-                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
-                    alt="Info" 
-                    class="details__timing-icon">
-                  <?php } elseif($fields['steps_info_type'] == 'warning') { ?>
-                    <img 
-                    width="56" height="56" 
-                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
-                    alt="Warning" 
-                    class="details__timing-icon">
-                  <?php } elseif($fields['steps_info_type'] == 'idea') { ?>
-                    <img 
-                    width="56" height="56" 
-                    src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
-                    alt="Idea" 
-                    class="details__timing-icon">
-                  <?php } ?>       
-                  <p class="extra-text"><?= !empty($fields['steps_info_title']) ? $fields['steps_info_title'] : ''; ?></p>
-                </header>
-                <div class="info-board__text"><?= !empty($fields['steps_info_text']) ? $fields['steps_info_text'] : ''; ?></div>
-                <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
-                  <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="Вниз" width="13" height="9">
-                </button>
-              </div>
-            <?php } ?>
           </section>
         <?php } ?>
       <?php } ?>
 
-      <?php if(!empty($fields['simple_recipe'])) { ?>
+      <?php if($fields['choice_type_recipe'] == 'simple') { ?>
         <section class="simple-recipe">
-          <?php if(!empty($fields['simple_recipe_title'])) { ?>
-            <h2 class="simple-recipe__title">
-              <?php echo $fields['simple_recipe_title'] ?>
-            </h2>
-          <?php } ?>
+          
+          <h2 class="simple-recipe__title">
+            Простой рецепт
+          </h2>
+          
           <div class="simple-recipe__content">
             <?php echo $fields['simple_recipe'] ?>
           </div>
-          <?php if($fields['simple_add_info'] == true && !empty($fields['simple_info_text'])) { ?>       
-            <div class="info-board info-board_<?php echo $fields['simple_info_type'] ?>">
-              <header class="info-board__header">
-                <?php if($fields['simple_info_type'] == 'info') { ?>
-                  <img 
-                  width="56" height="56" 
-                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
-                  alt="Info" 
-                  class="details__timing-icon">
-                <?php } elseif($fields['simple_info_type'] == 'warning') { ?>
-                  <img 
-                  width="56" height="56" 
-                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
-                  alt="Warning" 
-                  class="details__timing-icon">
-                <?php } elseif($fields['simple_info_type'] == 'idea') { ?>
-                  <img 
-                  width="56" height="56" 
-                  src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
-                  alt="Idea" 
-                  class="details__timing-icon">
-                <?php } ?>       
-                <p class="extra-text"><?= !empty($fields['simple_info_title']) ? $fields['simple_info_title'] : ''; ?></p>
-              </header>
-              <div class="info-board__text"><?= !empty($fields['simple_info_text']) ? $fields['simple_info_text'] : ''; ?></div>
-              <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
-                <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="Вниз" width="13" height="9">
-              </button>
-            </div>
-          <?php } ?>
         </section>
+      <?php } ?>
+
+      <?php if($fields['simple_add_info'] == true && !empty($fields['simple_info_text'])) { ?>       
+        <div class="info-board info-board_last info-board_<?php echo $fields['simple_info_type'] ?>">
+          <header class="info-board__header">
+            <?php if($fields['simple_info_type'] == 'info') { ?>
+              <img 
+              width="56" height="56" 
+              src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-info.svg'; ?>" 
+              alt="Info" 
+              class="details__timing-icon">
+            <?php } elseif($fields['simple_info_type'] == 'warning') { ?>
+              <img 
+              width="56" height="56" 
+              src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-warning.svg'; ?>" 
+              alt="Warning" 
+              class="details__timing-icon">
+            <?php } elseif($fields['simple_info_type'] == 'idea') { ?>
+              <img 
+              width="56" height="56" 
+              src="<?php echo WRC_THEME_URI . '/dist/img/icons/icon-idea.svg'; ?>" 
+              alt="Idea" 
+              class="details__timing-icon">
+            <?php } ?>       
+            <p class="extra-text"><?= !empty($fields['simple_info_title']) ? $fields['simple_info_title'] : ''; ?></p>
+          </header>
+          <div class="info-board__text"><?= !empty($fields['simple_info_text']) ? $fields['simple_info_text'] : ''; ?></div>
+          <button class="info-board__button" aria-label="Развернуть-свернуть информационную панель" title="Раскрыть">
+            <img src="<?php echo WRC_THEME_URI . '/dist/img/icons/arrow-down.svg'; ?>" alt="Вниз" width="13" height="9">
+          </button>
+        </div>
       <?php } ?>
 
       <?php if(!empty(get_field('related_recipes'))) { ?>

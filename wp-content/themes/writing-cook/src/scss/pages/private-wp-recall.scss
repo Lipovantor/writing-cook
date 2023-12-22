@@ -259,6 +259,13 @@
         margin: 0;
         width: 100%;
 
+        #subtab-subtab-1 {
+          h2 {
+            padding-top: 22px;
+            padding-bottom: 20px;
+          }
+        }
+
         .acf-form {
 
           .acf-fields {
@@ -292,6 +299,10 @@
 
               &[data-name="kratkoe_opisanie"],
               &[data-name="add_video"],
+              &[data-name="video"],
+              &[data-name="portion"],
+              &[data-name="choice_type_recipe"],
+              &[data-name="add_related_recipes"],
               &[data-name="inventory_list"] {
                 background-color: $white_third_color;
               }
@@ -348,11 +359,7 @@
               &[data-name="add_steps_recipe"],
               &[data-name="steps_recipe_title"],
               &[data-name="steps_recipe_list"],
-              &[data-name="steps_add_info"],
-              &[data-name="steps_info_type"],
-              &[data-name="steps_info_title"],
-              &[data-name="steps_info_text"],
-              &[data-name="add_related_recipes"] {
+              &[data-name="simple_recipe"] {
                 padding-top: 22px;
                 padding-bottom: 22px;
                 background-color: #e2eaf7;

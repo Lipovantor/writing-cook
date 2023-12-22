@@ -323,6 +323,10 @@
       background-color: rgb(153, 236, 153);
     }
 
+    &_last {
+      margin-bottom: 80px;
+    }
+
     &__header {
       display: flex;
       align-items: center;
